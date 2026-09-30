@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "traffic-vehicle-classifier"
+version = "1.0.0"
+description = "Leakage-aware CNN and transfer-learning traffic vehicle classifier"
+requires-python = ">=3.11"
+dependencies = [
+  "torch>=2.5",
+  "torchvision>=0.20",
+  "numpy>=1.26",
+  "pandas>=2.0",
+  "scikit-learn>=1.4",
+  "matplotlib>=3.8",
+  "seaborn>=0.13",
+  "Pillow>=10",
+  "nbformat>=5.10",
+  "nbclient>=0.10",
+  "nbconvert>=7.16",
+  "ipykernel>=6.29",
+]
+
+[tool.setuptools.packages.find]
+include = ["traffic_classifier*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

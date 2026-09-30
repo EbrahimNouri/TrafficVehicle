@@ -1,0 +1,5 @@
+{
+  "seed": 42,
+  "strategy": "per-class shuffled split using numpy.random.default_rng(seed)",
+  "note": "Exact indices and paths are written by the pipeline before training."
+}
