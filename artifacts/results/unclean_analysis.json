@@ -1,0 +1,264 @@
+{
+  "cleaning": {
+    "original_images": 183,
+    "retained_images": 159,
+    "excluded_duplicates": 24,
+    "known_images": 109,
+    "unseen_neysan_images": 50
+  },
+  "known_class_metrics": {
+    "accuracy": 0.6788990825688074,
+    "macro_precision": 0.7167646363298537,
+    "macro_recall": 0.6776198007807241,
+    "macro_f1": 0.6718880534670009,
+    "weighted_f1": 0.6709573488907143,
+    "per_class": {
+      "ambulance": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 2
+      },
+      "autobus": {
+        "precision": 0.7777777777777778,
+        "recall": 0.9333333333333333,
+        "f1": 0.8484848484848485,
+        "support": 15
+      },
+      "kamyun": {
+        "precision": 0.45454545454545453,
+        "recall": 0.2631578947368421,
+        "f1": 0.3333333333333333,
+        "support": 19
+      },
+      "kamyunet": {
+        "precision": 0.391304347826087,
+        "recall": 0.6,
+        "f1": 0.47368421052631576,
+        "support": 15
+      },
+      "minibus": {
+        "precision": 0.9090909090909091,
+        "recall": 0.5882352941176471,
+        "f1": 0.7142857142857143,
+        "support": 17
+      },
+      "savari": {
+        "precision": 0.9090909090909091,
+        "recall": 0.8695652173913043,
+        "f1": 0.8888888888888888,
+        "support": 23
+      },
+      "taxi": {
+        "precision": 0.6923076923076923,
+        "recall": 1.0,
+        "f1": 0.8181818181818182,
+        "support": 9
+      },
+      "vanet": {
+        "precision": 0.6,
+        "recall": 0.6666666666666666,
+        "f1": 0.631578947368421,
+        "support": 9
+      }
+    },
+    "confusion_matrix_counts": [
+      [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        14,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        5,
+        12,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        5,
+        9,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2,
+        10,
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        3,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        2,
+        0,
+        6
+      ]
+    ],
+    "confusion_matrix_row_normalized": [
+      [
+        0.5,
+        0.0,
+        0.5,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.9333333333333333,
+        0.0,
+        0.0,
+        0.06666666666666667,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.10526315789473684,
+        0.2631578947368421,
+        0.631578947368421,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.06666666666666667,
+        0.3333333333333333,
+        0.6,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.11764705882352941,
+        0.5882352941176471,
+        0.0,
+        0.058823529411764705,
+        0.23529411764705882
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8695652173913043,
+        0.13043478260869565,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.1111111111111111,
+        0.0,
+        0.0,
+        0.0,
+        0.2222222222222222,
+        0.0,
+        0.6666666666666666
+      ]
+    ]
+  },
+  "known_class_uncertainty": {
+    "nll": 0.9643581509590149,
+    "ece_10_bins": 0.09134534821597808,
+    "brier_multiclass": 0.4781572807675475,
+    "mean_confidence": 0.7086864709854126,
+    "accuracy": 0.6788990825688074
+  },
+  "unseen_neysan": {
+    "mean_confidence": 0.9086486101150513,
+    "median_confidence": 0.9897306561470032,
+    "review_count": 7,
+    "review_rate": 0.14,
+    "predicted_class_counts": {
+      "ambulance": 0,
+      "autobus": 3,
+      "kamyun": 1,
+      "kamyunet": 0,
+      "minibus": 0,
+      "savari": 0,
+      "taxi": 1,
+      "vanet": 45
+    }
+  },
+  "all_cleaned_prediction_counts": {
+    "ambulance": 1,
+    "autobus": 21,
+    "kamyun": 12,
+    "kamyunet": 23,
+    "minibus": 11,
+    "savari": 22,
+    "taxi": 14,
+    "vanet": 55
+  },
+  "interpretation": "neysan is an unseen class, not a ninth training label. Confidence is not a calibrated OOD score, so high-confidence known-class predictions can still be wrong; low-confidence cases are routed to human review."
+}

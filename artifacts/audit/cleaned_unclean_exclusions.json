@@ -122,21 +122,6 @@
   {
     "decision": "exclude_from_cleaned_unclean",
     "reason": "canonical_pixel_duplicate_of_train_or_test",
-    "unclean_path": "dataset/unclean/autobus/218337345.jpg",
-    "unclean_label": "autobus",
-    "pixel_sha256": "cd8473ec8d7d42d278e5db7160008bf5d74611f8d488241d0588b7b335d18abc",
-    "duplicate_of": [
-      {
-        "split": "train",
-        "label": "autobus",
-        "path": "dataset/train/autobus/218337345.jpg"
-      }
-    ],
-    "label_conflict": false
-  },
-  {
-    "decision": "exclude_from_cleaned_unclean",
-    "reason": "canonical_pixel_duplicate_of_train_or_test",
     "unclean_path": "dataset/unclean/kamyunet/193903806.jpg",
     "unclean_label": "kamyunet",
     "pixel_sha256": "6f194c8b02ebc04a70c75659bff72d55e649666df1285201c9131d787dda5904",

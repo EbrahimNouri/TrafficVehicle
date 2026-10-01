@@ -19,10 +19,10 @@
     "minimum_image_side": 64,
     "cnn_image_size": 96,
     "transfer_image_size": 224,
-    "epochs": 15,
+    "epochs": 25,
     "batch_size": 32,
     "transfer_batch_size": 32,
-    "learning_rate": 0.003,
+    "learning_rate": 0.001,
     "transfer_head_lr": 0.001,
     "transfer_backbone_lr": 0.0001,
     "weight_decay": 0.0,
@@ -40,13 +40,13 @@
     "download_pretrained": true
   },
   "runtime": {
-    "python": "3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)]",
-    "platform": "Windows-11-10.0.26200-SP0",
-    "torch": "2.14.0+cpu",
-    "torchvision": "0.29.0+cpu",
-    "resolved_device": "cpu",
-    "gpu_name": null,
-    "cpu_threads": 4,
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "torch": "2.14.1+cu130",
+    "torchvision": "0.29.1+cu130",
+    "resolved_device": "cuda",
+    "gpu_name": "NVIDIA GeForce RTX 5060",
+    "cpu_threads": 10,
     "deterministic_algorithms": true
   },
   "pretrained_resnet18": {
@@ -469,22 +469,23 @@
     393,
     399
   ],
-  "dataset_pixel_manifest_sha256": "fb6b6db0b41e8910018daa6a303aae7a253fb7a5fa72282f7ace588b12dea889",
+  "dataset_pixel_manifest_sha256": "d06725c20d57c1286f3cfe792f5fb9626198daad329f61effc681df39357c0e0",
   "source_sha256": {
-    "__init__.py": "bbe0d28762ff7034fc3beabaec3331feb7e6269d4d2b38b79f50de87b4fa2a11",
-    "__main__.py": "04d7b980469b0014a49d622f2aac5c5f9713f580037c8518f8f00ef608682439",
-    "audit.py": "e04297d1c0b9948630a997d1bcfc894053d401499e8e692ec6634e1e3f575439",
-    "config.py": "4ed88039edb12abb5e15b92f3de9a24a6f90b2cc18dd8101aa740cd6e62ad178",
-    "data.py": "42c33fceb174032fe93992774fda646f31beacea42d2343b6811898c63a8e87e",
-    "engine.py": "38a5891c1e3a504ed6806f00862e21e60fd4f64f70dc4e4dbfaa7170b9eef88e",
-    "locking.py": "aa6034bc809c12825c21f7f82cfc1eb95b9e0f6224ecc464cc858b16a5399201",
-    "metrics.py": "4717e99ef5a700edde506ee1bb1b0d0cf3565228c861a2cb3686f645b849cd1a",
-    "models.py": "e02dddf38e24ee593d41a3f1a913e0c309da07362aa7a4f17be61b663fbbf50e",
-    "pipeline.py": "d542012e641e77b1274b429842b7cabf16bd0c5ebed197bfbb39a7d23a1d168f",
-    "plotting.py": "fb753fbda8498f57050cbdced57c4d8b97768163d0036d7688bd180b8e35a1ee",
-    "predict.py": "724cb2b9a6986341ea60fd7b7624a7b88747a32f9254ef929055b917b4f0fb78",
-    "reporting.py": "6f0631b17b7b5f781611d740ab8a5eb5a750f9f96e484667c7fa75bb3423999a",
-    "utils.py": "e08ef24063b17ddcb1f457b2ac47e93414cfe9be2ede86e2ec375aad11f617fe"
+    "__init__.py": "b08b01fe677a991e087957188746717ca765dd1456119580518a3e265d008179",
+    "__main__.py": "9bd485f3db26bf74f762c490cf81358bedd59edc1caf32d76717520ab7e280a9",
+    "audit.py": "5ceda0b23bb73ec7151d37f4619f9d8321cb6f45818ae9601d8ae4bc52202cd7",
+    "config.py": "1e4b5f15731d5d35421a104ec4b1b1fceb7facb65cdede281831d0cbbf75ab92",
+    "curation.py": "ab4ca40562417661df88a8370a49811c2125edd113964a681fc4917c8dfe34ac",
+    "data.py": "3f23f847178bcbec7f9c4e6feaa74c24eb00e4f0d027d1db954cf17c96264ece",
+    "engine.py": "b7c6f02cab892f77f1391012949d8ae48de9be8221c06a3709df7cae4b4ea597",
+    "locking.py": "f0379e435b3828be214653610f454b6b80adca837f19d94e78f0ad1f7aed667a",
+    "metrics.py": "59cdf899bebb0fb7fb43ec030ca4bb729c9b06fc8c1275c195622be377ae73f7",
+    "models.py": "db0ae82c0cbe545020b1299ad2f606e1ea04b61cf26c2502eca6b88d71496edc",
+    "pipeline.py": "8b7de20c45f3f14c787dd566e2d61baac4ef9f6de398b620b6e356c52c842813",
+    "plotting.py": "a2b725928cf15eeb2a945a2e9705e19af23ced6442caa7a75dfd679d06d3eff8",
+    "predict.py": "39b2e0c05f346331c91fca9ea1729e5a75c15eb0b088de7f49d349044e322f62",
+    "reporting.py": "becbcda73bc12011e063f37b0f3d3a699be6190bea4e27ed041eecc1f02cad32",
+    "utils.py": "77b7372733209d994862c91513b8b6b6f3e8ecb719ee47054e9c47a29dda5752"
   },
-  "run_fingerprint": "0165e66caa1c888f0e4e1bb89cead685002e0662dcfa933757857f7a18452d22"
+  "run_fingerprint": "253a6cd5e315c905b71327009ca85e5ad1565e42c9a76d767cf717909ac36cd7"
 }

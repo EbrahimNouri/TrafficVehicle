@@ -15,7 +15,7 @@
   "data_dir": "dataset",
   "device": "auto",
   "download_pretrained": true,
-  "epochs": 15,
+  "epochs": 25,
   "imbalanced_classes": [
     "kamyun",
     "minibus",
@@ -23,7 +23,7 @@
     "vanet"
   ],
   "imbalanced_retained_per_minority_class": 14,
-  "learning_rate": 0.003,
+  "learning_rate": 0.001,
   "minimum_image_side": 64,
   "num_workers": 0,
   "pretrained": true,

@@ -6,9 +6,9 @@ with, at or above the calibrated review threshold. The unseen `neysan` class is
 never promoted to a training label.
 
 Examples:
-    python scripts/export_clean_unclean.py --dry-run
-    python scripts/export_clean_unclean.py --mode copy
-    python scripts/export_clean_unclean.py --mode move --force
+    Python scripts/export_clean_unclean.py --dry-run
+    Python scripts/export_clean_unclean.py --mode copy
+    Python scripts/export_clean_unclean.py --mode move --force
 """
 
 from __future__ import annotations

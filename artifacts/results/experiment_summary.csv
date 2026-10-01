@@ -1,0 +1,14 @@
+experiment,display_name,category,architecture,loss,best_epoch,validation_accuracy,validation_macro_precision,validation_macro_recall,validation_macro_f1,elapsed_seconds
+resnet18_fine_tuning,ResNet18 fine-tuning,transfer,resnet18,cross_entropy,15,0.9125,0.9245629370629371,0.9125000000000001,0.9137603973702372,28.178866000002017
+resnet18_feature_extraction,ResNet18 feature extraction,transfer,resnet18,cross_entropy,23,0.9,0.9138257575757576,0.9,0.8995729073128453,26.886200900000404
+dropout_0_5,Dropout p=0.5,ablation,cnn,cross_entropy,24,0.8375,0.8390151515151516,0.8374999999999999,0.8272413989519253,23.432379099998798
+bce_loss,BCEWithLogitsLoss,ablation,cnn,bce,22,0.8125,0.8545454545454545,0.8125,0.8051580656185919,23.407359500000894
+best_regularized,Best regularized + scheduled,main,cnn,cross_entropy,23,0.7875,0.8188908313908314,0.7875000000000001,0.787466401511024,23.29423059999681
+dropout_0_3,Dropout p=0.3,ablation,cnn,cross_entropy,19,0.7875,0.828456265956266,0.7875,0.7829855314291309,23.22497260000091
+weight_decay_1e-4,Weight decay 1e-4,ablation,cnn,cross_entropy,20,0.775,0.8430689102564102,0.7749999999999999,0.7714116499442586,23.477898700002697
+cnn_baseline,CNN baseline,ablation,cnn,cross_entropy,22,0.775,0.7968919968919969,0.775,0.7657487344844325,24.033882099996845
+step_lr,StepLR,ablation,cnn,cross_entropy,24,0.7625,0.7696314102564104,0.7625,0.7555542638662843,23.497278499999084
+imbalanced_balanced,Imbalanced + balanced batches,imbalance,cnn,cross_entropy,23,0.75,0.7660221722721723,0.75,0.7339209815401093,23.210226900002453
+avg_pool,Average pooling,ablation,cnn,cross_entropy,22,0.7,0.7147727272727273,0.7000000000000001,0.7000747059957586,23.24042439999903
+no_augmentation,No augmentation,ablation,cnn,cross_entropy,25,0.7,0.7391903235653237,0.7,0.6886587606056915,16.47100930000306
+imbalanced_standard,Imbalanced + standard batches,imbalance,cnn,cross_entropy,25,0.6375,0.6727048992673992,0.6375,0.5939347210442749,23.248973200003093

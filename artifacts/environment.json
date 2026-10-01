@@ -1,8 +1,8 @@
 {
-  "python": "3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)]",
-  "platform": "Windows-11-10.0.26200-SP0",
-  "torch": "2.14.0+cpu",
-  "cuda_available": false,
-  "device": "cpu",
-  "cpu_threads": 4
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "torch": "2.14.1+cu130",
+  "cuda_available": true,
+  "device": "cuda",
+  "cpu_threads": 10
 }
