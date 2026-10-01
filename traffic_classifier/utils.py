@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 from typing import Any
 
+import pandas as pd
 import torch
 
 
@@ -76,6 +77,22 @@ def load_checkpoint(
     path: str | Path, map_location: str | torch.device = "cpu"
 ) -> dict[str, Any]:
     return torch.load(path, map_location=map_location, weights_only=False)
+
+
+def atomic_write_csv(frame: pd.DataFrame, path: str | Path, **kwargs: Any) -> None:
+    """Write a CSV table so an interrupted run cannot leave a partial file."""
+
+    destination = Path(path)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    temporary = destination.with_name(
+        f".{destination.name}.{os.getpid()}.tmp"
+    )
+    try:
+        frame.to_csv(temporary, index=False, **kwargs)
+        os.replace(temporary, destination)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
 
 
 def markdown_table(headers: list[str], rows: list[list[Any]]) -> str:

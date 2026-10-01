@@ -61,6 +61,7 @@ from .plotting import (
 )
 from .reporting import write_all_reports
 from .utils import (
+    atomic_write_csv,
     ensure_directories,
     load_checkpoint,
     markdown_table,
@@ -197,16 +198,6 @@ def _atomic_save_npz(path: Path, **arrays: np.ndarray) -> None:
             temporary.unlink()
 
 
-def _atomic_write_csv(frame: pd.DataFrame, path: Path, **kwargs: Any) -> None:
-    temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
-    try:
-        frame.to_csv(temporary, index=False, **kwargs)
-        os.replace(temporary, path)
-    finally:
-        if temporary.exists():
-            temporary.unlink()
-
-
 def _build_run_manifest(
     config: ProjectConfig,
     split: dict[str, Any],
@@ -291,6 +282,7 @@ def _run_project_impl(
     )
     seed_everything(config.seed)
     device = config.resolve_device()
+    print("Device:", device)
     write_json(_environment(), Path(config.artifacts_dir) / "environment.json")
 
     print("\n=== 1. Dataset audit ===")
@@ -628,7 +620,7 @@ def _run_project_impl(
             for name, result in results.items()
         ]
     ).sort_values("validation_macro_f1", ascending=False)
-    _atomic_write_csv(
+    atomic_write_csv(
         experiment_frame, results_dir / "experiment_summary.csv"
     )
     write_json(stored, experiments_path)
@@ -865,7 +857,7 @@ def _run_project_impl(
                     ),
                 }
             )
-        _atomic_write_csv(
+        atomic_write_csv(
             pd.DataFrame(error_rows), results_dir / "test_errors.csv"
         )
         test_outputs_path = results_dir / "test_outputs.npz"
@@ -1022,7 +1014,7 @@ def _run_project_impl(
                 "is_unseen_neysan": true_label == "neysan",
             }
         )
-    _atomic_write_csv(
+    atomic_write_csv(
         pd.DataFrame(unclean_rows), results_dir / "unclean_predictions.csv"
     )
     plot_unclean_analysis(

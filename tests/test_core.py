@@ -1,12 +1,18 @@
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 import torch
 from PIL import Image
 
 from torchvision import datasets, transforms
 
 from traffic_classifier.config import ProjectConfig
+from traffic_classifier.curation import (
+    export_confident_subset,
+    select_confident_known_rows,
+    verify_export,
+)
 from traffic_classifier.data import (
     BalancedBatchSampler,
     build_transforms,
@@ -176,3 +182,135 @@ def test_paths_respect_subset_positions(tmp_path: Path) -> None:
     subset = Subset(dataset, [2, 0])
     assert [path.name for path in paths_for_subset(subset, [])] == ["2.png", "0.png"]
     assert [path.name for path in paths_for_subset(subset, [1])] == ["0.png"]
+
+
+def _write_prediction_table(
+    source_root: Path,
+    rows: list[tuple[str, str, str, float, bool, bool]],
+) -> pd.DataFrame:
+    """Create fake split images plus the prediction table that scores them."""
+
+    records = []
+    pixels = np.zeros((8, 8, 3), dtype=np.uint8)
+    for index, (label, prediction, confidence, review, unseen) in enumerate(rows):
+        class_dir = source_root / label
+        class_dir.mkdir(parents=True, exist_ok=True)
+        name = f"{label}_{index}.png"
+        Image.fromarray(pixels + index).save(class_dir / name)
+        records.append(
+            {
+                "path": (source_root / label / name).as_posix(),
+                "source_label": label,
+                "predicted_class": prediction,
+                "confidence": confidence,
+                "needs_review": review,
+                "is_unseen_neysan": unseen,
+            }
+        )
+    return pd.DataFrame(records)
+
+
+def test_selection_keeps_only_agreed_confident_known_rows(tmp_path: Path) -> None:
+    classes = ["ambulance", "autobus"]
+    source_root = tmp_path / "unclean"
+    frame = _write_prediction_table(
+        source_root,
+        [
+            ("ambulance", "ambulance", 0.97, False, False),  # kept
+            ("autobus", "autobus", 0.95, False, False),  # kept
+            ("autobus", "ambulance", 0.99, False, False),  # model disagrees
+            ("ambulance", "ambulance", 0.60, True, False),  # low confidence
+            ("neysan", "ambulance", 0.98, False, True),  # unseen class
+        ],
+    )
+    kept, rejected = select_confident_known_rows(frame, classes, 0.85)
+    assert sorted(kept["source_label"]) == ["ambulance", "autobus"]
+    reasons = set(rejected["selection_reason"])
+    assert reasons == {
+        "unseen_class",
+        "model_disagrees_with_label",
+        "confidence_below_review_threshold",
+    }
+
+
+def test_export_copy_leaves_source_intact_and_loads_as_imagefolder(
+    tmp_path: Path,
+) -> None:
+    classes = ["ambulance", "autobus"]
+    source_root = tmp_path / "unclean"
+    destination_root = tmp_path / "cleaned_unclean"
+    frame = _write_prediction_table(
+        source_root,
+        [
+            ("ambulance", "ambulance", 0.97, False, False),
+            ("ambulance", "ambulance", 0.96, False, False),
+            ("autobus", "autobus", 0.95, False, False),
+            ("autobus", "ambulance", 0.99, False, False),
+        ],
+    )
+    manifest, _, summary = export_confident_subset(
+        frame,
+        classes,
+        0.85,
+        source_root,
+        destination_root,
+        mode="copy",
+    )
+    assert summary["rows_selected"] == 3
+    assert summary["rows_transferred"] == 3
+    assert summary["class_counts"] == {"ambulance": 2, "autobus": 1}
+    assert verify_export(manifest, destination_root)["verified"] is True
+    # Copy mode must not remove anything from the original split.
+    assert len(list(source_root.rglob("*.png"))) == 4
+    exported = datasets.ImageFolder(destination_root, transform=transforms.ToTensor())
+    assert exported.classes == classes
+    assert len(exported) == 3
+
+
+def test_export_move_removes_selected_files_from_source(tmp_path: Path) -> None:
+    source_root = tmp_path / "unclean"
+    destination_root = tmp_path / "cleaned_unclean"
+    frame = _write_prediction_table(
+        source_root,
+        [
+            ("ambulance", "ambulance", 0.97, False, False),
+            ("autobus", "ambulance", 0.99, False, False),
+        ],
+    )
+    manifest, _, summary = export_confident_subset(
+        frame,
+        ["ambulance", "autobus"],
+        0.85,
+        source_root,
+        destination_root,
+        mode="move",
+    )
+    assert summary["rows_transferred"] == 1
+    assert manifest["status"].tolist().count("moved") == 1
+    assert [path.name for path in sorted(source_root.rglob("*.png"))] == [
+        "autobus_1.png"
+    ]
+    assert verify_export(manifest, destination_root)["verified"] is True
+
+
+def test_export_skips_missing_source_without_creating_empty_class(
+    tmp_path: Path,
+) -> None:
+    source_root = tmp_path / "unclean"
+    destination_root = tmp_path / "cleaned_unclean"
+    frame = _write_prediction_table(
+        source_root, [("ambulance", "ambulance", 0.97, False, False)]
+    )
+    next(source_root.rglob("*.png")).unlink()
+    manifest, _, summary = export_confident_subset(
+        frame,
+        ["ambulance", "autobus"],
+        0.85,
+        source_root,
+        destination_root,
+        mode="move",
+    )
+    assert summary["rows_transferred"] == 0
+    assert manifest["status"].tolist() == ["missing_source"]
+    assert verify_export(manifest, destination_root)["verified"] is True
+    assert not destination_root.exists()
