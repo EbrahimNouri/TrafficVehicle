@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -7,6 +8,7 @@ from PIL import Image
 
 from torchvision import datasets, transforms
 
+from traffic_classifier.audit import _quarantined_split, _write_audit_markdown
 from traffic_classifier.config import ProjectConfig
 from traffic_classifier.curation import (
     export_confident_subset,
@@ -17,8 +19,10 @@ from traffic_classifier.data import (
     BalancedBatchSampler,
     build_transforms,
     canonical_pixel_hash,
+    count_images,
     make_loader,
     paths_for_subset,
+    split_image_count,
 )
 from traffic_classifier.engine import (
     TrainOptions,
@@ -28,7 +32,14 @@ from traffic_classifier.engine import (
 )
 from traffic_classifier.locking import ProjectRunLock, RunLockError
 from traffic_classifier.models import TrafficCNN, parameter_report
-from traffic_classifier.pipeline import experiment_specs
+from traffic_classifier.pipeline import experiment_specs, skipped_unclean_result
+from traffic_classifier.reporting import (
+    _leakage_clause,
+    _quarantine_sentence,
+    render_unclean_analysis,
+)
+
+from scripts.resolve_split_duplicates import resolve
 
 
 def test_balanced_sampler_has_equal_classes_and_is_deterministic() -> None:
@@ -314,3 +325,200 @@ def test_export_skips_missing_source_without_creating_empty_class(
     assert manifest["status"].tolist() == ["missing_source"]
     assert verify_export(manifest, destination_root)["verified"] is True
     assert not destination_root.exists()
+
+
+def test_image_count_treats_drained_and_missing_splits_as_empty(tmp_path: Path) -> None:
+    # A `--mode move` export drains the split but leaves the class folders
+    # behind, so counting directory entries would wrongly report it as
+    # populated. Both that state and a missing directory must count as 0.
+    assert count_images(tmp_path / "absent") == 0
+    assert split_image_count(tmp_path, "unclean") == 0
+
+    source_root = tmp_path / "unclean"
+    _write_prediction_table(
+        source_root, [("ambulance", "ambulance", 0.97, False, False)]
+    )
+    assert split_image_count(tmp_path, "unclean") == 1
+
+    for image in source_root.rglob("*.png"):
+        image.unlink()
+    assert split_image_count(tmp_path, "unclean") == 0
+    assert (source_root / "ambulance").is_dir()
+
+
+def test_skipped_unclean_result_keeps_the_reporting_contract() -> None:
+    result = skipped_unclean_result("the unclean split holds no image files")
+    assert result["skipped"] is True
+    assert result["cleaning"] == {
+        "original_images": 0,
+        "retained_images": 0,
+        "excluded_duplicates": 0,
+        "known_images": 0,
+        "unseen_neysan_images": 0,
+    }
+    assert result["known_class_metrics"]["accuracy"] == 0.0
+    assert result["known_class_metrics"]["macro_f1"] == 0.0
+    assert result["unseen_neysan"]["present"] is False
+
+
+def test_unclean_report_states_the_skip_instead_of_inventing_numbers() -> None:
+    report = render_unclean_analysis(
+        skipped_unclean_result("the unclean split holds no image files")
+    )
+    assert "**skipped**" in report
+    assert "the unclean split holds no image files" in report
+    # A skipped pass must not present zeros as a measured result.
+    assert "0.0000" not in report
+
+
+def test_unclean_report_still_renders_a_measured_result() -> None:
+    report = render_unclean_analysis(
+        {
+            "skipped": False,
+            "cleaning": {
+                "original_images": 12,
+                "retained_images": 10,
+                "excluded_duplicates": 2,
+                "known_images": 8,
+                "unseen_neysan_images": 2,
+            },
+            "known_class_metrics": {"accuracy": 0.75, "macro_f1": 0.7},
+            "unseen_neysan": {"present": False, "reason": "drained"},
+        }
+    )
+    assert "**10** retained images from 12" in report
+    assert "accuracy is **0.7500**" in report
+    assert "macro-F1 is **0.7000**" in report
+
+
+def _split_summary(images: int) -> dict[str, Any]:
+    return {
+        "images": images,
+        "class_counts": {"ambulance": images},
+        "width_quantiles": {"min": 100, "max": 100},
+        "height_quantiles": {"min": 100, "max": 100},
+        "unique_pixel_sha256": images,
+    }
+
+
+def test_audit_markdown_reports_a_split_that_holds_no_images(tmp_path: Path) -> None:
+    # An image-less split contributes no group to `summary["splits"]`; the
+    # writer must show it as empty instead of raising KeyError.
+    config = ProjectConfig(reports_dir=str(tmp_path / "reports"))
+    summary: dict[str, Any] = {
+        "splits": {"train": _split_summary(4), "test": _split_summary(2)},
+        "issue_counts": {},
+        "total_images": 6,
+        "total_raw_unique_hashes": 6,
+        "total_canonical_pixel_unique_hashes": 6,
+        "raw_file_duplicate_groups": 0,
+        "canonical_duplicate_groups": 0,
+        "canonical_duplicate_extra_copies": 0,
+        "cross_split_duplicate_groups": 0,
+        "label_conflict_duplicate_groups": 0,
+        "train_test_overlap_groups": 0,
+        "cleaning": {
+            "train_excluded": 0,
+            "test_excluded": 0,
+            "unclean_excluded": 0,
+            "split_duplicate_policy": "Keep the frozen-test copy.",
+            "quarantined_records": 0,
+            "clean_counts": {
+                "train": 4,
+                "test": 2,
+                "unclean": 0,
+                "unclean_class_counts": {},
+            },
+        },
+    }
+    _write_audit_markdown(config, summary, [], [], [])
+    report = (tmp_path / "reports" / "data_audit.md").read_text(encoding="utf-8")
+    assert "| unclean | 0 | - | - | - | 0 |" in report
+
+
+def _duplicate_group(
+    train_path: Path, test_path: Path, label: str = "ambulance"
+) -> dict[str, Any]:
+    return {
+        "group": 1,
+        "pixel_sha256": "deadbeef",
+        "splits": ["test", "train"],
+        "label_conflict": False,
+        "members": [
+            {"split": "train", "label": label, "path": train_path.as_posix()},
+            {"split": "test", "label": label, "path": test_path.as_posix()},
+        ],
+    }
+
+
+def test_resolve_quarantines_the_train_copy_and_keeps_the_frozen_one(
+    tmp_path: Path,
+) -> None:
+    train_path = tmp_path / "train" / "ambulance" / "a.jpg"
+    test_path = tmp_path / "test" / "ambulance" / "a.jpg"
+    moves, unresolved = resolve([_duplicate_group(train_path, test_path)])
+    assert unresolved == []
+    assert len(moves) == 1
+    # The frozen evaluation copy must survive; only the training copy moves.
+    assert moves[0]["source_path"] == train_path.as_posix()
+    assert moves[0]["kept_duplicate_of"] == test_path.as_posix()
+    assert moves[0]["source_split"] == "train"
+
+
+def test_resolve_leaves_an_ambiguous_group_for_the_audit(tmp_path: Path) -> None:
+    # A group spanning an extra split has no safe automatic answer, so it must
+    # be handed back to the fail-closed audit rather than guessed at.
+    group = _duplicate_group(
+        tmp_path / "train" / "ambulance" / "a.jpg",
+        tmp_path / "test" / "ambulance" / "a.jpg",
+    )
+    group["members"].append(
+        {"split": "unclean", "label": "neysan", "path": "unclean/neysan/a.jpg"}
+    )
+    moves, unresolved = resolve([group])
+    assert moves == []
+    assert len(unresolved) == 1
+
+
+def test_quarantined_split_reads_the_authoritative_path() -> None:
+    # `source_split` is preferred, but the path is authoritative if it is
+    # missing or was hand-edited.
+    assert (
+        _quarantined_split(
+            {
+                "source_split": "train",
+                "source_path": "/data/train/ambulance/a.jpg",
+            }
+        )
+        == "train"
+    )
+    assert (
+        _quarantined_split({"source_path": "/data/test/ambulance/a.jpg"}) == "test"
+    )
+    assert _quarantined_split({"source_path": "/elsewhere/a.jpg"}) == ""
+
+
+def test_leakage_narrative_follows_the_recorded_counts() -> None:
+    resolved: dict[str, Any] = {
+        "canonical_duplicate_groups": 0,
+        "label_conflict_duplicate_groups": 0,
+        "cleaning": {
+            "train_excluded": 8,
+            "test_excluded": 0,
+            "unclean_excluded": 0,
+        },
+    }
+    assert _leakage_clause(resolved) == ""
+    sentence = _quarantine_sentence(resolved)
+    assert "8 pixel-identical train copies quarantined" in sentence
+    assert "Frozen test" not in sentence
+
+    conflicted: dict[str, Any] = {
+        **resolved,
+        "canonical_duplicate_groups": 2,
+        "label_conflict_duplicate_groups": 1,
+    }
+    assert _leakage_clause(conflicted) == ", including 1 conflict"
+    assert "1 pixel-identical train copy quarantined" in _quarantine_sentence(
+        {**resolved, "cleaning": {**resolved["cleaning"], "train_excluded": 1}}
+    )

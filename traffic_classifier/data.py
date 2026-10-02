@@ -45,6 +45,24 @@ class ImageTransformSpec:
 IMAGENET_MEAN = (0.485, 0.456, 0.406)
 IMAGENET_STD = (0.229, 0.224, 0.225)
 
+# Every extension torchvision's default ImageFolder extension list accepts, plus
+# the lossless formats commonly found in traffic-camera exports. Kept as a single
+# constant so "does this split hold any image?" and "is this class folder
+# empty?" can never disagree about what counts as an image.
+IMAGE_SUFFIXES = frozenset(
+    {
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".ppm",
+        ".bmp",
+        ".pgm",
+        ".tif",
+        ".tiff",
+        ".webp",
+    }
+)
+
 
 def build_transforms(
     config: ProjectConfig,
@@ -138,6 +156,30 @@ def build_transforms(
     return transforms.Compose(operations), spec
 
 
+def count_images(root: str | Path) -> int:
+    """Count image files under a directory, or 0 if the directory is absent.
+
+    A directory that exists but holds no image (for example `unclean` after a
+    `--mode move` export drained it) reports 0 rather than raising, so callers
+    can skip it instead of failing the whole run.
+    """
+
+    path = Path(root)
+    if not path.is_dir():
+        return 0
+    return sum(
+        1
+        for item in path.rglob("*")
+        if item.is_file() and item.suffix.lower() in IMAGE_SUFFIXES
+    )
+
+
+def split_image_count(root: str | Path, split: str) -> int:
+    """Count image files under `<root>/<split>`, or 0 if the split is absent."""
+
+    return count_images(Path(root) / split)
+
+
 def load_image_folder(
     root: str | Path,
     split: str,
@@ -155,10 +197,9 @@ def load_image_folder(
     # otherwise raise FileNotFoundError for these empty classes.
     import shutil
 
-    supported_suffixes = {".jpg", ".jpeg", ".png", ".ppm", ".bmp", ".pgm", ".tif", ".tiff", ".webp"}
     for class_dir in sorted(p for p in path.iterdir() if p.is_dir()):
         has_image = any(
-            item.is_file() and item.suffix.lower() in supported_suffixes
+            item.is_file() and item.suffix.lower() in IMAGE_SUFFIXES
             for item in class_dir.rglob("*")
         )
         if not has_image:

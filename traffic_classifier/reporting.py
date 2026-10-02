@@ -66,6 +66,100 @@ def _analysis_sentence(result: dict[str, Any]) -> str:
     )
 
 
+def render_unclean_analysis(unclean_result: dict[str, Any]) -> str:
+    """Render the cleaned-`unclean` report, including the empty-split skip case."""
+
+    if unclean_result.get("skipped"):
+        # The split held no images, so there is no measured evidence to report.
+        return f"""# Cleaned `unclean` and Unseen-Class Analysis
+
+`unclean` is never used for optimization or validation. This run found no image files in the `unclean` split, so the duplicate-removal pass and the unseen-class analysis were **skipped**. No numbers are reported here: a skipped step is not a measured result.
+
+Reason: {unclean_result.get('skip_reason', 'the unclean split contained no images')}. `artifacts/results/unclean_analysis.json` records `skipped: true` and `artifacts/results/unclean_predictions.csv` is written with headers only. Add images to the `unclean` split and re-run to populate this section.
+"""
+
+    unseen = unclean_result["unseen_neysan"]
+    known = unclean_result["known_class_metrics"]
+    clean = unclean_result["cleaning"]
+
+    # `neysan` may have been fully cleaned out of the unclean split; handle both cases.
+    if unseen.get("present", True):
+        unseen_section = (
+            f"For unseen `neysan`, mean top-class confidence is "
+            f"**{unseen['mean_confidence']:.4f}** and "
+            f"**{unseen['review_count']} / {clean['unseen_neysan_images']} "
+            f"({unseen['review_rate']:.1%})** fall below the validation review "
+            f"threshold. Predicted known-class counts are:\n\n"
+            + markdown_table(
+                ['Prediction', 'Count'],
+                [[key, value] for key, value in unseen['predicted_class_counts'].items()],
+            )
+            + "\n\n`neysan` is analyzed as unseen/human-review data, never added as a "
+            "ninth class. Standard softmax confidence is not an out-of-distribution "
+            "detector: an unseen image can receive a high known-class score. The "
+            "observed confidence pattern is therefore a risk signal, not proof of "
+            "semantic correctness. `figures/unclean_low_confidence_examples.png` shows "
+            "the 12 least-confident `neysan` cases and "
+            "`artifacts/results/unclean_predictions.csv` contains every prediction."
+        )
+    else:
+        unseen_section = (
+            "No `neysan` samples remain in the `unclean` split after cleaning "
+            "(its folder was emptied by the duplicate-removal pass), so the "
+            "unseen-class branch is skipped. `neysan` is still conceptually treated "
+            "as an unseen/human-review class, never added as a ninth training label. "
+            "Standard softmax confidence is not an out-of-distribution detector, so "
+            "any future unseen-class analysis should still route low-confidence cases "
+            "to human review."
+        )
+
+    return f"""# Cleaned `unclean` and Unseen-Class Analysis
+
+`unclean` is never used for optimization or validation. A second content-aware pass removes every pixel-identical copy of train or test, producing **{clean['retained_images']}** retained images from {clean['original_images']}; **{clean['excluded_duplicates']}** exclusions are recorded with their source. This includes the `train/vanet` versus `unclean/neysan` label conflict, which is excluded rather than silently relabelled.
+
+The retained set has **{clean['known_images']}** known-class examples and **{clean['unseen_neysan_images']}** `neysan` examples. On the known subset, accuracy is **{known['accuracy']:.4f}** and macro-F1 is **{known['macro_f1']:.4f}**. This is diagnostic data, not another model-selection test.
+
+{unseen_section}
+"""
+
+
+def _leakage_clause(audit_summary: dict[str, Any]) -> str:
+    """Describe the label conflicts found among cross-split duplicate groups."""
+
+    conflicts = int(audit_summary.get("label_conflict_duplicate_groups", 0))
+    groups = int(audit_summary.get("canonical_duplicate_groups", 0))
+    if conflicts == 0:
+        return ", none of which is a label conflict" if groups else ""
+    noun = "conflict" if conflicts == 1 else "conflicts"
+    return f", including {conflicts} {noun}"
+
+
+def _quarantine_sentence(audit_summary: dict[str, Any]) -> str:
+    """State where each quarantined copy came from, based on the recorded counts."""
+
+    cleaning = audit_summary.get("cleaning", {})
+    train_excluded = int(cleaning.get("train_excluded", 0))
+    test_excluded = int(cleaning.get("test_excluded", 0))
+    unclean_excluded = int(cleaning.get("unclean_excluded", 0))
+    parts = []
+    if train_excluded:
+        noun = "copy" if train_excluded == 1 else "copies"
+        parts.append(
+            f"{train_excluded} pixel-identical train {noun} quarantined to "
+            "`dataset/quarantine/` because the same image is in frozen test"
+        )
+    if test_excluded:
+        parts.append(
+            f"{test_excluded} frozen-test "
+            f"{'image' if test_excluded == 1 else 'images'} quarantined"
+        )
+    parts.append(
+        f"{unclean_excluded} duplicate `unclean` "
+        f"{'copy' if unclean_excluded == 1 else 'copies'} excluded"
+    )
+    return "; ".join(parts) + "."
+
+
 def write_all_reports(
     config: ProjectConfig,
     *,
@@ -401,50 +495,10 @@ The risk–coverage curve is `figures/validation_risk_coverage.png`.
 """
     (reports / "error_analysis.md").write_text(error_report, encoding="utf-8")
 
-    unseen = unclean_result["unseen_neysan"]
-    known = unclean_result["known_class_metrics"]
-    clean = unclean_result["cleaning"]
-
-    # `neysan` may have been fully cleaned out of the unclean split; handle both cases.
-    if unseen.get("present", True):
-        unseen_section = (
-            f"For unseen `neysan`, mean top-class confidence is "
-            f"**{unseen['mean_confidence']:.4f}** and "
-            f"**{unseen['review_count']} / {clean['unseen_neysan_images']} "
-            f"({unseen['review_rate']:.1%})** fall below the validation review "
-            f"threshold. Predicted known-class counts are:\n\n"
-            + markdown_table(
-                ['Prediction', 'Count'],
-                [[key, value] for key, value in unseen['predicted_class_counts'].items()],
-            )
-            + "\n\n`neysan` is analyzed as unseen/human-review data, never added as a "
-            "ninth class. Standard softmax confidence is not an out-of-distribution "
-            "detector: an unseen image can receive a high known-class score. The "
-            "observed confidence pattern is therefore a risk signal, not proof of "
-            "semantic correctness. `figures/unclean_low_confidence_examples.png` shows "
-            "the 12 least-confident `neysan` cases and "
-            "`artifacts/results/unclean_predictions.csv` contains every prediction."
-        )
-    else:
-        unseen_section = (
-            "No `neysan` samples remain in the `unclean` split after cleaning "
-            "(its folder was emptied by the duplicate-removal pass), so the "
-            "unseen-class branch is skipped. `neysan` is still conceptually treated "
-            "as an unseen/human-review class, never added as a ninth training label. "
-            "Standard softmax confidence is not an out-of-distribution detector, so "
-            "any future unseen-class analysis should still route low-confidence cases "
-            "to human review."
-        )
-
-    unclean_report = f"""# Cleaned `unclean` and Unseen-Class Analysis
-
-`unclean` is never used for optimization or validation. A second content-aware pass removes every pixel-identical copy of train or test, producing **{clean['retained_images']}** retained images from {clean['original_images']}; **{clean['excluded_duplicates']}** exclusions are recorded with their source. This includes the `train/vanet` versus `unclean/neysan` label conflict, which is excluded rather than silently relabelled.
-
-The retained set has **{clean['known_images']}** known-class examples and **{clean['unseen_neysan_images']}** `neysan` examples. On the known subset, accuracy is **{known['accuracy']:.4f}** and macro-F1 is **{known['macro_f1']:.4f}**. This is diagnostic data, not another model-selection test.
-
-{unseen_section}
-"""
-    (reports / "unclean_analysis.md").write_text(unclean_report, encoding="utf-8")
+    (reports / "unclean_analysis.md").write_text(
+        render_unclean_analysis(unclean_result), encoding="utf-8"
+    )
+    unclean_skipped = bool(unclean_result.get("skipped"))
 
     final_class_table = markdown_table(
         ["Class", "Precision", "Recall", "F1", "Support"],
@@ -474,10 +528,15 @@ The retained set has **{clean['known_images']}** known-class examples and **{cle
         "Per-class metrics are compared across all main experiments.",
         "Lowest-precision and lowest-recall classes are reported for every result.",
         f"Up to {displayed_error_count} frozen-test errors are plotted with labels and confidence (12 required for the full run).",
-        "unclean is analyzed separately after duplicate removal.",
+        (
+            "unclean is analyzed separately after duplicate removal."
+            if not unclean_skipped
+            else "unclean held no images, so the analysis was skipped and reported as such."
+        ),
         "Final checkpoint stores mapping, transform, threshold, temperature, seed, and config.",
         "README provides a one-command reproduction path.",
     ]
+    leakage_clause = _leakage_clause(audit_summary)
     final_report = f"""# Traffic Vehicle Classification — Final Report
 
 ## Executive summary
@@ -516,7 +575,7 @@ Lowest-class analysis for each meaningful case:
 
 ## Key findings
 
-1. **Leakage:** both encoded-file SHA-256 and canonical decoded-pixel hashing identify {audit_summary['canonical_duplicate_groups']} cross-split duplicate groups in this copy, including one label conflict. The canonical check is encoding-independent by design. Frozen train/test stayed intact; only duplicate `unclean` copies were removed.
+1. **Leakage:** both encoded-file SHA-256 and canonical decoded-pixel hashing identify {audit_summary['canonical_duplicate_groups']} cross-split duplicate groups in this copy{leakage_clause}. The canonical check is encoding-independent by design. Frozen test stays intact; {_quarantine_sentence(audit_summary)}
 2. **Sampling:** exact balanced batches change the recall/accuracy trade-off under simulated imbalance. Macro-F1 and minority recall should be prioritized over raw accuracy for an equitable classifier.
 3. **Loss:** CE models the mutually exclusive task directly and supplies normalized production probabilities. BCE is retained as the required one-vs-all educational comparison; sigmoid scores are not a probability distribution.
 4. **Transfer learning:** ImageNet features are valuable with only 320 clean training images. All parameter groups and per-epoch LRs are recorded; test did not decide the strategy.

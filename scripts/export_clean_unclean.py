@@ -29,10 +29,12 @@ if str(ROOT) not in sys.path:
 
 from traffic_classifier.config import ProjectConfig  # noqa: E402
 from traffic_classifier.curation import (  # noqa: E402
+    MANIFEST_COLUMNS,
     export_confident_subset,
     select_confident_known_rows,
     verify_export,
 )
+from traffic_classifier.data import count_images  # noqa: E402
 from traffic_classifier.utils import (  # noqa: E402
     atomic_write_csv,
     read_json,
@@ -105,12 +107,14 @@ def main() -> None:
         "--allow-missing-source",
         action="store_true",
         help=(
-            "Exit cleanly (status 0) if the source split is empty or missing, "
-            "instead of raising an error. Useful when the unclean split has "
-            "already been fully cleaned out by a prior run."
+            "Deprecated and ignored: a source split that is missing or holds no "
+            "images is now always skipped cleanly (status 0) instead of raising."
         ),
     )
     args = parser.parse_args()
+
+    if args.allow_missing_source:
+        print("[note] --allow-missing-source is deprecated and has no effect.")
 
     if args.mode == "move" and not args.force and not args.dry_run:
         parser.error("--mode move requires --force because it empties the source split")
@@ -144,27 +148,6 @@ def main() -> None:
             f"Uncertainty artifact not found: {uncertainty_path}. Run the pipeline first."
         )
 
-    # If the source split has already been fully cleaned out, there is nothing
-    # to export. Report that clearly and exit without an error by default when
-    # the caller opted in; otherwise raise for a strict workflow.
-    source_is_empty = (
-        not source_root.is_dir()
-        or not any(source_root.iterdir())
-    )
-    if source_is_empty:
-        message = (
-            f"Source split is empty or missing: {source_root}. "
-            "Nothing to export."
-        )
-        if args.allow_missing_source or args.dry_run:
-            print(message)
-            return
-        raise FileNotFoundError(
-            message
-            + " Re-run with --allow-missing-source to exit cleanly, "
-            "or restore the split before exporting."
-        )
-
     frame = pd.read_csv(predictions_path)
     if frame.empty:
         print(
@@ -174,6 +157,54 @@ def main() -> None:
 
     threshold, threshold_source = _review_threshold(uncertainty_path, args.threshold)
     print(f"Review threshold: {threshold:.6f} (from {threshold_source})")
+
+    results_dir.mkdir(parents=True, exist_ok=True)
+    manifest_path = results_dir / "cleaned_unclean_manifest.csv"
+    summary_path = results_dir / "cleaned_unclean_summary.json"
+    rejected_path = results_dir / "cleaned_unclean_rejected.csv"
+
+    # A source split can exist and still hold no image: a prior `--mode move`
+    # export drains it completely but leaves the class folders behind. Counting
+    # images (not directory entries) is what distinguishes that from a populated
+    # split; there is nothing to export, so skip instead of raising.
+    source_images = count_images(source_root)
+    if not source_images:
+        skip_reason = (
+            f"Source split {source_root.as_posix()} holds no image files; "
+            "nothing to export."
+        )
+        print(skip_reason)
+        empty_manifest = pd.DataFrame(columns=list(MANIFEST_COLUMNS))
+        empty_rejected = pd.DataFrame(
+            columns=[*frame.columns, "selection_reason"]
+        )
+        atomic_write_csv(empty_manifest, manifest_path)
+        atomic_write_csv(empty_rejected, rejected_path)
+        summary = {
+            "mode": args.mode,
+            "source_root": source_root.as_posix(),
+            "destination_root": destination_root.as_posix(),
+            "review_threshold": float(threshold),
+            "selection_rule": "not evaluated: the source split holds no images",
+            "rows_considered": 0,
+            "rows_selected": 0,
+            "rows_transferred": 0,
+            "rejection_counts": {},
+            "skipped": {"empty_source_split": 1},
+            "class_counts": {},
+            "status": "skipped",
+            "reason": skip_reason,
+        }
+        summary["verification"] = verify_export(empty_manifest, destination_root)
+        summary["threshold_source"] = threshold_source
+        summary["manifest_path"] = manifest_path.as_posix()
+        summary["rejected_path"] = rejected_path.as_posix()
+        write_json(summary, summary_path)
+        print("Status:            skipped")
+        print("Files transferred: 0")
+        print(f"Manifest:          {manifest_path}")
+        print(f"Summary:           {summary_path}")
+        return
 
     if args.dry_run:
         kept, rejected = select_confident_known_rows(
@@ -201,10 +232,6 @@ def main() -> None:
 
     # Persist the intended plan and its rationale before any further work so a
     # moved file always has a recorded origin.
-    manifest_path = results_dir / "cleaned_unclean_manifest.csv"
-    summary_path = results_dir / "cleaned_unclean_summary.json"
-    rejected_path = results_dir / "cleaned_unclean_rejected.csv"
-    results_dir.mkdir(parents=True, exist_ok=True)
     atomic_write_csv(manifest, manifest_path)
     atomic_write_csv(rejected, rejected_path)
 

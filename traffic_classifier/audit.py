@@ -11,7 +11,7 @@ import pandas as pd
 
 from .config import ProjectConfig
 from .data import pixel_duplicate_groups, scan_split
-from .utils import ensure_directories, markdown_table, write_json
+from .utils import ensure_directories, markdown_table, read_json, write_json
 
 
 def _quantiles(values: list[int] | list[float]) -> dict[str, float]:
@@ -30,6 +30,23 @@ def _iqr_bounds(values: list[int] | list[float]) -> tuple[float, float]:
     q25, q75 = np.quantile(array, [0.25, 0.75])
     spread = q75 - q25
     return float(q25 - 1.5 * spread), float(q75 + 1.5 * spread)
+
+
+def _quarantined_split(record: dict[str, Any]) -> str:
+    """Recover which split a quarantined image was removed from.
+
+    The resolver records `source_split`, but the original path is authoritative:
+    it is the only field that cannot drift if a record is hand-edited.
+    """
+
+    declared = record.get("source_split")
+    if isinstance(declared, str) and declared:
+        return declared
+    parts = Path(str(record.get("source_path", ""))).parts
+    for part in parts:
+        if part in {"train", "test", "unclean"}:
+            return part
+    return ""
 
 
 def audit_dataset(config: ProjectConfig) -> dict[str, Any]:
@@ -167,6 +184,30 @@ def audit_dataset(config: ProjectConfig) -> dict[str, Any]:
         if {"train", "test"}.issubset({member["split"] for member in group["members"]})
     ]
 
+    # `scripts/resolve_split_duplicates.py` quarantines train-side copies of
+    # frozen-test images. Read that record so the audit reports the real
+    # exclusion count instead of claiming train was never touched. The moved
+    # files are no longer under any split, so they cannot be counted from the
+    # scan itself.
+    resolution_path = (
+        Path(config.data_dir) / "quarantine" / "resolved_split_duplicates.json"
+    )
+    resolution: dict[str, Any] = {}
+    if resolution_path.is_file():
+        try:
+            resolution = read_json(resolution_path)
+        except (OSError, ValueError):
+            resolution = {}
+    moved_records = [
+        item for item in resolution.get("moved", []) if isinstance(item, dict)
+    ]
+    train_excluded = sum(
+        1 for item in moved_records if _quarantined_split(item) == "train"
+    )
+    test_excluded = sum(
+        1 for item in moved_records if _quarantined_split(item) == "test"
+    )
+
     representative: dict[str, list[str]] = {}
     for class_name in sorted(frame["label"].dropna().unique()):
         paths = sorted(
@@ -205,8 +246,8 @@ def audit_dataset(config: ProjectConfig) -> dict[str, Any]:
         "issue_counts": dict(issue_counts),
         "splits": split_summaries,
         "cleaning": {
-            "train_excluded": 0,
-            "test_excluded": 0,
+            "train_excluded": train_excluded,
+            "test_excluded": test_excluded,
             "unclean_excluded": len(exclusions),
             "clean_counts": {
                 "train": split_summaries["train"]["images"],
@@ -218,13 +259,19 @@ def audit_dataset(config: ProjectConfig) -> dict[str, Any]:
                 "unclean_neysan": int(retained_unclean_counts.get("neysan", 0)),
                 "unclean_class_counts": dict(sorted(retained_unclean_counts.items())),
             },
-            "policy": "Freeze original train/test; exclude only unclean copies from cleaned_unclean.",
+            "split_duplicate_policy": (
+                "Keep the frozen-test copy; quarantine the pixel-identical train "
+                "copy to `dataset/quarantine/split_duplicates/`."
+            ),
+            "quarantined_records": resolution.get("moved_count", 0),
+            "policy": "Freeze original test; exclude only train/unclean copies.",
         },
     }
 
     write_json(summary, audit_dir / "summary.json")
     write_json(duplicate_payload, audit_dir / "canonical_duplicate_groups.json")
     write_json(exclusions, audit_dir / "cleaned_unclean_exclusions.json")
+    write_json(resolution, audit_dir / "resolved_split_duplicates.json")
     write_json(representative, audit_dir / "representative_paths.json")
     write_json(
         {
@@ -259,7 +306,12 @@ def _write_audit_markdown(
 ) -> None:
     split_rows = []
     for split in ("train", "test", "unclean"):
-        values = summary["splits"][split]
+        values = summary["splits"].get(split)
+        if values is None:
+            # A split with no surviving images contributes no group to the
+            # summary; report it as empty instead of failing the audit.
+            split_rows.append([split, 0, "-", "-", "-", 0])
+            continue
         split_rows.append(
             [
                 split,
@@ -291,7 +343,7 @@ def _write_audit_markdown(
 - Each split is loaded separately; `unclean` is never merged into training.
 - The audit computes both encoded-file SHA-256 and a canonical decoded, EXIF-oriented RGB pixel hash. The latter is encoding-independent by design. In this supplied copy both methods identify the same {summary['canonical_duplicate_groups']} duplicate groups, but the canonical result remains the authoritative leakage check.
 - Files smaller than {config.minimum_image_side} pixels on either side, unreadable files, unsupported formats, and extreme aspect ratios would be flagged.
-- Frozen train/test exclusions: **0**. Original train: **{summary['splits']['train']['images']}**; original test: **{summary['splits']['test']['images']}**.
+- Frozen train/test exclusions: **{cleaning['train_excluded'] + cleaning['test_excluded']}** ({cleaning['split_duplicate_policy']}). Current train: **{summary['splits']['train']['images']}**; original test: **{summary['splits']['test']['images']}**.
 
 ## Original splits
 

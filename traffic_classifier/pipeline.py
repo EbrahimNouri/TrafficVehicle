@@ -28,6 +28,7 @@ from .data import (
     make_loader,
     paths_for_subset,
     simulated_imbalance_indices,
+    split_image_count,
     split_record,
     stratified_validation_indices,
 )
@@ -110,6 +111,204 @@ def experiment_specs() -> list[ExperimentSpec]:
 
 def _strip_outputs(metrics: dict[str, Any]) -> dict[str, Any]:
     return {key: value for key, value in metrics.items() if key != "outputs"}
+
+
+UNCLEAN_PREDICTION_COLUMNS = (
+    "path",
+    "source_label",
+    "predicted_class",
+    "confidence",
+    "needs_review",
+    "is_unseen_neysan",
+)
+
+
+def skipped_unclean_result(reason: str) -> dict[str, Any]:
+    """Build the zero-valued stand-in used when the unclean split holds no images.
+
+    `classification_metrics` cannot be called with empty arrays because its
+    weighted F1 divides by a zero support sum, so the known-class metrics are
+    zeroed here while keeping the exact keys the reporting layer formats.
+    """
+
+    return {
+        "skipped": True,
+        "skip_reason": reason,
+        "cleaning": {
+            "original_images": 0,
+            "retained_images": 0,
+            "excluded_duplicates": 0,
+            "known_images": 0,
+            "unseen_neysan_images": 0,
+        },
+        "known_class_metrics": {
+            "accuracy": 0.0,
+            "macro_precision": 0.0,
+            "macro_recall": 0.0,
+            "macro_f1": 0.0,
+            "weighted_f1": 0.0,
+            "per_class": {},
+            "confusion_matrix_counts": [],
+            "confusion_matrix_row_normalized": [],
+        },
+        "unseen_neysan": {
+            "present": False,
+            "reason": reason,
+        },
+        "all_cleaned_prediction_counts": {},
+        "interpretation": (
+            "The unclean split held no images, so no cleaned-unclean or unseen-class "
+            "evidence was produced. This is a skipped step, not a measured result."
+        ),
+    }
+
+
+def _analyze_unclean(
+    config: ProjectConfig,
+    model: nn.Module,
+    transform_kind: str,
+    device: torch.device,
+    *,
+    temperature: float,
+    review: dict[str, Any],
+) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]]]:
+    """Score the unclean split and return its analysis, prediction rows, and exclusions.
+
+    The caller is responsible for writing `unclean_analysis.json` and
+    `unclean_predictions.csv` so an empty split produces the same artifacts.
+    """
+
+    unclean_transform, _ = build_transforms(
+        config, augmentation=False, kind=transform_kind  # type: ignore[arg-type]
+    )
+    unclean_dataset = load_image_folder(
+        config.data_dir, "unclean", unclean_transform
+    )
+    all_unclean_base = load_image_folder(
+        config.data_dir, "unclean", unclean_transform
+    )
+    all_train_base = load_image_folder(
+        config.data_dir, "train", unclean_transform, config.classes
+    )
+    all_test_base = load_image_folder(
+        config.data_dir, "test", unclean_transform, config.classes
+    )
+    retained_unclean_indices, exclusion_records = cleaned_unclean_indices(
+        all_train_base, all_test_base, all_unclean_base
+    )
+    unclean_loader = make_loader(
+        unclean_dataset,
+        retained_unclean_indices,
+        training=False,
+        batch_size=config.batch_size,
+        seed=config.seed,
+        num_workers=config.num_workers,
+    )
+    # Inference-only: source labels can include the unseen ninth `neysan` class,
+    # which must never be passed as an eight-class Cross-Entropy target.
+    unclean_raw = predict(
+        model,
+        unclean_loader,
+        device,
+        probability_kind="softmax",
+        temperature=temperature,
+    )
+    unclean_probabilities = unclean_raw["probabilities"]
+    # `neysan` may be absent because cleaning emptied its folder, so treat it as optional.
+    neysan_index = unclean_dataset.class_to_idx.get("neysan")
+    if neysan_index is None:
+        known_mask = np.ones_like(unclean_raw["targets"], dtype=bool)
+    else:
+        known_mask = unclean_raw["targets"] != neysan_index
+    # Some known classes (e.g. `autobus`) may have been fully cleaned out of the
+    # unclean split. Skip any class that is not present instead of raising KeyError.
+    known_map = {
+        unclean_dataset.class_to_idx[class_name]: model_index
+        for model_index, class_name in enumerate(config.classes)
+        if class_name in unclean_dataset.class_to_idx
+    }
+    known_targets = np.asarray(
+        [known_map[int(value)] for value in unclean_raw["targets"][known_mask]],
+        dtype=int,
+    )
+    known_predictions = unclean_raw["predictions"][known_mask]
+    known_probabilities = unclean_probabilities[known_mask]
+    known_metrics = classification_metrics(
+        known_targets, known_predictions, config.classes
+    )
+    if neysan_index is None or known_mask.all():
+        unseen_block: dict[str, Any] = {
+            "present": False,
+            "reason": "no 'neysan' samples remain in the unclean split after cleaning",
+        }
+    else:
+        neysan_predictions = unclean_raw["predictions"][~known_mask]
+        neysan_confidence = unclean_probabilities[~known_mask].max(axis=1)
+        neysan_review = neysan_confidence < review["threshold"]
+        unseen_block = {
+            "present": True,
+            "mean_confidence": float(neysan_confidence.mean()),
+            "median_confidence": float(np.median(neysan_confidence)),
+            "review_count": int(neysan_review.sum()),
+            "review_rate": float(neysan_review.mean()),
+            "predicted_class_counts": {
+                config.classes[index]: int((neysan_predictions == index).sum())
+                for index in range(len(config.classes))
+            },
+        }
+    unclean_paths = [
+        path.as_posix() for path in paths_for_subset(unclean_loader.dataset, [])
+    ]
+    prediction_counts = {
+        config.classes[index]: int((unclean_raw["predictions"] == index).sum())
+        for index in range(len(config.classes))
+    }
+    unclean_result = {
+        "skipped": False,
+        "cleaning": {
+            "original_images": len(unclean_dataset),
+            "retained_images": len(retained_unclean_indices),
+            "excluded_duplicates": len(exclusion_records),
+            "known_images": int(known_mask.sum()),
+            "unseen_neysan_images": int((~known_mask).sum()) if neysan_index is not None else 0,
+        },
+        "known_class_metrics": known_metrics,
+        "known_class_uncertainty": _calibration_summary(known_probabilities, known_targets),
+        "unseen_neysan": unseen_block,
+        "all_cleaned_prediction_counts": prediction_counts,
+        "interpretation": (
+            "neysan is an unseen class, not a ninth training label. Confidence is not "
+            "a calibrated OOD score, so high-confidence known-class predictions can still "
+            "be wrong; low-confidence cases are routed to human review."
+        ),
+    }
+    unclean_rows = []
+    for index, path in enumerate(unclean_paths):
+        true_label = unclean_dataset.classes[int(unclean_raw["targets"][index])]
+        prediction = config.classes[int(unclean_raw["predictions"][index])]
+        confidence = float(unclean_probabilities[index].max())
+        unclean_rows.append(
+            {
+                "path": path,
+                "source_label": true_label,
+                "predicted_class": prediction,
+                "confidence": confidence,
+                "needs_review": confidence < review["threshold"],
+                "is_unseen_neysan": true_label == "neysan",
+            }
+        )
+    if neysan_index is not None and not known_mask.all():
+        plot_unclean_analysis(
+            unclean_paths,
+            unclean_raw["targets"],
+            unclean_raw["predictions"],
+            unclean_probabilities,
+            config.classes,
+            config.reports_dir,
+            unseen_index=neysan_index,
+            unseen_name="neysan",
+        )
+    return unclean_result, unclean_rows, exclusion_records
 
 
 def _calibration_summary(probabilities: np.ndarray, targets: np.ndarray) -> dict[str, float]:
@@ -910,139 +1109,34 @@ def _run_project_impl(
     )
 
     print("\n=== 6. Cleaned unclean / unseen-class analysis ===")
-    unclean_transform, _ = build_transforms(
-        config, augmentation=False, kind=selected_spec.transform_kind  # type: ignore[arg-type]
-    )
-    unclean_dataset = load_image_folder(
-        config.data_dir, "unclean", unclean_transform
-    )
-    all_unclean_base = load_image_folder(
-        config.data_dir, "unclean", unclean_transform
-    )
-    all_train_base = load_image_folder(
-        config.data_dir, "train", unclean_transform, config.classes
-    )
-    all_test_base = load_image_folder(
-        config.data_dir, "test", unclean_transform, config.classes
-    )
-    retained_unclean_indices, exclusion_records = cleaned_unclean_indices(
-        all_train_base, all_test_base, all_unclean_base
-    )
-    unclean_loader = make_loader(
-        unclean_dataset,
-        retained_unclean_indices,
-        training=False,
-        batch_size=config.batch_size,
-        seed=config.seed,
-        num_workers=config.num_workers,
-    )
-    # Inference-only: source labels can include the unseen ninth `neysan` class,
-    # which must never be passed as an eight-class Cross-Entropy target.
-    unclean_raw = predict(
-        selected_model,
-        unclean_loader,
-        device,
-        probability_kind="softmax",
-        temperature=temperature,
-    )
-    unclean_probabilities = unclean_raw["probabilities"]
-    # `neysan` may be absent because cleaning emptied its folder, so treat it as optional.
-    neysan_index = unclean_dataset.class_to_idx.get("neysan")
-    if neysan_index is None:
-        known_mask = np.ones_like(unclean_raw["targets"], dtype=bool)
+    # A split that exists but holds no image (for example `unclean` fully drained
+    # by a prior `--mode move` export) is skipped instead of raising: ImageFolder
+    # cannot represent it, and its empty class folders must not be deleted.
+    unclean_images = split_image_count(config.data_dir, "unclean")
+    if unclean_images:
+        unclean_result, unclean_rows, exclusion_records = _analyze_unclean(
+            config,
+            selected_model,
+            selected_spec.transform_kind,
+            device,
+            temperature=temperature,
+            review=review,
+        )
     else:
-        known_mask = unclean_raw["targets"] != neysan_index
-    # Some known classes (e.g. `autobus`) may have been fully cleaned out of the
-    # unclean split. Skip any class that is not present instead of raising KeyError.
-    known_map = {
-        unclean_dataset.class_to_idx[class_name]: model_index
-        for model_index, class_name in enumerate(config.classes)
-        if class_name in unclean_dataset.class_to_idx
-    }
-    known_targets = np.asarray(
-        [known_map[int(value)] for value in unclean_raw["targets"][known_mask]],
-        dtype=int,
-    )
-    known_predictions = unclean_raw["predictions"][known_mask]
-    known_probabilities = unclean_probabilities[known_mask]
-    known_metrics = classification_metrics(
-        known_targets, known_predictions, config.classes
-    )
-    if neysan_index is None or known_mask.all():
-        unseen_block: dict[str, Any] = {
-            "present": False,
-            "reason": "no 'neysan' samples remain in the unclean split after cleaning",
-        }
-    else:
-        neysan_predictions = unclean_raw["predictions"][~known_mask]
-        neysan_confidence = unclean_probabilities[~known_mask].max(axis=1)
-        neysan_review = neysan_confidence < review["threshold"]
-        unseen_block = {
-            "present": True,
-            "mean_confidence": float(neysan_confidence.mean()),
-            "median_confidence": float(np.median(neysan_confidence)),
-            "review_count": int(neysan_review.sum()),
-            "review_rate": float(neysan_review.mean()),
-            "predicted_class_counts": {
-                config.classes[index]: int((neysan_predictions == index).sum())
-                for index in range(len(config.classes))
-            },
-        }
-    unclean_paths = [
-        path.as_posix() for path in paths_for_subset(unclean_loader.dataset, [])
-    ]
-    prediction_counts = {
-        config.classes[index]: int((unclean_raw["predictions"] == index).sum())
-        for index in range(len(config.classes))
-    }
-    unclean_result = {
-        "cleaning": {
-            "original_images": len(unclean_dataset),
-            "retained_images": len(retained_unclean_indices),
-            "excluded_duplicates": len(exclusion_records),
-            "known_images": int(known_mask.sum()),
-            "unseen_neysan_images": int((~known_mask).sum()) if neysan_index is not None else 0,
-        },
-        "known_class_metrics": known_metrics,
-        "known_class_uncertainty": _calibration_summary(known_probabilities, known_targets),
-        "unseen_neysan": unseen_block,
-        "all_cleaned_prediction_counts": prediction_counts,
-        "interpretation": (
-            "neysan is an unseen class, not a ninth training label. Confidence is not "
-            "a calibrated OOD score, so high-confidence known-class predictions can still "
-            "be wrong; low-confidence cases are routed to human review."
-        ),
-    }
+        reason = (
+            f"the unclean split at {(Path(config.data_dir) / 'unclean').as_posix()} "
+            "holds no image files, so the cleaned-unclean and unseen-class "
+            "analysis was skipped"
+        )
+        print(f"[skip] {reason}.")
+        unclean_result = skipped_unclean_result(reason)
+        unclean_rows = []
+        exclusion_records = []
     write_json(unclean_result, results_dir / "unclean_analysis.json")
-    unclean_rows = []
-    for index, path in enumerate(unclean_paths):
-        true_label = unclean_dataset.classes[int(unclean_raw["targets"][index])]
-        prediction = config.classes[int(unclean_raw["predictions"][index])]
-        confidence = float(unclean_probabilities[index].max())
-        unclean_rows.append(
-            {
-                "path": path,
-                "source_label": true_label,
-                "predicted_class": prediction,
-                "confidence": confidence,
-                "needs_review": confidence < review["threshold"],
-                "is_unseen_neysan": true_label == "neysan",
-            }
-        )
     atomic_write_csv(
-        pd.DataFrame(unclean_rows), results_dir / "unclean_predictions.csv"
+        pd.DataFrame(unclean_rows, columns=list(UNCLEAN_PREDICTION_COLUMNS)),
+        results_dir / "unclean_predictions.csv",
     )
-    if neysan_index is not None and not known_mask.all():
-        plot_unclean_analysis(
-            unclean_paths,
-            unclean_raw["targets"],
-            unclean_raw["predictions"],
-            unclean_probabilities,
-            config.classes,
-            config.reports_dir,
-            unseen_index=neysan_index,
-            unseen_name="neysan",
-        )
 
     print("\n=== 7. Reports and production checkpoint ===")
     final_checkpoint = selected_checkpoint
