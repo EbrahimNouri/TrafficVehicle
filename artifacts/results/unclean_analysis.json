@@ -1,0 +1,27 @@
+{
+  "skipped": true,
+  "skip_reason": "the unclean split at dataset/unclean holds no image files, so the cleaned-unclean and unseen-class analysis was skipped",
+  "cleaning": {
+    "original_images": 0,
+    "retained_images": 0,
+    "excluded_duplicates": 0,
+    "known_images": 0,
+    "unseen_neysan_images": 0
+  },
+  "known_class_metrics": {
+    "accuracy": 0.0,
+    "macro_precision": 0.0,
+    "macro_recall": 0.0,
+    "macro_f1": 0.0,
+    "weighted_f1": 0.0,
+    "per_class": {},
+    "confusion_matrix_counts": [],
+    "confusion_matrix_row_normalized": []
+  },
+  "unseen_neysan": {
+    "present": false,
+    "reason": "the unclean split at dataset/unclean holds no image files, so the cleaned-unclean and unseen-class analysis was skipped"
+  },
+  "all_cleaned_prediction_counts": {},
+  "interpretation": "The unclean split held no images, so no cleaned-unclean or unseen-class evidence was produced. This is a skipped step, not a measured result."
+}

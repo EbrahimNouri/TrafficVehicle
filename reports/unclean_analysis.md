@@ -1,7 +1,5 @@
 # Cleaned `unclean` and Unseen-Class Analysis
 
-`unclean` is never used for optimization or validation. A second content-aware pass removes every pixel-identical copy of train or test, producing **115** retained images from 138; **23** exclusions are recorded with their source. This includes the `train/vanet` versus `unclean/neysan` label conflict, which is excluded rather than silently relabelled.
+`unclean` is never used for optimization or validation. This run found no image files in the `unclean` split, so the duplicate-removal pass and the unseen-class analysis were **skipped**. No numbers are reported here: a skipped step is not a measured result.
 
-The retained set has **115** known-class examples and **0** `neysan` examples. On the known subset, accuracy is **0.2696** and macro-F1 is **0.3912**. This is diagnostic data, not another model-selection test.
-
-No `neysan` samples remain in the `unclean` split after cleaning (its folder was emptied by the duplicate-removal pass), so the unseen-class branch is skipped. `neysan` is still conceptually treated as an unseen/human-review class, never added as a ninth training label. Standard softmax confidence is not an out-of-distribution detector, so any future unseen-class analysis should still route low-confidence cases to human review.
+Reason: the unclean split at dataset/unclean holds no image files, so the cleaned-unclean and unseen-class analysis was skipped. `artifacts/results/unclean_analysis.json` records `skipped: true` and `artifacts/results/unclean_predictions.csv` is written with headers only. Add images to the `unclean` split and re-run to populate this section.

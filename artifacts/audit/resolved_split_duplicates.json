@@ -1,0 +1,91 @@
+{
+  "policy": "Keep the test copy, quarantine the train copy; no image is deleted.",
+  "frozen_split": "test",
+  "trainable_split": "train",
+  "groups_found": 8,
+  "moved_count": 8,
+  "unresolved_groups": 0,
+  "moved": [
+    {
+      "group": 1,
+      "pixel_sha256": "9c400aefa4eb5fa035b5c43f462fcd851fb8b1f681705f9dbf21776df95d235f",
+      "label": "ambulance",
+      "decision": "quarantine_train_copy_keep_test_copy",
+      "source_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/train/ambulance/200396165.jpg",
+      "kept_duplicate_of": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/test/ambulance/200396165.jpg",
+      "label_conflict": false,
+      "quarantine_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/quarantine/split_duplicates/ambulance/200396165.jpg"
+    },
+    {
+      "group": 2,
+      "pixel_sha256": "54c9a656bb7a2a8904061a2c19bfffc2d2e7d53d7bdc573f060d5c8c7ee542bf",
+      "label": "ambulance",
+      "decision": "quarantine_train_copy_keep_test_copy",
+      "source_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/train/ambulance/214830125.jpg",
+      "kept_duplicate_of": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/test/ambulance/214830125.jpg",
+      "label_conflict": false,
+      "quarantine_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/quarantine/split_duplicates/ambulance/214830125.jpg"
+    },
+    {
+      "group": 3,
+      "pixel_sha256": "ab49c2166a37d775a1dfc8dd14071b5668656f9370fb6ce32c348b29bbb5684b",
+      "label": "ambulance",
+      "decision": "quarantine_train_copy_keep_test_copy",
+      "source_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/train/ambulance/215713763.jpg",
+      "kept_duplicate_of": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/test/ambulance/215713763.jpg",
+      "label_conflict": false,
+      "quarantine_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/quarantine/split_duplicates/ambulance/215713763.jpg"
+    },
+    {
+      "group": 4,
+      "pixel_sha256": "1f2f473c52bd9acc574ab458cdefdce35e5edfbb2f2361c183340d1acda50f89",
+      "label": "ambulance",
+      "decision": "quarantine_train_copy_keep_test_copy",
+      "source_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/train/ambulance/216095686.jpg",
+      "kept_duplicate_of": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/test/ambulance/216095686.jpg",
+      "label_conflict": false,
+      "quarantine_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/quarantine/split_duplicates/ambulance/216095686.jpg"
+    },
+    {
+      "group": 5,
+      "pixel_sha256": "363fd4183cd843f625a007698698772f99680cf3bdae8881d7ba2e7784980a8c",
+      "label": "ambulance",
+      "decision": "quarantine_train_copy_keep_test_copy",
+      "source_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/train/ambulance/217040489.jpg",
+      "kept_duplicate_of": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/test/ambulance/217040489.jpg",
+      "label_conflict": false,
+      "quarantine_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/quarantine/split_duplicates/ambulance/217040489.jpg"
+    },
+    {
+      "group": 6,
+      "pixel_sha256": "cb1eb8f3ebc65c8ccfae9bb35e5b7052f41e4f2404d2a5444eda440bafbbac02",
+      "label": "ambulance",
+      "decision": "quarantine_train_copy_keep_test_copy",
+      "source_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/train/ambulance/218089422.jpg",
+      "kept_duplicate_of": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/test/ambulance/218089422.jpg",
+      "label_conflict": false,
+      "quarantine_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/quarantine/split_duplicates/ambulance/218089422.jpg"
+    },
+    {
+      "group": 7,
+      "pixel_sha256": "867561f895f19986c5989377755bb7493f85ae1c780a31d4d1d10b6539a114d5",
+      "label": "minibus",
+      "decision": "quarantine_train_copy_keep_test_copy",
+      "source_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/train/minibus/218138154.jpg",
+      "kept_duplicate_of": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/test/minibus/218138154.jpg",
+      "label_conflict": false,
+      "quarantine_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/quarantine/split_duplicates/minibus/218138154.jpg"
+    },
+    {
+      "group": 8,
+      "pixel_sha256": "2eaf8e99c273e2085d682e0c513e73ac9c68005f7d992cc5fc80f3d120853b37",
+      "label": "minibus",
+      "decision": "quarantine_train_copy_keep_test_copy",
+      "source_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/train/minibus/218307381.jpg",
+      "kept_duplicate_of": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/test/minibus/218307381.jpg",
+      "label_conflict": false,
+      "quarantine_path": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/quarantine/split_duplicates/minibus/218307381.jpg"
+    }
+  ],
+  "unresolved": []
+}

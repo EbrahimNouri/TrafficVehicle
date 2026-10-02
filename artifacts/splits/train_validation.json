@@ -1,0 +1,6127 @@
+{
+  "seed": 42,
+  "validation_fraction": 0.2,
+  "class_to_idx": {
+    "ambulance": 0,
+    "autobus": 1,
+    "kamyun": 2,
+    "kamyunet": 3,
+    "minibus": 4,
+    "savari": 5,
+    "taxi": 6,
+    "vanet": 7
+  },
+  "train_count": 660,
+  "validation_count": 166,
+  "train": [
+    {
+      "index": 1,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/199038575.jpg"
+    },
+    {
+      "index": 3,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/199984667.jpg"
+    },
+    {
+      "index": 5,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/203829862.jpg"
+    },
+    {
+      "index": 6,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/205326290.jpg"
+    },
+    {
+      "index": 7,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/206808986.jpg"
+    },
+    {
+      "index": 8,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/208738861.jpg"
+    },
+    {
+      "index": 9,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/210178416.jpg"
+    },
+    {
+      "index": 10,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/210925845.jpg"
+    },
+    {
+      "index": 11,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/211531125.jpg"
+    },
+    {
+      "index": 12,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/212181645.jpg"
+    },
+    {
+      "index": 13,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/212304509.jpg"
+    },
+    {
+      "index": 14,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/212921984.jpg"
+    },
+    {
+      "index": 15,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/213342200.jpg"
+    },
+    {
+      "index": 16,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/213495669.jpg"
+    },
+    {
+      "index": 17,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/213615902.jpg"
+    },
+    {
+      "index": 18,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/213796534.jpg"
+    },
+    {
+      "index": 19,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/213801906.jpg"
+    },
+    {
+      "index": 20,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/214162077.jpg"
+    },
+    {
+      "index": 21,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/214289809.jpg"
+    },
+    {
+      "index": 22,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/214425638.jpg"
+    },
+    {
+      "index": 23,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/214491147.jpg"
+    },
+    {
+      "index": 25,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/214803565.jpg"
+    },
+    {
+      "index": 29,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/215775075.jpg"
+    },
+    {
+      "index": 30,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/215818698.jpg"
+    },
+    {
+      "index": 31,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/215951291.jpg"
+    },
+    {
+      "index": 32,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/215973116.jpg"
+    },
+    {
+      "index": 33,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216005219.jpg"
+    },
+    {
+      "index": 34,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216013688.jpg"
+    },
+    {
+      "index": 35,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216019173.jpg"
+    },
+    {
+      "index": 36,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216077999.jpg"
+    },
+    {
+      "index": 38,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216216403.jpg"
+    },
+    {
+      "index": 40,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216224583.jpg"
+    },
+    {
+      "index": 41,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216449202.jpg"
+    },
+    {
+      "index": 43,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216533019.jpg"
+    },
+    {
+      "index": 44,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216657889.jpg"
+    },
+    {
+      "index": 45,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216673206.jpg"
+    },
+    {
+      "index": 46,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216702100.jpg"
+    },
+    {
+      "index": 47,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216756276.jpg"
+    },
+    {
+      "index": 48,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216773853.jpg"
+    },
+    {
+      "index": 49,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216840747.jpg"
+    },
+    {
+      "index": 50,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216864213.jpg"
+    },
+    {
+      "index": 51,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216903655.jpg"
+    },
+    {
+      "index": 53,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217155355.jpg"
+    },
+    {
+      "index": 54,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217165994.jpg"
+    },
+    {
+      "index": 56,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217226406.jpg"
+    },
+    {
+      "index": 57,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217402945.jpg"
+    },
+    {
+      "index": 58,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217477434.jpg"
+    },
+    {
+      "index": 60,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217504681.jpg"
+    },
+    {
+      "index": 61,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217506368.jpg"
+    },
+    {
+      "index": 62,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217579130.jpg"
+    },
+    {
+      "index": 64,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217696116.jpg"
+    },
+    {
+      "index": 65,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217910074.jpg"
+    },
+    {
+      "index": 66,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218069485.jpg"
+    },
+    {
+      "index": 67,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218078334.jpg"
+    },
+    {
+      "index": 68,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218197220.jpg"
+    },
+    {
+      "index": 70,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218335016.jpg"
+    },
+    {
+      "index": 71,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218343183.jpg"
+    },
+    {
+      "index": 72,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218460563.jpg"
+    },
+    {
+      "index": 73,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218591595.jpg"
+    },
+    {
+      "index": 75,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218771670.jpg"
+    },
+    {
+      "index": 76,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218819949.jpg"
+    },
+    {
+      "index": 77,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218852971.jpg"
+    },
+    {
+      "index": 78,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218868478.jpg"
+    },
+    {
+      "index": 79,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218966979.jpg"
+    },
+    {
+      "index": 81,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/219023494.jpg"
+    },
+    {
+      "index": 82,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/219046558.jpg"
+    },
+    {
+      "index": 83,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/219048928.jpg"
+    },
+    {
+      "index": 84,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/219090066.jpg"
+    },
+    {
+      "index": 85,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/193229239.jpg"
+    },
+    {
+      "index": 86,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/193813673.jpg"
+    },
+    {
+      "index": 87,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/194279229.jpg"
+    },
+    {
+      "index": 88,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/195459397.jpg"
+    },
+    {
+      "index": 89,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/197977992.jpg"
+    },
+    {
+      "index": 90,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/198272507.jpg"
+    },
+    {
+      "index": 93,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/199205393.jpg"
+    },
+    {
+      "index": 94,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/199209846.jpg"
+    },
+    {
+      "index": 95,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/199713076.jpg"
+    },
+    {
+      "index": 96,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/199917107.jpg"
+    },
+    {
+      "index": 97,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/200168649.jpg"
+    },
+    {
+      "index": 98,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/200699667.jpg"
+    },
+    {
+      "index": 99,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/205052162.jpg"
+    },
+    {
+      "index": 101,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/208843464.jpg"
+    },
+    {
+      "index": 102,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/210456615.jpg"
+    },
+    {
+      "index": 103,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/211794766.jpg"
+    },
+    {
+      "index": 104,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/213497548.jpg"
+    },
+    {
+      "index": 106,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/213843804.jpg"
+    },
+    {
+      "index": 107,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/214619456.jpg"
+    },
+    {
+      "index": 109,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215161403.jpg"
+    },
+    {
+      "index": 111,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215551069.jpg"
+    },
+    {
+      "index": 112,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215587537.jpg"
+    },
+    {
+      "index": 113,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215642404.jpg"
+    },
+    {
+      "index": 114,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215655037.jpg"
+    },
+    {
+      "index": 115,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215685399.jpg"
+    },
+    {
+      "index": 117,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215825621.jpg"
+    },
+    {
+      "index": 118,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215825639.jpg"
+    },
+    {
+      "index": 120,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215829949.jpg"
+    },
+    {
+      "index": 124,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216021441.jpg"
+    },
+    {
+      "index": 125,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216037448.jpg"
+    },
+    {
+      "index": 126,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216060637.jpg"
+    },
+    {
+      "index": 127,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216079914.jpg"
+    },
+    {
+      "index": 128,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216086020.jpg"
+    },
+    {
+      "index": 129,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216159953.jpg"
+    },
+    {
+      "index": 130,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216162374.jpg"
+    },
+    {
+      "index": 131,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216240222.jpg"
+    },
+    {
+      "index": 132,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216256289.jpg"
+    },
+    {
+      "index": 133,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216318824.jpg"
+    },
+    {
+      "index": 134,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216324107.jpg"
+    },
+    {
+      "index": 135,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216421304.jpg"
+    },
+    {
+      "index": 136,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216594094.jpg"
+    },
+    {
+      "index": 137,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216664450.jpg"
+    },
+    {
+      "index": 141,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216859234.jpg"
+    },
+    {
+      "index": 143,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216875964.jpg"
+    },
+    {
+      "index": 144,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216926734.jpg"
+    },
+    {
+      "index": 145,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216947535.jpg"
+    },
+    {
+      "index": 146,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/217071340.jpg"
+    },
+    {
+      "index": 147,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/217116492.jpg"
+    },
+    {
+      "index": 148,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/217200065.jpg"
+    },
+    {
+      "index": 149,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/217252048.jpg"
+    },
+    {
+      "index": 150,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/217672139.jpg"
+    },
+    {
+      "index": 152,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/217784847.jpg"
+    },
+    {
+      "index": 153,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/217891887.jpg"
+    },
+    {
+      "index": 155,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/217999167.jpg"
+    },
+    {
+      "index": 156,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218020051.jpg"
+    },
+    {
+      "index": 158,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218182608.jpg"
+    },
+    {
+      "index": 159,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218187113.jpg"
+    },
+    {
+      "index": 160,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218206926.jpg"
+    },
+    {
+      "index": 161,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218267459.jpg"
+    },
+    {
+      "index": 162,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218286526.jpg"
+    },
+    {
+      "index": 163,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218293611.jpg"
+    },
+    {
+      "index": 164,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218337345.jpg"
+    },
+    {
+      "index": 165,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218405590.jpg"
+    },
+    {
+      "index": 166,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218405806.jpg"
+    },
+    {
+      "index": 167,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218505266.jpg"
+    },
+    {
+      "index": 168,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218595025.jpg"
+    },
+    {
+      "index": 169,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218626877.jpg"
+    },
+    {
+      "index": 170,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218634883.jpg"
+    },
+    {
+      "index": 171,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218729996.jpg"
+    },
+    {
+      "index": 172,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218737303.jpg"
+    },
+    {
+      "index": 173,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218737467.jpg"
+    },
+    {
+      "index": 174,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218787299.jpg"
+    },
+    {
+      "index": 175,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218800911.jpg"
+    },
+    {
+      "index": 176,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218905897.jpg"
+    },
+    {
+      "index": 177,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218907601.jpg"
+    },
+    {
+      "index": 178,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218932712.jpg"
+    },
+    {
+      "index": 180,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218959354.jpg"
+    },
+    {
+      "index": 181,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/219027510.jpg"
+    },
+    {
+      "index": 184,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/198661910.jpg"
+    },
+    {
+      "index": 185,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/199185521.jpg"
+    },
+    {
+      "index": 186,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/199511120.jpg"
+    },
+    {
+      "index": 188,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/200333424.jpg"
+    },
+    {
+      "index": 189,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/200464110.jpg"
+    },
+    {
+      "index": 190,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/203161511.jpg"
+    },
+    {
+      "index": 191,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/205437377.jpg"
+    },
+    {
+      "index": 192,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/205757433.jpg"
+    },
+    {
+      "index": 194,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/206930130.jpg"
+    },
+    {
+      "index": 195,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/209859136.jpg"
+    },
+    {
+      "index": 196,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/209981626.jpg"
+    },
+    {
+      "index": 197,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/210254715.jpg"
+    },
+    {
+      "index": 200,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/214831926.jpg"
+    },
+    {
+      "index": 203,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215704325.jpg"
+    },
+    {
+      "index": 204,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215724393.jpg"
+    },
+    {
+      "index": 206,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215792145.jpg"
+    },
+    {
+      "index": 207,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215798585.jpg"
+    },
+    {
+      "index": 208,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215816828.jpg"
+    },
+    {
+      "index": 210,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215893105.jpg"
+    },
+    {
+      "index": 211,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215912012.jpg"
+    },
+    {
+      "index": 212,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215953828.jpg"
+    },
+    {
+      "index": 213,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215969701.jpg"
+    },
+    {
+      "index": 214,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215976288.jpg"
+    },
+    {
+      "index": 215,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215989939.jpg"
+    },
+    {
+      "index": 217,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216023198.jpg"
+    },
+    {
+      "index": 218,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216040476.jpg"
+    },
+    {
+      "index": 220,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216055748.jpg"
+    },
+    {
+      "index": 221,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216073290.jpg"
+    },
+    {
+      "index": 222,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216108515.jpg"
+    },
+    {
+      "index": 223,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216147955.jpg"
+    },
+    {
+      "index": 224,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216212208.jpg"
+    },
+    {
+      "index": 225,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216295051.jpg"
+    },
+    {
+      "index": 226,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216317771.jpg"
+    },
+    {
+      "index": 227,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216432092.jpg"
+    },
+    {
+      "index": 228,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216434062.jpg"
+    },
+    {
+      "index": 229,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216484088.jpg"
+    },
+    {
+      "index": 230,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216522671.jpg"
+    },
+    {
+      "index": 233,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216560895.jpg"
+    },
+    {
+      "index": 235,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216797255.jpg"
+    },
+    {
+      "index": 236,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216847004.jpg"
+    },
+    {
+      "index": 237,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216850292.jpg"
+    },
+    {
+      "index": 238,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216926294.jpg"
+    },
+    {
+      "index": 240,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216972904.jpg"
+    },
+    {
+      "index": 241,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/217204099.jpg"
+    },
+    {
+      "index": 242,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/217393780.jpg"
+    },
+    {
+      "index": 243,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/217685543.jpg"
+    },
+    {
+      "index": 244,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/217955185.jpg"
+    },
+    {
+      "index": 245,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/217960658.jpg"
+    },
+    {
+      "index": 246,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/217998174.jpg"
+    },
+    {
+      "index": 247,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218018095.jpg"
+    },
+    {
+      "index": 248,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218151052.jpg"
+    },
+    {
+      "index": 249,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218182764.jpg"
+    },
+    {
+      "index": 250,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218279195.jpg"
+    },
+    {
+      "index": 251,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218320799.jpg"
+    },
+    {
+      "index": 252,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218352715.jpg"
+    },
+    {
+      "index": 253,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218431091.jpg"
+    },
+    {
+      "index": 256,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218568954.jpg"
+    },
+    {
+      "index": 258,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218666415.jpg"
+    },
+    {
+      "index": 259,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218696889.jpg"
+    },
+    {
+      "index": 260,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218698955.jpg"
+    },
+    {
+      "index": 261,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218716781.jpg"
+    },
+    {
+      "index": 262,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218719172.jpg"
+    },
+    {
+      "index": 263,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218721747.jpg"
+    },
+    {
+      "index": 264,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218753345.jpg"
+    },
+    {
+      "index": 265,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218800079.jpg"
+    },
+    {
+      "index": 266,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218812834.jpg"
+    },
+    {
+      "index": 267,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218830724.jpg"
+    },
+    {
+      "index": 268,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218833324.jpg"
+    },
+    {
+      "index": 269,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218843937.jpg"
+    },
+    {
+      "index": 270,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218851819.jpg"
+    },
+    {
+      "index": 271,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218915243.jpg"
+    },
+    {
+      "index": 272,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218916372.jpg"
+    },
+    {
+      "index": 273,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218931656.jpg"
+    },
+    {
+      "index": 274,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218935445.jpg"
+    },
+    {
+      "index": 276,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218972010.jpg"
+    },
+    {
+      "index": 277,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218978195.jpg"
+    },
+    {
+      "index": 278,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/193903806.jpg"
+    },
+    {
+      "index": 280,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/194278256.jpg"
+    },
+    {
+      "index": 281,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/195416036.jpg"
+    },
+    {
+      "index": 283,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/195670551.jpg"
+    },
+    {
+      "index": 284,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/195918838.jpg"
+    },
+    {
+      "index": 285,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/197387270.jpg"
+    },
+    {
+      "index": 287,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/198425102.jpg"
+    },
+    {
+      "index": 288,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/199279799.jpg"
+    },
+    {
+      "index": 289,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/199375942.jpg"
+    },
+    {
+      "index": 290,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/199637722.jpg"
+    },
+    {
+      "index": 292,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/200457547.jpg"
+    },
+    {
+      "index": 293,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/202209206.jpg"
+    },
+    {
+      "index": 294,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/204597188.jpg"
+    },
+    {
+      "index": 295,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/205243013.jpg"
+    },
+    {
+      "index": 296,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/208870069.jpg"
+    },
+    {
+      "index": 297,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/210064050.jpg"
+    },
+    {
+      "index": 299,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/210504161.jpg"
+    },
+    {
+      "index": 300,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/211723634.jpg"
+    },
+    {
+      "index": 302,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/212295113.jpg"
+    },
+    {
+      "index": 304,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/213511840.jpg"
+    },
+    {
+      "index": 305,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/213627127.jpg"
+    },
+    {
+      "index": 307,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/214284950.jpg"
+    },
+    {
+      "index": 308,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/214285219.jpg"
+    },
+    {
+      "index": 309,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/214357757.jpg"
+    },
+    {
+      "index": 310,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/214358573.jpg"
+    },
+    {
+      "index": 311,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/214359092.jpg"
+    },
+    {
+      "index": 312,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/214641253.jpg"
+    },
+    {
+      "index": 313,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/214773624.jpg"
+    },
+    {
+      "index": 314,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/215100998.jpg"
+    },
+    {
+      "index": 315,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/215569155.jpg"
+    },
+    {
+      "index": 316,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/215756767.jpg"
+    },
+    {
+      "index": 317,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/215862632.jpg"
+    },
+    {
+      "index": 318,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/215904707.jpg"
+    },
+    {
+      "index": 319,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216023451.jpg"
+    },
+    {
+      "index": 320,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216027967.jpg"
+    },
+    {
+      "index": 322,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216070131.jpg"
+    },
+    {
+      "index": 324,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216297399.jpg"
+    },
+    {
+      "index": 325,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216304874.jpg"
+    },
+    {
+      "index": 327,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216589057.jpg"
+    },
+    {
+      "index": 328,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216618682.jpg"
+    },
+    {
+      "index": 329,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216625819.jpg"
+    },
+    {
+      "index": 330,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216646196.jpg"
+    },
+    {
+      "index": 331,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216696969.jpg"
+    },
+    {
+      "index": 332,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216699823.jpg"
+    },
+    {
+      "index": 334,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216779130.jpg"
+    },
+    {
+      "index": 335,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216792837.jpg"
+    },
+    {
+      "index": 336,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216832169.jpg"
+    },
+    {
+      "index": 337,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216854381.jpg"
+    },
+    {
+      "index": 338,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216929918.jpg"
+    },
+    {
+      "index": 339,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217000128.jpg"
+    },
+    {
+      "index": 340,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217054853.jpg"
+    },
+    {
+      "index": 343,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217203351.jpg"
+    },
+    {
+      "index": 344,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217385379.jpg"
+    },
+    {
+      "index": 345,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217425322.jpg"
+    },
+    {
+      "index": 346,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217739639.jpg"
+    },
+    {
+      "index": 347,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217743945.jpg"
+    },
+    {
+      "index": 348,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217800606.jpg"
+    },
+    {
+      "index": 350,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217930620.jpg"
+    },
+    {
+      "index": 351,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217957904.jpg"
+    },
+    {
+      "index": 352,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217986709.jpg"
+    },
+    {
+      "index": 353,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218130006.jpg"
+    },
+    {
+      "index": 354,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218176905.jpg"
+    },
+    {
+      "index": 357,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218367749.jpg"
+    },
+    {
+      "index": 358,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218375873.jpg"
+    },
+    {
+      "index": 359,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218490161.jpg"
+    },
+    {
+      "index": 360,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218562521.jpg"
+    },
+    {
+      "index": 361,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218571589.jpg"
+    },
+    {
+      "index": 362,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218576473.jpg"
+    },
+    {
+      "index": 363,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218583813.jpg"
+    },
+    {
+      "index": 365,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218623319.jpg"
+    },
+    {
+      "index": 367,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218716430.jpg"
+    },
+    {
+      "index": 368,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218726135.jpg"
+    },
+    {
+      "index": 369,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218755560.jpg"
+    },
+    {
+      "index": 370,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218777039.jpg"
+    },
+    {
+      "index": 371,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218839669.jpg"
+    },
+    {
+      "index": 372,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218847866.jpg"
+    },
+    {
+      "index": 373,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218884519.jpg"
+    },
+    {
+      "index": 374,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218892809.jpg"
+    },
+    {
+      "index": 375,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218903080.jpg"
+    },
+    {
+      "index": 376,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218948404.jpg"
+    },
+    {
+      "index": 377,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218963223.jpg"
+    },
+    {
+      "index": 379,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218984358.jpg"
+    },
+    {
+      "index": 381,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/194328969.jpg"
+    },
+    {
+      "index": 382,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/195315678.jpg"
+    },
+    {
+      "index": 383,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/195904076.jpg"
+    },
+    {
+      "index": 384,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/196234914.jpg"
+    },
+    {
+      "index": 385,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/196385182.jpg"
+    },
+    {
+      "index": 386,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/196752594.jpg"
+    },
+    {
+      "index": 388,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/198108578.jpg"
+    },
+    {
+      "index": 391,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/198398123.jpg"
+    },
+    {
+      "index": 392,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/198432863.jpg"
+    },
+    {
+      "index": 394,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/198885269.jpg"
+    },
+    {
+      "index": 395,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/201364864.jpg"
+    },
+    {
+      "index": 396,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/205737488.jpg"
+    },
+    {
+      "index": 397,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/205763607.jpg"
+    },
+    {
+      "index": 398,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/205866523.jpg"
+    },
+    {
+      "index": 399,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/205925639.jpg"
+    },
+    {
+      "index": 401,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/206186624.jpg"
+    },
+    {
+      "index": 402,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/206188796.jpg"
+    },
+    {
+      "index": 404,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/210099617.jpg"
+    },
+    {
+      "index": 405,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/210102226.jpg"
+    },
+    {
+      "index": 406,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/210102777.jpg"
+    },
+    {
+      "index": 407,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/210125671.jpg"
+    },
+    {
+      "index": 409,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/213277133.jpg"
+    },
+    {
+      "index": 412,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/214507352.jpg"
+    },
+    {
+      "index": 413,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/214541786.jpg"
+    },
+    {
+      "index": 414,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/214620434.jpg"
+    },
+    {
+      "index": 415,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/214672749.jpg"
+    },
+    {
+      "index": 416,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/214734110.jpg"
+    },
+    {
+      "index": 417,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215113899.jpg"
+    },
+    {
+      "index": 418,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215183131.jpg"
+    },
+    {
+      "index": 419,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215508288.jpg"
+    },
+    {
+      "index": 420,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215533576.jpg"
+    },
+    {
+      "index": 422,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215602362.jpg"
+    },
+    {
+      "index": 423,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215607636.jpg"
+    },
+    {
+      "index": 424,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215610138.jpg"
+    },
+    {
+      "index": 425,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215617838.jpg"
+    },
+    {
+      "index": 426,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215644672.jpg"
+    },
+    {
+      "index": 427,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215687610.jpg"
+    },
+    {
+      "index": 428,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215692736.jpg"
+    },
+    {
+      "index": 429,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215703743.jpg"
+    },
+    {
+      "index": 431,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215771082.jpg"
+    },
+    {
+      "index": 432,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215772197.jpg"
+    },
+    {
+      "index": 433,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215772703.jpg"
+    },
+    {
+      "index": 434,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215782961.jpg"
+    },
+    {
+      "index": 435,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215870097.jpg"
+    },
+    {
+      "index": 436,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215872386.jpg"
+    },
+    {
+      "index": 437,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215893666.jpg"
+    },
+    {
+      "index": 438,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215913440.jpg"
+    },
+    {
+      "index": 439,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215917000.jpg"
+    },
+    {
+      "index": 442,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216005190.jpg"
+    },
+    {
+      "index": 443,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216045431.jpg"
+    },
+    {
+      "index": 444,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216061853.jpg"
+    },
+    {
+      "index": 445,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216100362.jpg"
+    },
+    {
+      "index": 446,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216421891.jpg"
+    },
+    {
+      "index": 447,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216427737.jpg"
+    },
+    {
+      "index": 449,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216465953.jpg"
+    },
+    {
+      "index": 450,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216668413.jpg"
+    },
+    {
+      "index": 451,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216769695.jpg"
+    },
+    {
+      "index": 452,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216842480.jpg"
+    },
+    {
+      "index": 453,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216874507.jpg"
+    },
+    {
+      "index": 455,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216983171.jpg"
+    },
+    {
+      "index": 456,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/217026643.jpg"
+    },
+    {
+      "index": 457,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/217339443.jpg"
+    },
+    {
+      "index": 459,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/217986520.jpg"
+    },
+    {
+      "index": 460,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218002136.jpg"
+    },
+    {
+      "index": 461,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218007837.jpg"
+    },
+    {
+      "index": 462,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218022337.jpg"
+    },
+    {
+      "index": 463,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218049788.jpg"
+    },
+    {
+      "index": 465,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218145650.jpg"
+    },
+    {
+      "index": 466,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218223645.jpg"
+    },
+    {
+      "index": 467,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218241684.jpg"
+    },
+    {
+      "index": 468,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218425722.jpg"
+    },
+    {
+      "index": 470,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218542930.jpg"
+    },
+    {
+      "index": 471,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218581851.jpg"
+    },
+    {
+      "index": 472,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218596879.jpg"
+    },
+    {
+      "index": 474,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218832361.jpg"
+    },
+    {
+      "index": 475,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218939308.jpg"
+    },
+    {
+      "index": 476,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/219025847.jpg"
+    },
+    {
+      "index": 477,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/193865576.jpg"
+    },
+    {
+      "index": 478,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/195800847.jpg"
+    },
+    {
+      "index": 479,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/195839967.jpg"
+    },
+    {
+      "index": 480,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/197696747.jpg"
+    },
+    {
+      "index": 481,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/198098595.jpg"
+    },
+    {
+      "index": 482,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/198132254.jpg"
+    },
+    {
+      "index": 483,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/198468980.jpg"
+    },
+    {
+      "index": 485,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/199907289.jpg"
+    },
+    {
+      "index": 486,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/200850651.jpg"
+    },
+    {
+      "index": 487,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/202273928.jpg"
+    },
+    {
+      "index": 490,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/205313767.jpg"
+    },
+    {
+      "index": 491,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/205377474.jpg"
+    },
+    {
+      "index": 492,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/205495938.jpg"
+    },
+    {
+      "index": 493,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/205865817.jpg"
+    },
+    {
+      "index": 494,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/206147449.jpg"
+    },
+    {
+      "index": 496,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/206276702.jpg"
+    },
+    {
+      "index": 497,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/206375505.jpg"
+    },
+    {
+      "index": 498,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/206431037.jpg"
+    },
+    {
+      "index": 499,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/206573249.jpg"
+    },
+    {
+      "index": 501,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/207857225.jpg"
+    },
+    {
+      "index": 503,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/208184846.jpg"
+    },
+    {
+      "index": 504,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/208296185.jpg"
+    },
+    {
+      "index": 505,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/208443200.jpg"
+    },
+    {
+      "index": 507,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/208637892.jpg"
+    },
+    {
+      "index": 508,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/209013092.jpg"
+    },
+    {
+      "index": 509,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/209155552.jpg"
+    },
+    {
+      "index": 510,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/210015193.jpg"
+    },
+    {
+      "index": 511,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/210273275.jpg"
+    },
+    {
+      "index": 512,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/210380464.jpg"
+    },
+    {
+      "index": 514,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/210565057.jpg"
+    },
+    {
+      "index": 515,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/210680167.jpg"
+    },
+    {
+      "index": 517,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/211781928.jpg"
+    },
+    {
+      "index": 519,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/212301629.jpg"
+    },
+    {
+      "index": 521,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/212740634.jpg"
+    },
+    {
+      "index": 523,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/214361998.jpg"
+    },
+    {
+      "index": 524,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/214749765.jpg"
+    },
+    {
+      "index": 525,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/214761981.jpg"
+    },
+    {
+      "index": 526,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/214818268.jpg"
+    },
+    {
+      "index": 527,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/214835469.jpg"
+    },
+    {
+      "index": 528,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/214848779.jpg"
+    },
+    {
+      "index": 529,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/215503531.jpg"
+    },
+    {
+      "index": 530,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/215575196.jpg"
+    },
+    {
+      "index": 531,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/215723061.jpg"
+    },
+    {
+      "index": 533,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216014638.jpg"
+    },
+    {
+      "index": 534,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216020950.jpg"
+    },
+    {
+      "index": 535,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216079172.jpg"
+    },
+    {
+      "index": 538,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216129393.jpg"
+    },
+    {
+      "index": 539,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216192117.jpg"
+    },
+    {
+      "index": 540,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216370669.jpg"
+    },
+    {
+      "index": 541,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216453356.jpg"
+    },
+    {
+      "index": 542,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216662449.jpg"
+    },
+    {
+      "index": 543,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216751233.jpg"
+    },
+    {
+      "index": 544,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216860877.jpg"
+    },
+    {
+      "index": 545,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217011281.jpg"
+    },
+    {
+      "index": 546,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217040826.jpg"
+    },
+    {
+      "index": 547,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217103048.jpg"
+    },
+    {
+      "index": 548,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217106962.jpg"
+    },
+    {
+      "index": 549,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217108489.jpg"
+    },
+    {
+      "index": 550,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217164961.jpg"
+    },
+    {
+      "index": 551,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217174516.jpg"
+    },
+    {
+      "index": 553,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217301960.jpg"
+    },
+    {
+      "index": 554,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217377450.jpg"
+    },
+    {
+      "index": 555,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217387431.jpg"
+    },
+    {
+      "index": 556,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217408734.jpg"
+    },
+    {
+      "index": 557,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217430133.jpg"
+    },
+    {
+      "index": 558,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217448062.jpg"
+    },
+    {
+      "index": 559,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217510361.jpg"
+    },
+    {
+      "index": 560,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217528722.jpg"
+    },
+    {
+      "index": 561,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217561081.jpg"
+    },
+    {
+      "index": 562,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217678723.jpg"
+    },
+    {
+      "index": 563,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217737871.jpg"
+    },
+    {
+      "index": 564,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217746881.jpg"
+    },
+    {
+      "index": 565,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217768353.jpg"
+    },
+    {
+      "index": 566,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217841511.jpg"
+    },
+    {
+      "index": 567,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217852671.jpg"
+    },
+    {
+      "index": 570,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218077655.jpg"
+    },
+    {
+      "index": 571,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218212988.jpg"
+    },
+    {
+      "index": 573,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218467171.jpg"
+    },
+    {
+      "index": 575,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218577056.jpg"
+    },
+    {
+      "index": 576,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218689207.jpg"
+    },
+    {
+      "index": 577,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218713286.jpg"
+    },
+    {
+      "index": 578,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218777011.jpg"
+    },
+    {
+      "index": 579,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218777657.jpg"
+    },
+    {
+      "index": 580,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218954447.jpg"
+    },
+    {
+      "index": 581,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218986062.jpg"
+    },
+    {
+      "index": 583,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/196935725.jpg"
+    },
+    {
+      "index": 584,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/197011132.jpg"
+    },
+    {
+      "index": 585,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/197362638.jpg"
+    },
+    {
+      "index": 586,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/197838399.jpg"
+    },
+    {
+      "index": 587,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/198048598.jpg"
+    },
+    {
+      "index": 588,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/198214415.jpg"
+    },
+    {
+      "index": 589,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/199044255.jpg"
+    },
+    {
+      "index": 591,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/199661592.jpg"
+    },
+    {
+      "index": 592,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/199704344.jpg"
+    },
+    {
+      "index": 593,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/200016494.jpg"
+    },
+    {
+      "index": 594,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/200326261.jpg"
+    },
+    {
+      "index": 595,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/211808559.jpg"
+    },
+    {
+      "index": 596,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/211861167.jpg"
+    },
+    {
+      "index": 597,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/212080463.jpg"
+    },
+    {
+      "index": 598,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/212110018.jpg"
+    },
+    {
+      "index": 599,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/212216436.jpg"
+    },
+    {
+      "index": 601,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/212556511.jpg"
+    },
+    {
+      "index": 602,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/212778844.jpg"
+    },
+    {
+      "index": 603,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/213061361.jpg"
+    },
+    {
+      "index": 604,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/213300692.jpg"
+    },
+    {
+      "index": 605,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/213603022.jpg"
+    },
+    {
+      "index": 606,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/214833819.jpg"
+    },
+    {
+      "index": 608,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/215089910.jpg"
+    },
+    {
+      "index": 609,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/215626542.jpg"
+    },
+    {
+      "index": 610,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/215710435.jpg"
+    },
+    {
+      "index": 611,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/215773124.jpg"
+    },
+    {
+      "index": 612,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/215804635.jpg"
+    },
+    {
+      "index": 613,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/215822416.jpg"
+    },
+    {
+      "index": 614,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/215833228.jpg"
+    },
+    {
+      "index": 615,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/215840117.jpg"
+    },
+    {
+      "index": 616,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/215854075.jpg"
+    },
+    {
+      "index": 617,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/215878168.jpg"
+    },
+    {
+      "index": 618,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216029720.jpg"
+    },
+    {
+      "index": 619,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216047371.jpg"
+    },
+    {
+      "index": 620,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216209734.jpg"
+    },
+    {
+      "index": 621,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216210740.jpg"
+    },
+    {
+      "index": 623,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216266678.jpg"
+    },
+    {
+      "index": 624,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216616795.jpg"
+    },
+    {
+      "index": 625,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216684150.jpg"
+    },
+    {
+      "index": 626,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216780403.jpg"
+    },
+    {
+      "index": 628,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216848358.jpg"
+    },
+    {
+      "index": 630,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216875057.jpg"
+    },
+    {
+      "index": 631,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216878759.jpg"
+    },
+    {
+      "index": 633,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216929149.jpg"
+    },
+    {
+      "index": 635,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217088721.jpg"
+    },
+    {
+      "index": 636,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217107971.jpg"
+    },
+    {
+      "index": 637,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217144560.jpg"
+    },
+    {
+      "index": 638,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217233737.jpg"
+    },
+    {
+      "index": 639,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217243222.jpg"
+    },
+    {
+      "index": 640,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217247964.jpg"
+    },
+    {
+      "index": 641,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217255043.jpg"
+    },
+    {
+      "index": 642,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217264329.jpg"
+    },
+    {
+      "index": 643,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217418779.jpg"
+    },
+    {
+      "index": 645,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217502539.jpg"
+    },
+    {
+      "index": 646,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217567828.jpg"
+    },
+    {
+      "index": 648,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217787108.jpg"
+    },
+    {
+      "index": 649,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217834801.jpg"
+    },
+    {
+      "index": 650,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217898024.jpg"
+    },
+    {
+      "index": 651,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217951846.jpg"
+    },
+    {
+      "index": 653,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218009858.jpg"
+    },
+    {
+      "index": 654,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218028690.jpg"
+    },
+    {
+      "index": 656,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218136743.jpg"
+    },
+    {
+      "index": 657,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218147453.jpg"
+    },
+    {
+      "index": 658,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218156501.jpg"
+    },
+    {
+      "index": 663,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218414701.jpg"
+    },
+    {
+      "index": 664,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218566564.jpg"
+    },
+    {
+      "index": 665,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218609374.jpg"
+    },
+    {
+      "index": 666,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218623451.jpg"
+    },
+    {
+      "index": 667,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218655409.jpg"
+    },
+    {
+      "index": 668,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218681190.jpg"
+    },
+    {
+      "index": 670,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218748243.jpg"
+    },
+    {
+      "index": 672,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218835592.jpg"
+    },
+    {
+      "index": 673,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218892466.jpg"
+    },
+    {
+      "index": 675,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218937266.jpg"
+    },
+    {
+      "index": 676,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218948357.jpg"
+    },
+    {
+      "index": 677,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/219091412.jpg"
+    },
+    {
+      "index": 678,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/194285934.jpg"
+    },
+    {
+      "index": 679,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/194840733.jpg"
+    },
+    {
+      "index": 680,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/194853070.jpg"
+    },
+    {
+      "index": 681,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/195080365.jpg"
+    },
+    {
+      "index": 682,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/195478008.jpg"
+    },
+    {
+      "index": 683,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/195575409.jpg"
+    },
+    {
+      "index": 684,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/195673270.jpg"
+    },
+    {
+      "index": 686,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/195737410.jpg"
+    },
+    {
+      "index": 687,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/195988970.jpg"
+    },
+    {
+      "index": 688,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/196305661.jpg"
+    },
+    {
+      "index": 689,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/196322593.jpg"
+    },
+    {
+      "index": 690,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/196587192.jpg"
+    },
+    {
+      "index": 691,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197011245.jpg"
+    },
+    {
+      "index": 692,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197030864.jpg"
+    },
+    {
+      "index": 694,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197410959.jpg"
+    },
+    {
+      "index": 696,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197551635.jpg"
+    },
+    {
+      "index": 697,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197560785.jpg"
+    },
+    {
+      "index": 698,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197642949.jpg"
+    },
+    {
+      "index": 699,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197678284.jpg"
+    },
+    {
+      "index": 700,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197702697.jpg"
+    },
+    {
+      "index": 701,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197762795.jpg"
+    },
+    {
+      "index": 702,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197838737.jpg"
+    },
+    {
+      "index": 703,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197852665.jpg"
+    },
+    {
+      "index": 704,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197880860.jpg"
+    },
+    {
+      "index": 705,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197959333.jpg"
+    },
+    {
+      "index": 706,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/198055205.jpg"
+    },
+    {
+      "index": 707,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/198195169.jpg"
+    },
+    {
+      "index": 708,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/198251219.jpg"
+    },
+    {
+      "index": 709,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/198363928.jpg"
+    },
+    {
+      "index": 710,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/198415918.jpg"
+    },
+    {
+      "index": 711,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/198488181.jpg"
+    },
+    {
+      "index": 712,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/198504276.jpg"
+    },
+    {
+      "index": 713,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/198521244.jpg"
+    },
+    {
+      "index": 714,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/198628181.jpg"
+    },
+    {
+      "index": 717,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/199401055.jpg"
+    },
+    {
+      "index": 719,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/199759650.jpg"
+    },
+    {
+      "index": 721,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/200533750.jpg"
+    },
+    {
+      "index": 722,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/200802999.jpg"
+    },
+    {
+      "index": 723,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/200823882.jpg"
+    },
+    {
+      "index": 724,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/201094953.jpg"
+    },
+    {
+      "index": 726,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/201998076.jpg"
+    },
+    {
+      "index": 727,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/202667629.jpg"
+    },
+    {
+      "index": 728,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/202856843.jpg"
+    },
+    {
+      "index": 729,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/203270338.jpg"
+    },
+    {
+      "index": 730,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/203454250.jpg"
+    },
+    {
+      "index": 732,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/205262878.jpg"
+    },
+    {
+      "index": 733,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/205492654.jpg"
+    },
+    {
+      "index": 734,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/205896670.jpg"
+    },
+    {
+      "index": 735,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/206095693.jpg"
+    },
+    {
+      "index": 736,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/206133475.jpg"
+    },
+    {
+      "index": 737,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/206134330.jpg"
+    },
+    {
+      "index": 738,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/206357127.jpg"
+    },
+    {
+      "index": 739,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/207057519.jpg"
+    },
+    {
+      "index": 740,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/207074343.jpg"
+    },
+    {
+      "index": 741,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/207200870.jpg"
+    },
+    {
+      "index": 742,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/207379908.jpg"
+    },
+    {
+      "index": 746,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/207849483.jpg"
+    },
+    {
+      "index": 747,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/207850008.jpg"
+    },
+    {
+      "index": 748,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/207857872.jpg"
+    },
+    {
+      "index": 749,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/208014246.jpg"
+    },
+    {
+      "index": 750,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/208237798.jpg"
+    },
+    {
+      "index": 751,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/208328663.jpg"
+    },
+    {
+      "index": 752,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/208570612.jpg"
+    },
+    {
+      "index": 753,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/208582339.jpg"
+    },
+    {
+      "index": 755,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/208671162.jpg"
+    },
+    {
+      "index": 758,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/209233623.jpg"
+    },
+    {
+      "index": 759,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/209780947.jpg"
+    },
+    {
+      "index": 762,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/210603202.jpg"
+    },
+    {
+      "index": 763,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/211683675.jpg"
+    },
+    {
+      "index": 764,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/211979013.jpg"
+    },
+    {
+      "index": 765,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/212107731.jpg"
+    },
+    {
+      "index": 766,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/212131849.jpg"
+    },
+    {
+      "index": 767,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/212188576.jpg"
+    },
+    {
+      "index": 769,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/212275461.jpg"
+    },
+    {
+      "index": 770,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/212400936.jpg"
+    },
+    {
+      "index": 771,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/212486564.jpg"
+    },
+    {
+      "index": 772,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/212662044.jpg"
+    },
+    {
+      "index": 773,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/213306634.jpg"
+    },
+    {
+      "index": 774,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/213349964.jpg"
+    },
+    {
+      "index": 775,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/213632816.jpg"
+    },
+    {
+      "index": 776,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/213788075.jpg"
+    },
+    {
+      "index": 777,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/214020375.jpg"
+    },
+    {
+      "index": 779,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/214572271.jpg"
+    },
+    {
+      "index": 781,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/214726285.jpg"
+    },
+    {
+      "index": 782,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/214785158.jpg"
+    },
+    {
+      "index": 783,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/214838660.jpg"
+    },
+    {
+      "index": 785,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/215055953.jpg"
+    },
+    {
+      "index": 786,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/215695188.jpg"
+    },
+    {
+      "index": 787,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/215738096.jpg"
+    },
+    {
+      "index": 789,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/215996114.jpg"
+    },
+    {
+      "index": 790,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/216034128.jpg"
+    },
+    {
+      "index": 791,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/216085337.jpg"
+    },
+    {
+      "index": 792,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/216107182.jpg"
+    },
+    {
+      "index": 793,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/216245889.jpg"
+    },
+    {
+      "index": 794,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/216352099.jpg"
+    },
+    {
+      "index": 795,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/216417392.jpg"
+    },
+    {
+      "index": 800,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/217554061.jpg"
+    },
+    {
+      "index": 801,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/217558673.jpg"
+    },
+    {
+      "index": 802,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/217624535.jpg"
+    },
+    {
+      "index": 803,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/217670439.jpg"
+    },
+    {
+      "index": 804,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/217698430.jpg"
+    },
+    {
+      "index": 805,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/217784730.jpg"
+    },
+    {
+      "index": 806,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/217970196.jpg"
+    },
+    {
+      "index": 807,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/217990722.jpg"
+    },
+    {
+      "index": 808,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218059558.jpg"
+    },
+    {
+      "index": 809,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218080336.jpg"
+    },
+    {
+      "index": 810,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218080868.jpg"
+    },
+    {
+      "index": 811,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218187967.jpg"
+    },
+    {
+      "index": 813,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218352401.jpg"
+    },
+    {
+      "index": 814,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218481035.jpg"
+    },
+    {
+      "index": 815,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218514544.jpg"
+    },
+    {
+      "index": 816,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218579053.jpg"
+    },
+    {
+      "index": 817,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218594379.jpg"
+    },
+    {
+      "index": 818,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218667942.jpg"
+    },
+    {
+      "index": 820,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218753316.jpg"
+    },
+    {
+      "index": 822,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/219016956.jpg"
+    },
+    {
+      "index": 823,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/219083209.jpg"
+    },
+    {
+      "index": 825,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/219117401.jpg"
+    }
+  ],
+  "validation": [
+    {
+      "index": 0,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/198727855.jpg"
+    },
+    {
+      "index": 2,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/199659807.jpg"
+    },
+    {
+      "index": 4,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/203158523.jpg"
+    },
+    {
+      "index": 24,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/214587510.jpg"
+    },
+    {
+      "index": 26,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/215162191.jpg"
+    },
+    {
+      "index": 27,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/215169753.jpg"
+    },
+    {
+      "index": 28,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/215691126.jpg"
+    },
+    {
+      "index": 37,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216082736.jpg"
+    },
+    {
+      "index": 39,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216219333.jpg"
+    },
+    {
+      "index": 42,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216527609.jpg"
+    },
+    {
+      "index": 52,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/216974433.jpg"
+    },
+    {
+      "index": 55,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217206401.jpg"
+    },
+    {
+      "index": 59,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217495327.jpg"
+    },
+    {
+      "index": 63,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/217584509.jpg"
+    },
+    {
+      "index": 69,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218289823.jpg"
+    },
+    {
+      "index": 74,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218644798.jpg"
+    },
+    {
+      "index": 80,
+      "label_index": 0,
+      "label": "ambulance",
+      "path": "dataset/train/ambulance/218967792.jpg"
+    },
+    {
+      "index": 91,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/199033958.jpg"
+    },
+    {
+      "index": 92,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/199115928.jpg"
+    },
+    {
+      "index": 100,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/205343679.jpg"
+    },
+    {
+      "index": 105,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/213633279.jpg"
+    },
+    {
+      "index": 108,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215151704.jpg"
+    },
+    {
+      "index": 110,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215521655.jpg"
+    },
+    {
+      "index": 116,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215752917.jpg"
+    },
+    {
+      "index": 119,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215825871.jpg"
+    },
+    {
+      "index": 121,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215856085.jpg"
+    },
+    {
+      "index": 122,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215865900.jpg"
+    },
+    {
+      "index": 123,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/215992943.jpg"
+    },
+    {
+      "index": 138,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216684204.jpg"
+    },
+    {
+      "index": 139,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216735885.jpg"
+    },
+    {
+      "index": 140,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216802875.jpg"
+    },
+    {
+      "index": 142,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/216869309.jpg"
+    },
+    {
+      "index": 151,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/217768428.jpg"
+    },
+    {
+      "index": 154,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/217924220.jpg"
+    },
+    {
+      "index": 157,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218028985.jpg"
+    },
+    {
+      "index": 179,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/218955741.jpg"
+    },
+    {
+      "index": 182,
+      "label_index": 1,
+      "label": "autobus",
+      "path": "dataset/train/autobus/219113041.jpg"
+    },
+    {
+      "index": 183,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/196530974.jpg"
+    },
+    {
+      "index": 187,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/199575055.jpg"
+    },
+    {
+      "index": 193,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/205904567.jpg"
+    },
+    {
+      "index": 198,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/214372132.jpg"
+    },
+    {
+      "index": 199,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/214789826.jpg"
+    },
+    {
+      "index": 201,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215572272.jpg"
+    },
+    {
+      "index": 202,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215673011.jpg"
+    },
+    {
+      "index": 205,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215753292.jpg"
+    },
+    {
+      "index": 209,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215888901.jpg"
+    },
+    {
+      "index": 216,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/215994997.jpg"
+    },
+    {
+      "index": 219,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216045038.jpg"
+    },
+    {
+      "index": 231,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216530770.jpg"
+    },
+    {
+      "index": 232,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216560083.jpg"
+    },
+    {
+      "index": 234,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216591450.jpg"
+    },
+    {
+      "index": 239,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/216965741.jpg"
+    },
+    {
+      "index": 254,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218465748.jpg"
+    },
+    {
+      "index": 255,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218560204.jpg"
+    },
+    {
+      "index": 257,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218572695.jpg"
+    },
+    {
+      "index": 275,
+      "label_index": 2,
+      "label": "kamyun",
+      "path": "dataset/train/kamyun/218936367.jpg"
+    },
+    {
+      "index": 279,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/194270924.jpg"
+    },
+    {
+      "index": 282,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/195578789.jpg"
+    },
+    {
+      "index": 286,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/198385201.jpg"
+    },
+    {
+      "index": 291,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/200420286.jpg"
+    },
+    {
+      "index": 298,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/210127639.jpg"
+    },
+    {
+      "index": 301,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/212119384.jpg"
+    },
+    {
+      "index": 303,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/213479569.jpg"
+    },
+    {
+      "index": 306,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/214283248.jpg"
+    },
+    {
+      "index": 321,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216038703.jpg"
+    },
+    {
+      "index": 323,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216104417.jpg"
+    },
+    {
+      "index": 326,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216433007.jpg"
+    },
+    {
+      "index": 333,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/216738258.jpg"
+    },
+    {
+      "index": 341,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217156552.jpg"
+    },
+    {
+      "index": 342,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217185484.jpg"
+    },
+    {
+      "index": 349,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/217804557.jpg"
+    },
+    {
+      "index": 355,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218262985.jpg"
+    },
+    {
+      "index": 356,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218322871.jpg"
+    },
+    {
+      "index": 364,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218607498.jpg"
+    },
+    {
+      "index": 366,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218712588.jpg"
+    },
+    {
+      "index": 378,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/218972329.jpg"
+    },
+    {
+      "index": 380,
+      "label_index": 3,
+      "label": "kamyunet",
+      "path": "dataset/train/kamyunet/219055863.jpg"
+    },
+    {
+      "index": 387,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/197490596.jpg"
+    },
+    {
+      "index": 389,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/198120481.jpg"
+    },
+    {
+      "index": 390,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/198331521.jpg"
+    },
+    {
+      "index": 393,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/198472825.jpg"
+    },
+    {
+      "index": 400,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/205929471.jpg"
+    },
+    {
+      "index": 403,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/209781589.jpg"
+    },
+    {
+      "index": 408,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/211051242.jpg"
+    },
+    {
+      "index": 410,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/213300430.jpg"
+    },
+    {
+      "index": 411,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/213411665.jpg"
+    },
+    {
+      "index": 421,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215585136.jpg"
+    },
+    {
+      "index": 430,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215743713.jpg"
+    },
+    {
+      "index": 440,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215945358.jpg"
+    },
+    {
+      "index": 441,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/215989811.jpg"
+    },
+    {
+      "index": 448,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216430711.jpg"
+    },
+    {
+      "index": 454,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/216977414.jpg"
+    },
+    {
+      "index": 458,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/217763204.jpg"
+    },
+    {
+      "index": 464,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218134277.jpg"
+    },
+    {
+      "index": 469,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218466798.jpg"
+    },
+    {
+      "index": 473,
+      "label_index": 4,
+      "label": "minibus",
+      "path": "dataset/train/minibus/218724931.jpg"
+    },
+    {
+      "index": 484,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/199201260.jpg"
+    },
+    {
+      "index": 488,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/205048854.jpg"
+    },
+    {
+      "index": 489,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/205049904.jpg"
+    },
+    {
+      "index": 495,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/206190231.jpg"
+    },
+    {
+      "index": 500,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/206644295.jpg"
+    },
+    {
+      "index": 502,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/207964148.jpg"
+    },
+    {
+      "index": 506,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/208561726.jpg"
+    },
+    {
+      "index": 513,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/210494128.jpg"
+    },
+    {
+      "index": 516,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/211383068.jpg"
+    },
+    {
+      "index": 518,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/212277145.jpg"
+    },
+    {
+      "index": 520,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/212357584.jpg"
+    },
+    {
+      "index": 522,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/214318978.jpg"
+    },
+    {
+      "index": 532,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/215933473.jpg"
+    },
+    {
+      "index": 536,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216080208.jpg"
+    },
+    {
+      "index": 537,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/216106609.jpg"
+    },
+    {
+      "index": 552,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217253879.jpg"
+    },
+    {
+      "index": 568,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217918556.jpg"
+    },
+    {
+      "index": 569,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/217945404.jpg"
+    },
+    {
+      "index": 572,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218327694.jpg"
+    },
+    {
+      "index": 574,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/218522644.jpg"
+    },
+    {
+      "index": 582,
+      "label_index": 5,
+      "label": "savari",
+      "path": "dataset/train/savari/219093208.jpg"
+    },
+    {
+      "index": 590,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/199209656.jpg"
+    },
+    {
+      "index": 600,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/212460719.jpg"
+    },
+    {
+      "index": 607,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/215049694.jpg"
+    },
+    {
+      "index": 622,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216241992.jpg"
+    },
+    {
+      "index": 627,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216804552.jpg"
+    },
+    {
+      "index": 629,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216860191.jpg"
+    },
+    {
+      "index": 632,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/216893661.jpg"
+    },
+    {
+      "index": 634,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217041267.jpg"
+    },
+    {
+      "index": 644,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217484586.jpg"
+    },
+    {
+      "index": 647,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217766035.jpg"
+    },
+    {
+      "index": 652,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/217967703.jpg"
+    },
+    {
+      "index": 655,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218124538.jpg"
+    },
+    {
+      "index": 659,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218256574.jpg"
+    },
+    {
+      "index": 660,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218257216.jpg"
+    },
+    {
+      "index": 661,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218268791.jpg"
+    },
+    {
+      "index": 662,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218342807.jpg"
+    },
+    {
+      "index": 669,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218685986.jpg"
+    },
+    {
+      "index": 671,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218757953.jpg"
+    },
+    {
+      "index": 674,
+      "label_index": 6,
+      "label": "taxi",
+      "path": "dataset/train/taxi/218935254.jpg"
+    },
+    {
+      "index": 685,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/195728454.jpg"
+    },
+    {
+      "index": 693,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197253666.jpg"
+    },
+    {
+      "index": 695,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/197495997.jpg"
+    },
+    {
+      "index": 715,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/198661396.jpg"
+    },
+    {
+      "index": 716,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/198879422.jpg"
+    },
+    {
+      "index": 718,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/199411077.jpg"
+    },
+    {
+      "index": 720,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/200024004.jpg"
+    },
+    {
+      "index": 725,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/201652374.jpg"
+    },
+    {
+      "index": 731,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/204859983.jpg"
+    },
+    {
+      "index": 743,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/207412597.jpg"
+    },
+    {
+      "index": 744,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/207758538.jpg"
+    },
+    {
+      "index": 745,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/207803201.jpg"
+    },
+    {
+      "index": 754,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/208586813.jpg"
+    },
+    {
+      "index": 756,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/208678784.jpg"
+    },
+    {
+      "index": 757,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/208758342.jpg"
+    },
+    {
+      "index": 760,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/209913836.jpg"
+    },
+    {
+      "index": 761,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/209943473.jpg"
+    },
+    {
+      "index": 768,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/212199241.jpg"
+    },
+    {
+      "index": 778,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/214500693.jpg"
+    },
+    {
+      "index": 780,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/214596732.jpg"
+    },
+    {
+      "index": 784,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/214844236.jpg"
+    },
+    {
+      "index": 788,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/215821681.jpg"
+    },
+    {
+      "index": 796,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/216752426.jpg"
+    },
+    {
+      "index": 797,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/216972735.jpg"
+    },
+    {
+      "index": 798,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/217090683.jpg"
+    },
+    {
+      "index": 799,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/217207555.jpg"
+    },
+    {
+      "index": 812,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218206335.jpg"
+    },
+    {
+      "index": 819,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218706427.jpg"
+    },
+    {
+      "index": 821,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/218970336.jpg"
+    },
+    {
+      "index": 824,
+      "label_index": 7,
+      "label": "vanet",
+      "path": "dataset/train/vanet/219111121.jpg"
+    }
+  ],
+  "transform": {
+    "name": "cnn",
+    "image_size": 96,
+    "augmentation": true,
+    "normalization_mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "normalization_std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "interpolation": "bilinear",
+    "operations": [
+      "RandomResizedCrop(size=96, scale=(0.78, 1.0), ratio=(0.70, 1.45), bilinear)",
+      "RandomHorizontalFlip(p=0.5)",
+      "RandomApply(ColorJitter(brightness=0.20, contrast=0.20, saturation=0.12, hue=0.04), p=0.7)",
+      "RandomRotation(degrees=8)",
+      "ToTensor()",
+      "Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))"
+    ]
+  },
+  "by_class": [
+    {
+      "class_index": 0,
+      "class_name": "ambulance",
+      "train_indices": [
+        1,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        25,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        40,
+        41,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        53,
+        54,
+        56,
+        57,
+        58,
+        60,
+        61,
+        62,
+        64,
+        65,
+        66,
+        67,
+        68,
+        70,
+        71,
+        72,
+        73,
+        75,
+        76,
+        77,
+        78,
+        79,
+        81,
+        82,
+        83,
+        84
+      ],
+      "validation_indices": [
+        0,
+        2,
+        4,
+        24,
+        26,
+        27,
+        28,
+        37,
+        39,
+        42,
+        52,
+        55,
+        59,
+        63,
+        69,
+        74,
+        80
+      ],
+      "validation_paths": [
+        "dataset\\train\\ambulance\\198727855.jpg",
+        "dataset\\train\\ambulance\\199659807.jpg",
+        "dataset\\train\\ambulance\\203158523.jpg",
+        "dataset\\train\\ambulance\\214587510.jpg",
+        "dataset\\train\\ambulance\\215162191.jpg",
+        "dataset\\train\\ambulance\\215169753.jpg",
+        "dataset\\train\\ambulance\\215691126.jpg",
+        "dataset\\train\\ambulance\\216082736.jpg",
+        "dataset\\train\\ambulance\\216219333.jpg",
+        "dataset\\train\\ambulance\\216527609.jpg",
+        "dataset\\train\\ambulance\\216974433.jpg",
+        "dataset\\train\\ambulance\\217206401.jpg",
+        "dataset\\train\\ambulance\\217495327.jpg",
+        "dataset\\train\\ambulance\\217584509.jpg",
+        "dataset\\train\\ambulance\\218289823.jpg",
+        "dataset\\train\\ambulance\\218644798.jpg",
+        "dataset\\train\\ambulance\\218967792.jpg"
+      ]
+    },
+    {
+      "class_index": 1,
+      "class_name": "autobus",
+      "train_indices": [
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        101,
+        102,
+        103,
+        104,
+        106,
+        107,
+        109,
+        111,
+        112,
+        113,
+        114,
+        115,
+        117,
+        118,
+        120,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        141,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        152,
+        153,
+        155,
+        156,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        180,
+        181
+      ],
+      "validation_indices": [
+        91,
+        92,
+        100,
+        105,
+        108,
+        110,
+        116,
+        119,
+        121,
+        122,
+        123,
+        138,
+        139,
+        140,
+        142,
+        151,
+        154,
+        157,
+        179,
+        182
+      ],
+      "validation_paths": [
+        "dataset\\train\\autobus\\199033958.jpg",
+        "dataset\\train\\autobus\\199115928.jpg",
+        "dataset\\train\\autobus\\205343679.jpg",
+        "dataset\\train\\autobus\\213633279.jpg",
+        "dataset\\train\\autobus\\215151704.jpg",
+        "dataset\\train\\autobus\\215521655.jpg",
+        "dataset\\train\\autobus\\215752917.jpg",
+        "dataset\\train\\autobus\\215825871.jpg",
+        "dataset\\train\\autobus\\215856085.jpg",
+        "dataset\\train\\autobus\\215865900.jpg",
+        "dataset\\train\\autobus\\215992943.jpg",
+        "dataset\\train\\autobus\\216684204.jpg",
+        "dataset\\train\\autobus\\216735885.jpg",
+        "dataset\\train\\autobus\\216802875.jpg",
+        "dataset\\train\\autobus\\216869309.jpg",
+        "dataset\\train\\autobus\\217768428.jpg",
+        "dataset\\train\\autobus\\217924220.jpg",
+        "dataset\\train\\autobus\\218028985.jpg",
+        "dataset\\train\\autobus\\218955741.jpg",
+        "dataset\\train\\autobus\\219113041.jpg"
+      ]
+    },
+    {
+      "class_index": 2,
+      "class_name": "kamyun",
+      "train_indices": [
+        184,
+        185,
+        186,
+        188,
+        189,
+        190,
+        191,
+        192,
+        194,
+        195,
+        196,
+        197,
+        200,
+        203,
+        204,
+        206,
+        207,
+        208,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        217,
+        218,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        233,
+        235,
+        236,
+        237,
+        238,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        256,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        276,
+        277
+      ],
+      "validation_indices": [
+        183,
+        187,
+        193,
+        198,
+        199,
+        201,
+        202,
+        205,
+        209,
+        216,
+        219,
+        231,
+        232,
+        234,
+        239,
+        254,
+        255,
+        257,
+        275
+      ],
+      "validation_paths": [
+        "dataset\\train\\kamyun\\196530974.jpg",
+        "dataset\\train\\kamyun\\199575055.jpg",
+        "dataset\\train\\kamyun\\205904567.jpg",
+        "dataset\\train\\kamyun\\214372132.jpg",
+        "dataset\\train\\kamyun\\214789826.jpg",
+        "dataset\\train\\kamyun\\215572272.jpg",
+        "dataset\\train\\kamyun\\215673011.jpg",
+        "dataset\\train\\kamyun\\215753292.jpg",
+        "dataset\\train\\kamyun\\215888901.jpg",
+        "dataset\\train\\kamyun\\215994997.jpg",
+        "dataset\\train\\kamyun\\216045038.jpg",
+        "dataset\\train\\kamyun\\216530770.jpg",
+        "dataset\\train\\kamyun\\216560083.jpg",
+        "dataset\\train\\kamyun\\216591450.jpg",
+        "dataset\\train\\kamyun\\216965741.jpg",
+        "dataset\\train\\kamyun\\218465748.jpg",
+        "dataset\\train\\kamyun\\218560204.jpg",
+        "dataset\\train\\kamyun\\218572695.jpg",
+        "dataset\\train\\kamyun\\218936367.jpg"
+      ]
+    },
+    {
+      "class_index": 3,
+      "class_name": "kamyunet",
+      "train_indices": [
+        278,
+        280,
+        281,
+        283,
+        284,
+        285,
+        287,
+        288,
+        289,
+        290,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        299,
+        300,
+        302,
+        304,
+        305,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        322,
+        324,
+        325,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        350,
+        351,
+        352,
+        353,
+        354,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        365,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        379
+      ],
+      "validation_indices": [
+        279,
+        282,
+        286,
+        291,
+        298,
+        301,
+        303,
+        306,
+        321,
+        323,
+        326,
+        333,
+        341,
+        342,
+        349,
+        355,
+        356,
+        364,
+        366,
+        378,
+        380
+      ],
+      "validation_paths": [
+        "dataset\\train\\kamyunet\\194270924.jpg",
+        "dataset\\train\\kamyunet\\195578789.jpg",
+        "dataset\\train\\kamyunet\\198385201.jpg",
+        "dataset\\train\\kamyunet\\200420286.jpg",
+        "dataset\\train\\kamyunet\\210127639.jpg",
+        "dataset\\train\\kamyunet\\212119384.jpg",
+        "dataset\\train\\kamyunet\\213479569.jpg",
+        "dataset\\train\\kamyunet\\214283248.jpg",
+        "dataset\\train\\kamyunet\\216038703.jpg",
+        "dataset\\train\\kamyunet\\216104417.jpg",
+        "dataset\\train\\kamyunet\\216433007.jpg",
+        "dataset\\train\\kamyunet\\216738258.jpg",
+        "dataset\\train\\kamyunet\\217156552.jpg",
+        "dataset\\train\\kamyunet\\217185484.jpg",
+        "dataset\\train\\kamyunet\\217804557.jpg",
+        "dataset\\train\\kamyunet\\218262985.jpg",
+        "dataset\\train\\kamyunet\\218322871.jpg",
+        "dataset\\train\\kamyunet\\218607498.jpg",
+        "dataset\\train\\kamyunet\\218712588.jpg",
+        "dataset\\train\\kamyunet\\218972329.jpg",
+        "dataset\\train\\kamyunet\\219055863.jpg"
+      ]
+    },
+    {
+      "class_index": 4,
+      "class_name": "minibus",
+      "train_indices": [
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        388,
+        391,
+        392,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399,
+        401,
+        402,
+        404,
+        405,
+        406,
+        407,
+        409,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429,
+        431,
+        432,
+        433,
+        434,
+        435,
+        436,
+        437,
+        438,
+        439,
+        442,
+        443,
+        444,
+        445,
+        446,
+        447,
+        449,
+        450,
+        451,
+        452,
+        453,
+        455,
+        456,
+        457,
+        459,
+        460,
+        461,
+        462,
+        463,
+        465,
+        466,
+        467,
+        468,
+        470,
+        471,
+        472,
+        474,
+        475,
+        476
+      ],
+      "validation_indices": [
+        387,
+        389,
+        390,
+        393,
+        400,
+        403,
+        408,
+        410,
+        411,
+        421,
+        430,
+        440,
+        441,
+        448,
+        454,
+        458,
+        464,
+        469,
+        473
+      ],
+      "validation_paths": [
+        "dataset\\train\\minibus\\197490596.jpg",
+        "dataset\\train\\minibus\\198120481.jpg",
+        "dataset\\train\\minibus\\198331521.jpg",
+        "dataset\\train\\minibus\\198472825.jpg",
+        "dataset\\train\\minibus\\205929471.jpg",
+        "dataset\\train\\minibus\\209781589.jpg",
+        "dataset\\train\\minibus\\211051242.jpg",
+        "dataset\\train\\minibus\\213300430.jpg",
+        "dataset\\train\\minibus\\213411665.jpg",
+        "dataset\\train\\minibus\\215585136.jpg",
+        "dataset\\train\\minibus\\215743713.jpg",
+        "dataset\\train\\minibus\\215945358.jpg",
+        "dataset\\train\\minibus\\215989811.jpg",
+        "dataset\\train\\minibus\\216430711.jpg",
+        "dataset\\train\\minibus\\216977414.jpg",
+        "dataset\\train\\minibus\\217763204.jpg",
+        "dataset\\train\\minibus\\218134277.jpg",
+        "dataset\\train\\minibus\\218466798.jpg",
+        "dataset\\train\\minibus\\218724931.jpg"
+      ]
+    },
+    {
+      "class_index": 5,
+      "class_name": "savari",
+      "train_indices": [
+        477,
+        478,
+        479,
+        480,
+        481,
+        482,
+        483,
+        485,
+        486,
+        487,
+        490,
+        491,
+        492,
+        493,
+        494,
+        496,
+        497,
+        498,
+        499,
+        501,
+        503,
+        504,
+        505,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        514,
+        515,
+        517,
+        519,
+        521,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        533,
+        534,
+        535,
+        538,
+        539,
+        540,
+        541,
+        542,
+        543,
+        544,
+        545,
+        546,
+        547,
+        548,
+        549,
+        550,
+        551,
+        553,
+        554,
+        555,
+        556,
+        557,
+        558,
+        559,
+        560,
+        561,
+        562,
+        563,
+        564,
+        565,
+        566,
+        567,
+        570,
+        571,
+        573,
+        575,
+        576,
+        577,
+        578,
+        579,
+        580,
+        581
+      ],
+      "validation_indices": [
+        484,
+        488,
+        489,
+        495,
+        500,
+        502,
+        506,
+        513,
+        516,
+        518,
+        520,
+        522,
+        532,
+        536,
+        537,
+        552,
+        568,
+        569,
+        572,
+        574,
+        582
+      ],
+      "validation_paths": [
+        "dataset\\train\\savari\\199201260.jpg",
+        "dataset\\train\\savari\\205048854.jpg",
+        "dataset\\train\\savari\\205049904.jpg",
+        "dataset\\train\\savari\\206190231.jpg",
+        "dataset\\train\\savari\\206644295.jpg",
+        "dataset\\train\\savari\\207964148.jpg",
+        "dataset\\train\\savari\\208561726.jpg",
+        "dataset\\train\\savari\\210494128.jpg",
+        "dataset\\train\\savari\\211383068.jpg",
+        "dataset\\train\\savari\\212277145.jpg",
+        "dataset\\train\\savari\\212357584.jpg",
+        "dataset\\train\\savari\\214318978.jpg",
+        "dataset\\train\\savari\\215933473.jpg",
+        "dataset\\train\\savari\\216080208.jpg",
+        "dataset\\train\\savari\\216106609.jpg",
+        "dataset\\train\\savari\\217253879.jpg",
+        "dataset\\train\\savari\\217918556.jpg",
+        "dataset\\train\\savari\\217945404.jpg",
+        "dataset\\train\\savari\\218327694.jpg",
+        "dataset\\train\\savari\\218522644.jpg",
+        "dataset\\train\\savari\\219093208.jpg"
+      ]
+    },
+    {
+      "class_index": 6,
+      "class_name": "taxi",
+      "train_indices": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        591,
+        592,
+        593,
+        594,
+        595,
+        596,
+        597,
+        598,
+        599,
+        601,
+        602,
+        603,
+        604,
+        605,
+        606,
+        608,
+        609,
+        610,
+        611,
+        612,
+        613,
+        614,
+        615,
+        616,
+        617,
+        618,
+        619,
+        620,
+        621,
+        623,
+        624,
+        625,
+        626,
+        628,
+        630,
+        631,
+        633,
+        635,
+        636,
+        637,
+        638,
+        639,
+        640,
+        641,
+        642,
+        643,
+        645,
+        646,
+        648,
+        649,
+        650,
+        651,
+        653,
+        654,
+        656,
+        657,
+        658,
+        663,
+        664,
+        665,
+        666,
+        667,
+        668,
+        670,
+        672,
+        673,
+        675,
+        676,
+        677
+      ],
+      "validation_indices": [
+        590,
+        600,
+        607,
+        622,
+        627,
+        629,
+        632,
+        634,
+        644,
+        647,
+        652,
+        655,
+        659,
+        660,
+        661,
+        662,
+        669,
+        671,
+        674
+      ],
+      "validation_paths": [
+        "dataset\\train\\taxi\\199209656.jpg",
+        "dataset\\train\\taxi\\212460719.jpg",
+        "dataset\\train\\taxi\\215049694.jpg",
+        "dataset\\train\\taxi\\216241992.jpg",
+        "dataset\\train\\taxi\\216804552.jpg",
+        "dataset\\train\\taxi\\216860191.jpg",
+        "dataset\\train\\taxi\\216893661.jpg",
+        "dataset\\train\\taxi\\217041267.jpg",
+        "dataset\\train\\taxi\\217484586.jpg",
+        "dataset\\train\\taxi\\217766035.jpg",
+        "dataset\\train\\taxi\\217967703.jpg",
+        "dataset\\train\\taxi\\218124538.jpg",
+        "dataset\\train\\taxi\\218256574.jpg",
+        "dataset\\train\\taxi\\218257216.jpg",
+        "dataset\\train\\taxi\\218268791.jpg",
+        "dataset\\train\\taxi\\218342807.jpg",
+        "dataset\\train\\taxi\\218685986.jpg",
+        "dataset\\train\\taxi\\218757953.jpg",
+        "dataset\\train\\taxi\\218935254.jpg"
+      ]
+    },
+    {
+      "class_index": 7,
+      "class_name": "vanet",
+      "train_indices": [
+        678,
+        679,
+        680,
+        681,
+        682,
+        683,
+        684,
+        686,
+        687,
+        688,
+        689,
+        690,
+        691,
+        692,
+        694,
+        696,
+        697,
+        698,
+        699,
+        700,
+        701,
+        702,
+        703,
+        704,
+        705,
+        706,
+        707,
+        708,
+        709,
+        710,
+        711,
+        712,
+        713,
+        714,
+        717,
+        719,
+        721,
+        722,
+        723,
+        724,
+        726,
+        727,
+        728,
+        729,
+        730,
+        732,
+        733,
+        734,
+        735,
+        736,
+        737,
+        738,
+        739,
+        740,
+        741,
+        742,
+        746,
+        747,
+        748,
+        749,
+        750,
+        751,
+        752,
+        753,
+        755,
+        758,
+        759,
+        762,
+        763,
+        764,
+        765,
+        766,
+        767,
+        769,
+        770,
+        771,
+        772,
+        773,
+        774,
+        775,
+        776,
+        777,
+        779,
+        781,
+        782,
+        783,
+        785,
+        786,
+        787,
+        789,
+        790,
+        791,
+        792,
+        793,
+        794,
+        795,
+        800,
+        801,
+        802,
+        803,
+        804,
+        805,
+        806,
+        807,
+        808,
+        809,
+        810,
+        811,
+        813,
+        814,
+        815,
+        816,
+        817,
+        818,
+        820,
+        822,
+        823,
+        825
+      ],
+      "validation_indices": [
+        685,
+        693,
+        695,
+        715,
+        716,
+        718,
+        720,
+        725,
+        731,
+        743,
+        744,
+        745,
+        754,
+        756,
+        757,
+        760,
+        761,
+        768,
+        778,
+        780,
+        784,
+        788,
+        796,
+        797,
+        798,
+        799,
+        812,
+        819,
+        821,
+        824
+      ],
+      "validation_paths": [
+        "dataset\\train\\vanet\\195728454.jpg",
+        "dataset\\train\\vanet\\197253666.jpg",
+        "dataset\\train\\vanet\\197495997.jpg",
+        "dataset\\train\\vanet\\198661396.jpg",
+        "dataset\\train\\vanet\\198879422.jpg",
+        "dataset\\train\\vanet\\199411077.jpg",
+        "dataset\\train\\vanet\\200024004.jpg",
+        "dataset\\train\\vanet\\201652374.jpg",
+        "dataset\\train\\vanet\\204859983.jpg",
+        "dataset\\train\\vanet\\207412597.jpg",
+        "dataset\\train\\vanet\\207758538.jpg",
+        "dataset\\train\\vanet\\207803201.jpg",
+        "dataset\\train\\vanet\\208586813.jpg",
+        "dataset\\train\\vanet\\208678784.jpg",
+        "dataset\\train\\vanet\\208758342.jpg",
+        "dataset\\train\\vanet\\209913836.jpg",
+        "dataset\\train\\vanet\\209943473.jpg",
+        "dataset\\train\\vanet\\212199241.jpg",
+        "dataset\\train\\vanet\\214500693.jpg",
+        "dataset\\train\\vanet\\214596732.jpg",
+        "dataset\\train\\vanet\\214844236.jpg",
+        "dataset\\train\\vanet\\215821681.jpg",
+        "dataset\\train\\vanet\\216752426.jpg",
+        "dataset\\train\\vanet\\216972735.jpg",
+        "dataset\\train\\vanet\\217090683.jpg",
+        "dataset\\train\\vanet\\217207555.jpg",
+        "dataset\\train\\vanet\\218206335.jpg",
+        "dataset\\train\\vanet\\218706427.jpg",
+        "dataset\\train\\vanet\\218970336.jpg",
+        "dataset\\train\\vanet\\219111121.jpg"
+      ]
+    }
+  ],
+  "transforms": {
+    "train": {
+      "name": "cnn",
+      "image_size": 96,
+      "augmentation": true,
+      "normalization_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "normalization_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "interpolation": "bilinear",
+      "operations": [
+        "RandomResizedCrop(size=96, scale=(0.78, 1.0), ratio=(0.70, 1.45), bilinear)",
+        "RandomHorizontalFlip(p=0.5)",
+        "RandomApply(ColorJitter(brightness=0.20, contrast=0.20, saturation=0.12, hue=0.04), p=0.7)",
+        "RandomRotation(degrees=8)",
+        "ToTensor()",
+        "Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))"
+      ]
+    },
+    "evaluation": {
+      "name": "cnn",
+      "image_size": 96,
+      "augmentation": false,
+      "normalization_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "normalization_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "interpolation": "bilinear",
+      "operations": [
+        "Resize(size=(96, 96), bilinear, antialias=True)",
+        "ToTensor()",
+        "Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))"
+      ]
+    }
+  },
+  "frozen_test": {
+    "source": "dataset/test",
+    "count": 400,
+    "excluded_before_freeze": 0,
+    "used_for_selection": false
+  }
+}

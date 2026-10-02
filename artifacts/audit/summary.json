@@ -1,9 +1,9 @@
 {
   "dataset_root": "dataset",
   "minimum_image_side": 64,
-  "total_images": 800,
-  "total_raw_unique_hashes": 800,
-  "total_canonical_pixel_unique_hashes": 800,
+  "total_images": 1226,
+  "total_raw_unique_hashes": 1226,
+  "total_canonical_pixel_unique_hashes": 1226,
   "raw_file_duplicate_groups": 0,
   "canonical_duplicate_groups": 0,
   "canonical_duplicate_extra_copies": 0,
@@ -13,62 +13,62 @@
   "issue_counts": {},
   "splits": {
     "train": {
-      "images": 400,
+      "images": 826,
       "class_counts": {
-        "ambulance": 50,
-        "autobus": 50,
-        "kamyun": 50,
-        "kamyunet": 50,
-        "minibus": 50,
-        "savari": 50,
-        "taxi": 50,
-        "vanet": 50
+        "ambulance": 85,
+        "autobus": 98,
+        "kamyun": 95,
+        "kamyunet": 103,
+        "minibus": 96,
+        "savari": 106,
+        "taxi": 95,
+        "vanet": 148
       },
       "formats": {
-        "JPEG": 400
+        "JPEG": 826
       },
       "width_quantiles": {
         "min": 120.0,
-        "q25": 193.5,
-        "median": 257.0,
-        "q75": 310.0,
+        "q25": 195.0,
+        "median": 254.0,
+        "q75": 305.75,
         "max": 545.0
       },
       "height_quantiles": {
         "min": 156.0,
-        "q25": 251.75,
-        "median": 273.5,
-        "q75": 383.0,
-        "max": 870.0
+        "q25": 252.0,
+        "median": 276.0,
+        "q75": 376.75,
+        "max": 938.0
       },
       "area_quantiles": {
         "min": 18720.0,
-        "q25": 47628.0,
-        "median": 68505.0,
-        "q75": 118023.75,
-        "max": 339300.0
+        "q25": 47713.5,
+        "median": 71756.0,
+        "q75": 115332.5,
+        "max": 446488.0
       },
       "iqr_dimension_review": {
         "width_bounds": [
-          18.75,
-          484.75
+          28.875,
+          471.875
         ],
         "height_bounds": [
-          54.875,
-          579.875
+          64.875,
+          563.875
         ],
-        "width_outlier_count": 1,
-        "height_outlier_count": 4
+        "width_outlier_count": 4,
+        "height_outlier_count": 12
       },
       "aspect_ratio_quantiles": {
         "min": 0.39532019704433496,
         "q25": 0.75,
-        "median": 0.7824160447761195,
-        "q75": 0.8568532818532819,
+        "median": 0.7841050078953304,
+        "q75": 0.8553657880580958,
         "max": 1.3783783783783783
       },
-      "unique_raw_sha256": 400,
-      "unique_pixel_sha256": 400,
+      "unique_raw_sha256": 826,
+      "unique_pixel_sha256": 826,
       "issue_counts": {}
     },
     "test": {
@@ -132,17 +132,19 @@
     }
   },
   "cleaning": {
-    "train_excluded": 0,
+    "train_excluded": 8,
     "test_excluded": 0,
     "unclean_excluded": 0,
     "clean_counts": {
-      "train": 400,
+      "train": 826,
       "test": 400,
       "unclean": 0,
       "unclean_known": 0,
       "unclean_neysan": 0,
       "unclean_class_counts": {}
     },
-    "policy": "Freeze original train/test; exclude only unclean copies from cleaned_unclean."
+    "split_duplicate_policy": "Keep the frozen-test copy; quarantine the pixel-identical train copy to `dataset/quarantine/split_duplicates/`.",
+    "quarantined_records": 8,
+    "policy": "Freeze original test; exclude only train/unclean copies."
   }
 }

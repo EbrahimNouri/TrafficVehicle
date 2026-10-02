@@ -1,6 +1,6 @@
 {
   "artifacts_dir": "artifacts",
-  "batch_size": 256,
+  "batch_size": 128,
   "classes": [
     "ambulance",
     "autobus",
@@ -15,7 +15,7 @@
   "data_dir": "dataset",
   "device": "auto",
   "download_pretrained": true,
-  "epochs": 25,
+  "epochs": 40,
   "imbalanced_classes": [
     "kamyun",
     "minibus",
@@ -23,16 +23,16 @@
     "vanet"
   ],
   "imbalanced_retained_per_minority_class": 14,
-  "learning_rate": 0.001,
+  "learning_rate": 0.0005,
   "minimum_image_side": 64,
   "num_workers": 0,
   "pretrained": true,
   "reports_dir": "reports",
   "seed": 42,
   "target_review_coverage": 0.8,
-  "transfer_backbone_lr": 0.0001,
+  "transfer_backbone_lr": 1e-05,
   "transfer_batch_size": 32,
-  "transfer_head_lr": 0.001,
+  "transfer_head_lr": 0.0005,
   "transfer_image_size": 224,
   "validation_fraction": 0.2,
   "weight_decay": 0.0

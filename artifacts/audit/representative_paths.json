@@ -1,11 +1,11 @@
 {
   "ambulance": [
     "dataset/train/ambulance/198727855.jpg",
-    "dataset/train/ambulance/199659807.jpg"
+    "dataset/train/ambulance/199038575.jpg"
   ],
   "autobus": [
     "dataset/train/autobus/193229239.jpg",
-    "dataset/train/autobus/194279229.jpg"
+    "dataset/train/autobus/193813673.jpg"
   ],
   "kamyun": [
     "dataset/train/kamyun/196530974.jpg",
@@ -16,16 +16,16 @@
     "dataset/train/kamyunet/194270924.jpg"
   ],
   "minibus": [
-    "dataset/train/minibus/195315678.jpg",
-    "dataset/train/minibus/196234914.jpg"
+    "dataset/train/minibus/194328969.jpg",
+    "dataset/train/minibus/195315678.jpg"
   ],
   "savari": [
     "dataset/train/savari/193865576.jpg",
-    "dataset/train/savari/195839967.jpg"
+    "dataset/train/savari/195800847.jpg"
   ],
   "taxi": [
-    "dataset/train/taxi/197362638.jpg",
-    "dataset/train/taxi/198048598.jpg"
+    "dataset/train/taxi/196935725.jpg",
+    "dataset/train/taxi/197011132.jpg"
   ],
   "vanet": [
     "dataset/train/vanet/194285934.jpg",
