@@ -32,19 +32,19 @@ Lowest-class analysis for each meaningful case:
 
 | Experiment | Category | Accuracy | Macro P | Macro R | Macro F1 | Best epoch | Seconds |
 |---|---|---|---|---|---|---|---|
-| CNN baseline | ablation | 0.7750 | 0.7969 | 0.7750 | 0.7657 | 22 | 24.0 |
+| CNN baseline | ablation | 0.7750 | 0.7969 | 0.7750 | 0.7657 | 22 | 23.9 |
 | No augmentation | ablation | 0.7000 | 0.7392 | 0.7000 | 0.6887 | 25 | 16.5 |
-| Dropout p=0.3 | ablation | 0.7875 | 0.8285 | 0.7875 | 0.7830 | 19 | 23.2 |
+| Dropout p=0.3 | ablation | 0.7875 | 0.8285 | 0.7875 | 0.7830 | 19 | 23.1 |
 | Dropout p=0.5 | ablation | 0.8375 | 0.8390 | 0.8375 | 0.8272 | 24 | 23.4 |
-| Average pooling | ablation | 0.7000 | 0.7148 | 0.7000 | 0.7001 | 22 | 23.2 |
-| Weight decay 1e-4 | ablation | 0.7750 | 0.8431 | 0.7750 | 0.7714 | 20 | 23.5 |
-| StepLR | ablation | 0.7625 | 0.7696 | 0.7625 | 0.7556 | 24 | 23.5 |
-| BCEWithLogitsLoss | ablation | 0.8125 | 0.8545 | 0.8125 | 0.8052 | 22 | 23.4 |
-| Best regularized + scheduled | main | 0.7875 | 0.8189 | 0.7875 | 0.7875 | 23 | 23.3 |
+| Average pooling | ablation | 0.7000 | 0.7148 | 0.7000 | 0.7001 | 22 | 22.9 |
+| Weight decay 1e-4 | ablation | 0.7750 | 0.8431 | 0.7750 | 0.7714 | 20 | 23.1 |
+| StepLR | ablation | 0.7625 | 0.7696 | 0.7625 | 0.7556 | 24 | 23.4 |
+| BCEWithLogitsLoss | ablation | 0.8125 | 0.8545 | 0.8125 | 0.8052 | 22 | 23.9 |
+| Best regularized + scheduled | main | 0.7875 | 0.8189 | 0.7875 | 0.7875 | 23 | 23.1 |
 | Imbalanced + standard batches | imbalance | 0.6375 | 0.6727 | 0.6375 | 0.5939 | 25 | 23.2 |
-| Imbalanced + balanced batches | imbalance | 0.7500 | 0.7660 | 0.7500 | 0.7339 | 23 | 23.2 |
+| Imbalanced + balanced batches | imbalance | 0.7500 | 0.7660 | 0.7500 | 0.7339 | 23 | 23.3 |
 | ResNet18 feature extraction | transfer | 0.9000 | 0.9138 | 0.9000 | 0.8996 | 23 | 26.9 |
-| ResNet18 fine-tuning | transfer | 0.9125 | 0.9246 | 0.9125 | 0.9138 | 15 | 28.2 |
+| ResNet18 fine-tuning | transfer | 0.9125 | 0.9246 | 0.9125 | 0.9138 | 15 | 28.4 |
 
 ## Frozen test result
 
@@ -70,7 +70,7 @@ Lowest-class analysis for each meaningful case:
 
 ## Key findings
 
-1. **Leakage:** both encoded-file SHA-256 and canonical decoded-pixel hashing identify 24 cross-split duplicate groups in this copy, including one label conflict. The canonical check is encoding-independent by design. Frozen train/test stayed intact; only duplicate `unclean` copies were removed.
+1. **Leakage:** both encoded-file SHA-256 and canonical decoded-pixel hashing identify 23 cross-split duplicate groups in this copy, including one label conflict. The canonical check is encoding-independent by design. Frozen train/test stayed intact; only duplicate `unclean` copies were removed.
 2. **Sampling:** exact balanced batches change the recall/accuracy trade-off under simulated imbalance. Macro-F1 and minority recall should be prioritized over raw accuracy for an equitable classifier.
 3. **Loss:** CE models the mutually exclusive task directly and supplies normalized production probabilities. BCE is retained as the required one-vs-all educational comparison; sigmoid scores are not a probability distribution.
 4. **Transfer learning:** ImageNet features are valuable with only 320 clean training images. All parameter groups and per-epoch LRs are recorded; test did not decide the strategy.
@@ -99,7 +99,7 @@ Lowest-class analysis for each meaningful case:
 | ☑ Audit precedes splitting; frozen test retains all 400 images. | Recorded artifact/report |
 | ☑ Test is evaluated only after validation selection and is never used for tuning; evidence archives are hash-bound. | Recorded artifact/report |
 | ☑ A per-artifacts-directory writer lock prevents concurrent pipeline runs. | Recorded artifact/report |
-| ☑ Canonical pixel hashes find 24 cross-split groups. | Recorded artifact/report |
+| ☑ Canonical pixel hashes find 23 cross-split groups. | Recorded artifact/report |
 | ☑ Augmentation is confined to training transforms. | Recorded artifact/report |
 | ☑ Balanced batches use the recorded reproducible imbalanced subset. | Recorded artifact/report |
 | ☑ BCE receives one-hot float targets and predictions use argmax(logits). | Recorded artifact/report |

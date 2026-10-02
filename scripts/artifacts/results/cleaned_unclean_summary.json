@@ -1,0 +1,24 @@
+{
+  "mode": "move",
+  "source_root": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/unclean",
+  "destination_root": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/cleaned_unclean",
+  "review_threshold": 0.7685336470603943,
+  "selection_rule": "source label is a known class, model prediction matches it, and confidence is at or above the validation review threshold",
+  "rows_considered": 115,
+  "rows_selected": 0,
+  "rows_transferred": 0,
+  "rejection_counts": {
+    "confidence_below_review_threshold": 31,
+    "model_disagrees_with_label": 84
+  },
+  "skipped": {},
+  "class_counts": {},
+  "verification": {
+    "transferred": 0,
+    "missing_at_destination": [],
+    "verified": true
+  },
+  "threshold_source": "C:/Users/viroo/PycharmProjects/TrafficVehicle/artifacts/results/validation_uncertainty.json",
+  "manifest_path": "artifacts/results/cleaned_unclean_manifest.csv",
+  "rejected_path": "artifacts/results/cleaned_unclean_rejected.csv"
+}

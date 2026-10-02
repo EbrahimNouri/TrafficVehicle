@@ -946,11 +946,18 @@ def _run_project_impl(
         temperature=temperature,
     )
     unclean_probabilities = unclean_raw["probabilities"]
-    neysan_index = unclean_dataset.class_to_idx["neysan"]
-    known_mask = unclean_raw["targets"] != neysan_index
+    # `neysan` may be absent because cleaning emptied its folder, so treat it as optional.
+    neysan_index = unclean_dataset.class_to_idx.get("neysan")
+    if neysan_index is None:
+        known_mask = np.ones_like(unclean_raw["targets"], dtype=bool)
+    else:
+        known_mask = unclean_raw["targets"] != neysan_index
+    # Some known classes (e.g. `autobus`) may have been fully cleaned out of the
+    # unclean split. Skip any class that is not present instead of raising KeyError.
     known_map = {
         unclean_dataset.class_to_idx[class_name]: model_index
         for model_index, class_name in enumerate(config.classes)
+        if class_name in unclean_dataset.class_to_idx
     }
     known_targets = np.asarray(
         [known_map[int(value)] for value in unclean_raw["targets"][known_mask]],
@@ -961,9 +968,26 @@ def _run_project_impl(
     known_metrics = classification_metrics(
         known_targets, known_predictions, config.classes
     )
-    neysan_predictions = unclean_raw["predictions"][~known_mask]
-    neysan_confidence = unclean_probabilities[~known_mask].max(axis=1)
-    neysan_review = neysan_confidence < review["threshold"]
+    if neysan_index is None or known_mask.all():
+        unseen_block: dict[str, Any] = {
+            "present": False,
+            "reason": "no 'neysan' samples remain in the unclean split after cleaning",
+        }
+    else:
+        neysan_predictions = unclean_raw["predictions"][~known_mask]
+        neysan_confidence = unclean_probabilities[~known_mask].max(axis=1)
+        neysan_review = neysan_confidence < review["threshold"]
+        unseen_block = {
+            "present": True,
+            "mean_confidence": float(neysan_confidence.mean()),
+            "median_confidence": float(np.median(neysan_confidence)),
+            "review_count": int(neysan_review.sum()),
+            "review_rate": float(neysan_review.mean()),
+            "predicted_class_counts": {
+                config.classes[index]: int((neysan_predictions == index).sum())
+                for index in range(len(config.classes))
+            },
+        }
     unclean_paths = [
         path.as_posix() for path in paths_for_subset(unclean_loader.dataset, [])
     ]
@@ -977,20 +1001,11 @@ def _run_project_impl(
             "retained_images": len(retained_unclean_indices),
             "excluded_duplicates": len(exclusion_records),
             "known_images": int(known_mask.sum()),
-            "unseen_neysan_images": int((~known_mask).sum()),
+            "unseen_neysan_images": int((~known_mask).sum()) if neysan_index is not None else 0,
         },
         "known_class_metrics": known_metrics,
         "known_class_uncertainty": _calibration_summary(known_probabilities, known_targets),
-        "unseen_neysan": {
-            "mean_confidence": float(neysan_confidence.mean()),
-            "median_confidence": float(np.median(neysan_confidence)),
-            "review_count": int(neysan_review.sum()),
-            "review_rate": float(neysan_review.mean()),
-            "predicted_class_counts": {
-                config.classes[index]: int((neysan_predictions == index).sum())
-                for index in range(len(config.classes))
-            },
-        },
+        "unseen_neysan": unseen_block,
         "all_cleaned_prediction_counts": prediction_counts,
         "interpretation": (
             "neysan is an unseen class, not a ninth training label. Confidence is not "
@@ -1017,16 +1032,17 @@ def _run_project_impl(
     atomic_write_csv(
         pd.DataFrame(unclean_rows), results_dir / "unclean_predictions.csv"
     )
-    plot_unclean_analysis(
-        unclean_paths,
-        unclean_raw["targets"],
-        unclean_raw["predictions"],
-        unclean_probabilities,
-        config.classes,
-        config.reports_dir,
-        unseen_index=neysan_index,
-        unseen_name="neysan",
-    )
+    if neysan_index is not None and not known_mask.all():
+        plot_unclean_analysis(
+            unclean_paths,
+            unclean_raw["targets"],
+            unclean_raw["predictions"],
+            unclean_probabilities,
+            config.classes,
+            config.reports_dir,
+            unseen_index=neysan_index,
+            unseen_name="neysan",
+        )
 
     print("\n=== 7. Reports and production checkpoint ===")
     final_checkpoint = selected_checkpoint

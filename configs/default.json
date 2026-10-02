@@ -18,7 +18,7 @@
   "cnn_image_size": 96,
   "transfer_image_size": 224,
   "epochs": 25,
-  "batch_size": 32,
+  "batch_size": 128,
   "transfer_batch_size": 32,
   "learning_rate": 0.001,
   "transfer_head_lr": 0.001,

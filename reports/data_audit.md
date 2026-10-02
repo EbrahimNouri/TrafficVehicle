@@ -14,7 +14,7 @@
 |---|---|---|---|---|---|
 | train | 400 | ambulance=50, autobus=50, kamyun=50, kamyunet=50, minibus=50, savari=50, taxi=50, vanet=50 | 120–545 | 156–870 | 400 |
 | test | 400 | ambulance=50, autobus=50, kamyun=50, kamyunet=50, minibus=50, savari=50, taxi=50, vanet=50 | 126–508 | 166–881 | 400 |
-| unclean | 138 | ambulance=16, kamyun=16, kamyunet=16, minibus=20, neysan=51, savari=8, taxi=5, vanet=6 | 135–476 | 180–938 | 138 |
+| unclean | 138 | ambulance=16, kamyun=16, kamyunet=67, minibus=20, savari=8, taxi=5, vanet=6 | 135–476 | 180–938 | 138 |
 
 Quality findings:
 
@@ -46,7 +46,7 @@ All 938 source files decode successfully, use JPEG format, and have the same eig
 | 12 | train/kamyunet/217156552.jpg; unclean/kamyunet/217156552.jpg | no |
 | 13 | train/minibus/198331521.jpg; unclean/minibus/198331521.jpg | no |
 | 14 | train/minibus/205737488.jpg; unclean/minibus/205737488.jpg | no |
-| 15 | train/vanet/214844236.jpg; unclean/neysan/214844236.jpg | yes |
+| 15 | train/vanet/214844236.jpg; unclean/kamyunet/214844236.jpg | yes |
 | 16 | test/ambulance/200396165.jpg; unclean/ambulance/200396165.jpg | no |
 | 17 | test/ambulance/214830125.jpg; unclean/ambulance/214830125.jpg | no |
 | 18 | test/ambulance/215713763.jpg; unclean/ambulance/215713763.jpg | no |
@@ -70,9 +70,8 @@ Retained `unclean` class counts: | Class | Count |
 |---|---|
 | ambulance | 2 |
 | kamyun | 16 |
-| kamyunet | 12 |
+| kamyunet | 62 |
 | minibus | 16 |
-| neysan | 50 |
 | savari | 8 |
 | taxi | 5 |
 | vanet | 6 |.

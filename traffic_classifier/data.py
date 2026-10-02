@@ -149,6 +149,22 @@ def load_image_folder(
     path = Path(root) / split
     if not path.is_dir():
         raise FileNotFoundError(f"Dataset split does not exist: {path}")
+
+    # Remove class folders that contain no image with a torchvision-supported
+    # extension (e.g. emptied by a previous cleaning pass). ImageFolder would
+    # otherwise raise FileNotFoundError for these empty classes.
+    import shutil
+
+    supported_suffixes = {".jpg", ".jpeg", ".png", ".ppm", ".bmp", ".pgm", ".tif", ".tiff", ".webp"}
+    for class_dir in sorted(p for p in path.iterdir() if p.is_dir()):
+        has_image = any(
+            item.is_file() and item.suffix.lower() in supported_suffixes
+            for item in class_dir.rglob("*")
+        )
+        if not has_image:
+            print(f"[load_image_folder] removing empty class dir: {class_dir}")
+            shutil.rmtree(class_dir, ignore_errors=True)
+
     dataset = datasets.ImageFolder(path, transform=transform)
     if expected_classes is not None:
         if dataset.classes != list(expected_classes):

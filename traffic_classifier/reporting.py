@@ -404,17 +404,45 @@ The risk–coverage curve is `figures/validation_risk_coverage.png`.
     unseen = unclean_result["unseen_neysan"]
     known = unclean_result["known_class_metrics"]
     clean = unclean_result["cleaning"]
+
+    # `neysan` may have been fully cleaned out of the unclean split; handle both cases.
+    if unseen.get("present", True):
+        unseen_section = (
+            f"For unseen `neysan`, mean top-class confidence is "
+            f"**{unseen['mean_confidence']:.4f}** and "
+            f"**{unseen['review_count']} / {clean['unseen_neysan_images']} "
+            f"({unseen['review_rate']:.1%})** fall below the validation review "
+            f"threshold. Predicted known-class counts are:\n\n"
+            + markdown_table(
+                ['Prediction', 'Count'],
+                [[key, value] for key, value in unseen['predicted_class_counts'].items()],
+            )
+            + "\n\n`neysan` is analyzed as unseen/human-review data, never added as a "
+            "ninth class. Standard softmax confidence is not an out-of-distribution "
+            "detector: an unseen image can receive a high known-class score. The "
+            "observed confidence pattern is therefore a risk signal, not proof of "
+            "semantic correctness. `figures/unclean_low_confidence_examples.png` shows "
+            "the 12 least-confident `neysan` cases and "
+            "`artifacts/results/unclean_predictions.csv` contains every prediction."
+        )
+    else:
+        unseen_section = (
+            "No `neysan` samples remain in the `unclean` split after cleaning "
+            "(its folder was emptied by the duplicate-removal pass), so the "
+            "unseen-class branch is skipped. `neysan` is still conceptually treated "
+            "as an unseen/human-review class, never added as a ninth training label. "
+            "Standard softmax confidence is not an out-of-distribution detector, so "
+            "any future unseen-class analysis should still route low-confidence cases "
+            "to human review."
+        )
+
     unclean_report = f"""# Cleaned `unclean` and Unseen-Class Analysis
 
 `unclean` is never used for optimization or validation. A second content-aware pass removes every pixel-identical copy of train or test, producing **{clean['retained_images']}** retained images from {clean['original_images']}; **{clean['excluded_duplicates']}** exclusions are recorded with their source. This includes the `train/vanet` versus `unclean/neysan` label conflict, which is excluded rather than silently relabelled.
 
 The retained set has **{clean['known_images']}** known-class examples and **{clean['unseen_neysan_images']}** `neysan` examples. On the known subset, accuracy is **{known['accuracy']:.4f}** and macro-F1 is **{known['macro_f1']:.4f}**. This is diagnostic data, not another model-selection test.
 
-For unseen `neysan`, mean top-class confidence is **{unseen['mean_confidence']:.4f}** and **{unseen['review_count']} / {clean['unseen_neysan_images']} ({unseen['review_rate']:.1%})** fall below the validation review threshold. Predicted known-class counts are:
-
-{markdown_table(['Prediction', 'Count'], [[key, value] for key, value in unseen['predicted_class_counts'].items()])}
-
-`neysan` is analyzed as unseen/human-review data, never added as a ninth class. Standard softmax confidence is not an out-of-distribution detector: an unseen image can receive a high known-class score. The observed confidence pattern is therefore a risk signal, not proof of semantic correctness. `figures/unclean_low_confidence_examples.png` shows the 12 least-confident `neysan` cases and `artifacts/results/unclean_predictions.csv` contains every prediction.
+{unseen_section}
 """
     (reports / "unclean_analysis.md").write_text(unclean_report, encoding="utf-8")
 

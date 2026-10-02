@@ -1,6 +1,6 @@
 {
   "artifacts_dir": "artifacts",
-  "batch_size": 32,
+  "batch_size": 128,
   "classes": [
     "ambulance",
     "autobus",

@@ -20,6 +20,9 @@ from pathlib import Path
 import pandas as pd
 
 
+# Resolve the project root (the parent of the scripts/ directory) and make it
+# available on sys.path so the package imports work regardless of the working
+# directory the script is invoked from.
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -37,6 +40,14 @@ from traffic_classifier.utils import (  # noqa: E402
 )
 
 
+def _resolve(path: str | Path) -> Path:
+    """Resolve a possibly-relative path against the project root."""
+    candidate = Path(path)
+    if candidate.is_absolute():
+        return candidate
+    return (ROOT / candidate).resolve()
+
+
 def _review_threshold(
     uncertainty_path: Path, override: float | None
 ) -> tuple[float, str]:
@@ -51,12 +62,20 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Export confident known-class images from a scored split"
     )
-    parser.add_argument("--config", default="configs/default.json")
     parser.add_argument(
-        "--predictions", default="artifacts/results/unclean_predictions.csv"
+        "--config",
+        default=str(ROOT / "configs" / "default.json"),
+        help="Path to the project config JSON (default: <project>/configs/default.json)",
     )
     parser.add_argument(
-        "--uncertainty", default="artifacts/results/validation_uncertainty.json"
+        "--predictions",
+        default=str(ROOT / "artifacts" / "results" / "unclean_predictions.csv"),
+        help="Prediction table produced by the pipeline (default under <project>/artifacts/results)",
+    )
+    parser.add_argument(
+        "--uncertainty",
+        default=str(ROOT / "artifacts" / "results" / "validation_uncertainty.json"),
+        help="Validation uncertainty artifact used to read the review threshold",
     )
     parser.add_argument("--source-split", default="unclean")
     parser.add_argument("--destination-split", default="cleaned_unclean")
@@ -82,26 +101,77 @@ def main() -> None:
         action="store_true",
         help="Required for --mode move, which removes images from the source split",
     )
+    parser.add_argument(
+        "--allow-missing-source",
+        action="store_true",
+        help=(
+            "Exit cleanly (status 0) if the source split is empty or missing, "
+            "instead of raising an error. Useful when the unclean split has "
+            "already been fully cleaned out by a prior run."
+        ),
+    )
     args = parser.parse_args()
 
     if args.mode == "move" and not args.force and not args.dry_run:
         parser.error("--mode move requires --force because it empties the source split")
 
-    config = ProjectConfig.from_json(args.config)
+    config_path = _resolve(args.config)
+    predictions_path = _resolve(args.predictions)
+    uncertainty_path = _resolve(args.uncertainty)
+
+    if not config_path.exists():
+        raise FileNotFoundError(
+            f"Config not found: {config_path}. "
+            "Run the pipeline first or pass --config explicitly."
+        )
+
+    config = ProjectConfig.from_json(config_path)
     source_root = Path(config.data_dir) / args.source_split
     destination_root = Path(config.data_dir) / args.destination_split
     results_dir = Path(config.artifacts_dir) / "results"
-    predictions_path = Path(args.predictions)
-    uncertainty_path = Path(args.uncertainty)
+    # If config.data_dir is relative, resolve it against the project root so the
+    # script behaves the same regardless of where it is executed from.
+    if not Path(config.data_dir).is_absolute():
+        source_root = (ROOT / source_root).resolve()
+        destination_root = (ROOT / destination_root).resolve()
 
     if not predictions_path.exists():
         raise FileNotFoundError(
             f"Prediction table not found: {predictions_path}. Run the pipeline first."
         )
-    if not source_root.is_dir():
-        raise FileNotFoundError(f"Source split does not exist: {source_root}")
+    if not uncertainty_path.exists():
+        raise FileNotFoundError(
+            f"Uncertainty artifact not found: {uncertainty_path}. Run the pipeline first."
+        )
+
+    # If the source split has already been fully cleaned out, there is nothing
+    # to export. Report that clearly and exit without an error by default when
+    # the caller opted in; otherwise raise for a strict workflow.
+    source_is_empty = (
+        not source_root.is_dir()
+        or not any(source_root.iterdir())
+    )
+    if source_is_empty:
+        message = (
+            f"Source split is empty or missing: {source_root}. "
+            "Nothing to export."
+        )
+        if args.allow_missing_source or args.dry_run:
+            print(message)
+            return
+        raise FileNotFoundError(
+            message
+            + " Re-run with --allow-missing-source to exit cleanly, "
+            "or restore the split before exporting."
+        )
 
     frame = pd.read_csv(predictions_path)
+    if frame.empty:
+        print(
+            f"Prediction table {predictions_path} is empty; nothing to export."
+        )
+        return
+
     threshold, threshold_source = _review_threshold(uncertainty_path, args.threshold)
     print(f"Review threshold: {threshold:.6f} (from {threshold_source})")
 
@@ -134,6 +204,7 @@ def main() -> None:
     manifest_path = results_dir / "cleaned_unclean_manifest.csv"
     summary_path = results_dir / "cleaned_unclean_summary.json"
     rejected_path = results_dir / "cleaned_unclean_rejected.csv"
+    results_dir.mkdir(parents=True, exist_ok=True)
     atomic_write_csv(manifest, manifest_path)
     atomic_write_csv(rejected, rejected_path)
 
