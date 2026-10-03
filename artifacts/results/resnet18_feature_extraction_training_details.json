@@ -1406,6 +1406,1406 @@
         "head": 4104,
         "total_trainable": 4104
       }
+    },
+    {
+      "epoch": 101,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 102,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 103,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 104,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 105,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 106,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 107,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 108,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 109,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 110,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 111,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 112,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 113,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 114,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 115,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 116,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 117,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 118,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 119,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 120,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 121,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 122,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 123,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 124,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 125,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 126,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 127,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 128,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 129,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 130,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 131,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 132,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 133,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 134,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 135,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 136,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 137,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 138,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 139,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 140,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 141,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 142,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 143,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 144,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 145,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 146,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 147,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 148,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 149,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 150,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 151,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 152,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 153,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 154,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 155,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 156,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 157,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 158,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 159,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 160,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 161,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 162,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 163,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 164,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 165,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 166,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 167,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 168,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 169,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 170,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 171,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 172,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 173,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 174,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 175,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 176,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 177,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 178,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 179,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 180,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 181,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 182,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 183,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 184,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 185,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 186,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 187,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 188,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 189,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 190,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 191,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 192,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 193,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 194,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 195,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 196,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 197,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 198,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 199,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
+    },
+    {
+      "epoch": 200,
+      "stage": "head",
+      "learning_rates": [
+        {
+          "group": "head",
+          "lr": 0.0005
+        }
+      ],
+      "trainable_parameters": {
+        "head": 4104,
+        "total_trainable": 4104
+      }
     }
   ]
 }

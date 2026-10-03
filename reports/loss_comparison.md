@@ -1,6 +1,6 @@
 # Cross-Entropy vs. BCEWithLogitsLoss
 
-Both runs use the same CNN, seed, split, augmented training transform, AdamW optimizer, fixed LR, and 100-epoch budget. BCE targets are explicitly one-hot encoded `float32` tensors. No sigmoid is placed before `BCEWithLogitsLoss`; sigmoid is used only afterward to inspect confidence. Predictions for both experiments use `argmax(logits)`.
+Both runs use the same CNN, seed, split, augmented training transform, AdamW optimizer, fixed LR, and 200-epoch budget. BCE targets are explicitly one-hot encoded `float32` tensors. No sigmoid is placed before `BCEWithLogitsLoss`; sigmoid is used only afterward to inspect confidence. Predictions for both experiments use `argmax(logits)`.
 
 | Loss | Validation accuracy | Macro P | Macro R | Macro F1 | Mean top confidence |
 |---|---|---|---|---|---|

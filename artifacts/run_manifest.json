@@ -19,7 +19,7 @@
     "minimum_image_side": 64,
     "cnn_image_size": 128,
     "transfer_image_size": 224,
-    "epochs": 100,
+    "epochs": 200,
     "batch_size": 256,
     "transfer_batch_size": 32,
     "learning_rate": 0.001,
@@ -911,9 +911,9 @@
     "pipeline.py": "08172308559208d55242b130693065f8485c527fd5e38fd04fa3f5d7d0f85c0b",
     "plotting.py": "a2b725928cf15eeb2a945a2e9705e19af23ced6442caa7a75dfd679d06d3eff8",
     "predict.py": "39b2e0c05f346331c91fca9ea1729e5a75c15eb0b088de7f49d349044e322f62",
-    "promotion.py": "bcb1070aa5dfaf29fce7f96096f420403bac9822317aa0fdee0128f16998f87b",
+    "promotion.py": "79d1049113b0cbf13160af37becf3ca08af353112f428fa004dbbcf73f8748f7",
     "reporting.py": "6dc000020278f8d550ad7b5a4845063d6cd407dc0b6a085540c4c4c6b2b4edc2",
     "utils.py": "77b7372733209d994862c91513b8b6b6f3e8ecb719ee47054e9c47a29dda5752"
   },
-  "run_fingerprint": "82f8e307d65e670f682765d98ca2258a9f3b3bd24965baa2308e4ecefbd3c767"
+  "run_fingerprint": "88505634989f7c6839c623d9f1a0c0901d87587873615ca74fc0077db06ac9a2"
 }
