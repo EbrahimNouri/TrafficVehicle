@@ -50,6 +50,12 @@ from .models import (
     parameter_report,
     pretrained_resnet18_identity,
 )
+from .promotion import (
+    best_checkpoints_dir,
+    invalidate_promotion,
+    load_promoted_checkpoint,
+    promote_best_checkpoints,
+)
 from .plotting import (
     plot_confusion_matrices,
     plot_error_gallery,
@@ -470,6 +476,7 @@ def _run_project_impl(
         missing_ok=True
     )
     Path(config.artifacts_dir, "production_ready.json").unlink(missing_ok=True)
+    invalidate_promotion(config)
     config.save(Path(config.artifacts_dir) / "resolved_config.json")
     config.save(Path(config.reports_dir) / "reproducibility_config.json")
     ensure_directories(
@@ -876,8 +883,24 @@ def _run_project_impl(
 
     selected_checkpoint_path = Path(results[selected_name]["checkpoint_path"])
     selected_checkpoint_sha256 = _sha256_file(selected_checkpoint_path)
-    selected_checkpoint = load_checkpoint(
-        selected_checkpoint_path, map_location=device
+
+    # Promote the best-validation checkpoints before anything reads them, then
+    # evaluate the promoted copy so the tested weights are the published ones.
+    promotion = promote_best_checkpoints(
+        config=config,
+        experiment_results=results,
+        selected_name=selected_name,
+        run_fingerprint=run_fingerprint,
+    )
+    promoted_path = best_checkpoints_dir(config) / promotion["production_checkpoint"]
+    print(
+        f"Promoted {len(promotion['experiments'])} checkpoints to "
+        f"{best_checkpoints_dir(config)}; testing "
+        f"{promotion['production_checkpoint']} "
+        f"(sha256 {promotion['production_checkpoint_sha256'][:16]})"
+    )
+    selected_checkpoint = load_promoted_checkpoint(
+        config, map_location=device, manifest=promotion
     )
     selected_model = build_model(
         selected_spec.architecture,

@@ -64,7 +64,11 @@ from traffic_classifier.metrics import (  # noqa: E402
 )
 from traffic_classifier.models import build_model  # noqa: E402
 from traffic_classifier.paths import ProjectPaths, load_paths  # noqa: E402
-from traffic_classifier.utils import load_checkpoint  # noqa: E402
+from traffic_classifier.promotion import (  # noqa: E402
+    load_promoted_checkpoint,
+    read_manifest,
+    sha256_file,
+)
 
 PER_IMAGE_COLUMNS = [
     "model",
@@ -280,6 +284,28 @@ def _confidence_by_class(
     return summary
 
 
+def _check_promotion(
+    promotion: dict[str, Any], experiments: dict[str, Any]
+) -> None:
+    """Fail loudly when the promoted weights and the experiment record disagree."""
+
+    promoted = promotion["experiments"]
+    if set(promoted) != set(experiments):
+        raise RuntimeError(
+            "promotion manifest and experiment record cover different experiments: "
+            f"only in manifest={sorted(set(promoted) - set(experiments))} "
+            f"only in record={sorted(set(experiments) - set(promoted))}"
+        )
+    for name, entry in experiments.items():
+        digest = promoted[name]["sha256"]
+        source = Path(entry["checkpoint_path"])
+        if source.is_file() and sha256_file(source) != digest:
+            raise RuntimeError(
+                f"{name}: promoted hash {digest} does not match the checkpoint on "
+                f"disk at {source}; the artifacts are from different runs"
+            )
+
+
 def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
     paths = load_paths(paths_file)
     config = ProjectConfig.from_json(paths.get("configs.default"))
@@ -335,6 +361,20 @@ def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
         raise RuntimeError("experiments disagree on the class mapping")
     print(f"\nclass mapping verified identical across {len(experiments)} experiments")
 
+    # Weights come from the promoted directory, and every load re-verifies the
+    # SHA-256 recorded in the promotion manifest.
+    promotion = read_manifest(config)
+    promoted_dir = paths.get("artifacts.best_checkpoints_dir")
+    print(
+        f"checkpoint source: {paths.relative(promoted_dir)} "
+        f"(hash-verified against manifest.json)"
+    )
+    print(f"promoted winner  : {promotion['selected_experiment']}")
+    print(
+        f"selection rule   : {' '.join(promotion['selection_rule'].split())}"
+    )
+    _check_promotion(promotion, experiments)
+
     dataset_cache: dict[str, Any] = {}
     sample_paths: list[str] | None = None
     summary_rows: list[dict[str, Any]] = []
@@ -382,9 +422,9 @@ def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
                 "test split ordering differs between transform variants"
             )
 
-        checkpoint_path = paths.get("artifacts.checkpoints_dir") / f"{name}.pt"
-        if not checkpoint_path.is_file():
-            raise SystemExit(f"missing checkpoint for {name}: {checkpoint_path}")
+        checkpoint = load_promoted_checkpoint(
+            config, name=f"{name}.pt", map_location=device, manifest=promotion
+        )
 
         model = build_model(
             entry["architecture"],
@@ -393,7 +433,9 @@ def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
             pooling=meta["pooling"],  # type: ignore[arg-type]
             pretrained=False,
         )
-        checkpoint = load_checkpoint(checkpoint_path, map_location=device)
+        checkpoint = load_promoted_checkpoint(
+            config, name=f"{name}.pt", map_location=device, manifest=promotion
+        )
         model.load_state_dict(checkpoint["model_state"])
         model.to(device)
 

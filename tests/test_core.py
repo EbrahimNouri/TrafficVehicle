@@ -3,6 +3,7 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
+import pytest
 import torch
 from PIL import Image
 
@@ -33,11 +34,20 @@ from traffic_classifier.engine import (
 from traffic_classifier.locking import ProjectRunLock, RunLockError
 from traffic_classifier.models import TrafficCNN, parameter_report
 from traffic_classifier.pipeline import experiment_specs, skipped_unclean_result
+from traffic_classifier.promotion import (
+    BEST_MODEL_NAME,
+    load_promoted_checkpoint,
+    promote_best_checkpoints,
+    read_manifest,
+    sha256_file,
+    verify_complete,
+)
 from traffic_classifier.reporting import (
     _leakage_clause,
     _quarantine_sentence,
     render_unclean_analysis,
 )
+from traffic_classifier.utils import save_checkpoint
 
 from scripts.resolve_split_duplicates import resolve
 
@@ -522,3 +532,162 @@ def test_leakage_narrative_follows_the_recorded_counts() -> None:
     assert "1 pixel-identical train copy quarantined" in _quarantine_sentence(
         {**resolved, "cleaning": {**resolved["cleaning"], "train_excluded": 1}}
     )
+
+
+def _fake_experiment_record(
+    root: Path, names: list[str], fingerprint: str = "fp-test"
+) -> dict[str, Any]:
+    """Write minimal checkpoints and return an experiment_results-shaped record."""
+
+    checkpoints = root / "artifacts" / "checkpoints"
+    checkpoints.mkdir(parents=True, exist_ok=True)
+    record: dict[str, Any] = {}
+    for index, name in enumerate(names):
+        payload = {
+            "model_state": {"weight": torch.tensor([float(index)])},
+            "metadata": {"run_fingerprint": fingerprint},
+        }
+        path = checkpoints / f"{name}.pt"
+        save_checkpoint(path, payload)
+        record[name] = {
+            "checkpoint_path": str(path),
+            "architecture": "cnn",
+            "category": "main",
+            "loss": "cross_entropy",
+            "best_epoch": index + 1,
+            "validation_metrics": {"macro_f1": 0.5 + index / 100.0},
+            "metadata": {"run_fingerprint": fingerprint},
+        }
+    return record
+
+
+def test_promotion_copies_winner_and_records_hashes(tmp_path: Path) -> None:
+    config = ProjectConfig(artifacts_dir=str(tmp_path / "artifacts"))
+    names = ["alpha", "beta", "gamma"]
+    record = _fake_experiment_record(tmp_path, names)
+
+    manifest = promote_best_checkpoints(
+        config=config,
+        experiment_results=record,
+        selected_name="beta",
+        run_fingerprint="fp-test",
+        expected=set(names),
+        paths_root=tmp_path,
+    )
+
+    directory = tmp_path / "artifacts" / "best_checkpoints"
+    assert manifest["selected_experiment"] == "beta"
+    # the winner has the highest validation macro-F1
+    assert manifest["production_validation_macro_f1"] == 0.51
+    assert (directory / BEST_MODEL_NAME).is_file()
+    for name in names:
+        assert (directory / f"{name}.pt").is_file()
+
+    source = Path(record["beta"]["checkpoint_path"])
+    assert sha256_file(directory / BEST_MODEL_NAME) == sha256_file(source)
+    assert manifest["production_checkpoint_sha256"] == sha256_file(source)
+
+    # best_model.pt must load, and the manifest round-trips
+    loaded = load_promoted_checkpoint(config, manifest=manifest)
+    assert torch.equal(loaded["model_state"]["weight"], torch.tensor([1.0]))
+    assert read_manifest(config)["selected_experiment"] == "beta"
+
+
+def test_promotion_refuses_a_partial_experiment_record(tmp_path: Path) -> None:
+    config = ProjectConfig(artifacts_dir=str(tmp_path / "artifacts"))
+    names = ["alpha", "beta", "gamma"]
+    record = _fake_experiment_record(tmp_path, names)
+    # a run interrupted mid-write leaves only some arms behind; promoting that
+    # subset could crown an experiment that merely lost to a missing arm
+    del record["gamma"]
+
+    with pytest.raises(RuntimeError, match="incomplete experiment record"):
+        promote_best_checkpoints(
+            config=config,
+            experiment_results=record,
+            selected_name="beta",
+            run_fingerprint="fp-test",
+            expected=set(names),
+            paths_root=tmp_path,
+        )
+    assert not (tmp_path / "artifacts" / "best_checkpoints" / BEST_MODEL_NAME).exists()
+
+
+def test_promotion_refuses_checkpoints_from_another_run(tmp_path: Path) -> None:
+    config = ProjectConfig(artifacts_dir=str(tmp_path / "artifacts"))
+    names = ["alpha", "beta"]
+    record = _fake_experiment_record(tmp_path, names)
+    record["beta"]["metadata"]["run_fingerprint"] = "fp-older"
+
+    with pytest.raises(RuntimeError, match="different run"):
+        promote_best_checkpoints(
+            config=config,
+            experiment_results=record,
+            selected_name="beta",
+            run_fingerprint="fp-test",
+            expected=set(names),
+            paths_root=tmp_path,
+        )
+
+
+def test_promotion_drops_checkpoints_of_removed_experiments(tmp_path: Path) -> None:
+    config = ProjectConfig(artifacts_dir=str(tmp_path / "artifacts"))
+    record = _fake_experiment_record(tmp_path, ["alpha", "beta"])
+    promote_best_checkpoints(
+        config=config,
+        experiment_results=record,
+        selected_name="beta",
+        run_fingerprint="fp-test",
+        expected={"alpha", "beta"},
+        paths_root=tmp_path,
+    )
+    directory = tmp_path / "artifacts" / "best_checkpoints"
+    # simulate a leftover file from a superseded run
+    (directory / "retired_arm.pt").write_bytes(b"stale")
+
+    reduced = {name: record[name] for name in ("beta",)}
+    (tmp_path / "artifacts" / "checkpoints" / "alpha.pt").unlink()
+    promote_best_checkpoints(
+        config=config,
+        experiment_results=reduced,
+        selected_name="beta",
+        run_fingerprint="fp-test",
+        expected={"beta"},
+        paths_root=tmp_path,
+    )
+
+    assert not (directory / "retired_arm.pt").exists()
+    assert not (directory / "alpha.pt").exists()
+    assert (directory / "beta.pt").is_file()
+
+
+def test_loading_a_modified_promoted_checkpoint_fails_loudly(tmp_path: Path) -> None:
+    config = ProjectConfig(artifacts_dir=str(tmp_path / "artifacts"))
+    record = _fake_experiment_record(tmp_path, ["alpha"])
+    promote_best_checkpoints(
+        config=config,
+        experiment_results=record,
+        selected_name="alpha",
+        run_fingerprint="fp-test",
+        expected={"alpha"},
+        paths_root=tmp_path,
+    )
+
+    (tmp_path / "artifacts" / "best_checkpoints" / BEST_MODEL_NAME).write_bytes(
+        b"tampered"
+    )
+    with pytest.raises(RuntimeError, match="was modified after promotion"):
+        load_promoted_checkpoint(config)
+
+
+def test_verify_complete_defaults_to_the_declared_experiment_specs() -> None:
+    declared = {spec.name for spec in experiment_specs()}
+    complete = {
+        name: {"metadata": {"run_fingerprint": "fp"}} for name in declared
+    }
+    verify_complete(complete, run_fingerprint="fp")
+
+    incomplete = dict(complete)
+    incomplete.pop("resnet18_fine_tuning")
+    with pytest.raises(RuntimeError, match="resnet18_fine_tuning"):
+        verify_complete(incomplete, run_fingerprint="fp")

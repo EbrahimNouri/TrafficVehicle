@@ -7,28 +7,28 @@ The final configuration was selected by maximum validation macro-F1 among Cross-
 ## Overall and per-class test metrics
 
 - Accuracy: **0.8875**
-- Macro precision: **0.8886**
+- Macro precision: **0.8890**
 - Macro recall: **0.8875**
-- Macro F1: **0.8872**
+- Macro F1: **0.8874**
 
 | Class | Precision | Recall | F1 | Support |
 |---|---|---|---|---|
-| ambulance | 0.978 | 0.900 | 0.938 | 50 |
-| autobus | 0.958 | 0.920 | 0.939 | 50 |
-| kamyun | 0.778 | 0.700 | 0.737 | 50 |
-| kamyunet | 0.755 | 0.800 | 0.777 | 50 |
-| minibus | 0.855 | 0.940 | 0.895 | 50 |
-| savari | 0.922 | 0.940 | 0.931 | 50 |
+| ambulance | 0.978 | 0.880 | 0.926 | 50 |
+| autobus | 0.959 | 0.940 | 0.949 | 50 |
+| kamyun | 0.761 | 0.700 | 0.729 | 50 |
+| kamyunet | 0.741 | 0.800 | 0.769 | 50 |
+| minibus | 0.868 | 0.920 | 0.893 | 50 |
+| savari | 0.940 | 0.940 | 0.940 | 50 |
 | taxi | 0.960 | 0.960 | 0.960 | 50 |
-| vanet | 0.904 | 0.940 | 0.922 | 50 |
+| vanet | 0.906 | 0.960 | 0.932 | 50 |
 
 Both count-based and row-normalized confusion matrices are saved in `artifacts/results/frozen_test_evaluation.json` and plotted in `figures/final_confusion_matrices.png`.
 
 ## Confidence and human review
 
-Validation temperature scaling changes ECE from the value saved in `validation_uncertainty.json`; the final validation-selected confidence threshold is **0.8085**, chosen as the lowest threshold reaching at least 80% automatic coverage. Thus approximately 80% of deployment volume is automatic and the remainder is human review.
+Validation temperature scaling changes ECE from the value saved in `validation_uncertainty.json`; the final validation-selected confidence threshold is **0.7809**, chosen as the lowest threshold reaching at least 80% automatic coverage. Thus approximately 80% of deployment volume is automatic and the remainder is human review.
 
-On frozen test, calibrated multiclass NLL is **0.3420**, ECE is **0.0215**, and Brier score is **0.1625**. The selected threshold routes **73 / 400 (18.2%)** images to review; automatic accuracy is **0.9664**. Threshold behavior is descriptive on test; it is not re-tuned.
+On frozen test, calibrated multiclass NLL is **0.3766**, ECE is **0.0356**, and Brier score is **0.1732**. The selected threshold routes **67 / 400 (16.8%)** images to review; automatic accuracy is **0.9429**. Threshold behavior is descriptive on test; it is not re-tuned.
 
 The risk–coverage curve is `figures/validation_risk_coverage.png`.
 
@@ -37,15 +37,15 @@ The risk–coverage curve is `figures/validation_risk_coverage.png`.
 | Class A | Class B | A→B | B→A | Mutual score |
 |---|---|---|---|---|
 | kamyun | kamyunet | 0.160 | 0.140 | 0.300 |
-| kamyun | minibus | 0.060 | 0.040 | 0.100 |
+| kamyun | minibus | 0.060 | 0.060 | 0.120 |
+| ambulance | kamyunet | 0.060 | 0.000 | 0.060 |
 | ambulance | vanet | 0.060 | 0.000 | 0.060 |
 | autobus | kamyun | 0.020 | 0.040 | 0.060 |
-| autobus | minibus | 0.060 | 0.000 | 0.060 |
 | kamyunet | minibus | 0.040 | 0.020 | 0.060 |
-| savari | vanet | 0.000 | 0.060 | 0.060 |
-| ambulance | kamyunet | 0.040 | 0.000 | 0.040 |
+| autobus | minibus | 0.040 | 0.000 | 0.040 |
 | kamyunet | savari | 0.020 | 0.020 | 0.040 |
 | savari | taxi | 0.040 | 0.000 | 0.040 |
+| savari | vanet | 0.000 | 0.040 | 0.040 |
 
 `pair_confusion(i,j) = row_normalized_CM[i,j] + row_normalized_CM[j,i]`. **Do not merge for the production taxonomy. The strongest mutual pair is `kamyun`/`kamyunet` with score 0.300, above the predeclared 0.30 investigation threshold. The visual gallery should be checked for domain overlap, but a merge is not automatically warranted: confusion can reflect crop, pose, or scale rather than a redundant taxonomy.**
 

@@ -1,5 +1,5 @@
 /dataset/
-/artifacts/checkpoints/
+/artifacts/*checkpoints*/
 /artifacts/.run.lock
 /.venv/
 /.idea/
