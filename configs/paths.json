@@ -1,0 +1,159 @@
+{
+  "_description": "Central registry of every project path. All entries are relative to `root` (the repository root) and are written in posix style. Load with traffic_classifier.paths.load_paths(). Keys are addressed in dotted form, e.g. `results.all_models_test_dir`.",
+  "root": ".",
+
+  "entrypoints": {
+    "main": "main.py",
+    "predict_cli": "predict.py",
+    "package_main": "traffic_classifier/__main__.py"
+  },
+
+  "configs": {
+    "dir": "configs",
+    "default": "configs/default.json",
+    "paths": "configs/paths.json"
+  },
+
+  "dataset": {
+    "dir": "dataset",
+    "train": "dataset/train",
+    "test": "dataset/test",
+    "unclean": "dataset/unclean",
+    "cleaned_unclean": "dataset/cleaned_unclean"
+  },
+
+  "quarantine": {
+    "dir": "dataset/quarantine",
+    "split_duplicates": "dataset/quarantine/split_duplicates",
+    "resolved_split_duplicates": "dataset/quarantine/resolved_split_duplicates.json"
+  },
+
+  "artifacts": {
+    "dir": "artifacts",
+    "run_lock": "artifacts/.run.lock",
+    "environment": "artifacts/environment.json",
+    "resolved_config": "artifacts/resolved_config.json",
+    "run_manifest": "artifacts/run_manifest.json",
+    "production_ready": "artifacts/production_ready.json",
+    "checkpoints_dir": "artifacts/checkpoints",
+    "results_dir": "artifacts/results",
+    "audit_dir": "artifacts/audit",
+    "splits_dir": "artifacts/splits",
+    "logs_dir": "artifacts/logs"
+  },
+
+  "checkpoints": {
+    "production": "artifacts/checkpoints/resnet18_fine_tuning.pt"
+  },
+
+  "results": {
+    "experiment_results": "artifacts/results/experiment_results.json",
+    "experiment_summary": "artifacts/results/experiment_summary.csv",
+    "frozen_test_evaluation": "artifacts/results/frozen_test_evaluation.json",
+    "test_outputs": "artifacts/results/test_outputs.npz",
+    "test_errors": "artifacts/results/test_errors.csv",
+    "validation_uncertainty": "artifacts/results/validation_uncertainty.json",
+    "unclean_analysis": "artifacts/results/unclean_analysis.json",
+    "unclean_predictions": "artifacts/results/unclean_predictions.csv",
+    "balanced_batch_comparison": "artifacts/results/balanced_batch_comparison.json",
+    "all_models_test_dir": "artifacts/results/all_models_test",
+    "all_models_test_readme": "artifacts/results/all_models_test/README.md",
+    "all_models_test_summary_json": "artifacts/results/all_models_test/summary.json",
+    "all_models_test_summary_csv": "artifacts/results/all_models_test/summary.csv",
+    "all_models_test_per_image_csv": "artifacts/results/all_models_test/per_image_predictions.csv",
+    "all_models_test_per_image_jsonl": "artifacts/results/all_models_test/per_image_predictions.jsonl",
+    "all_models_test_per_model_dir": "artifacts/results/all_models_test/per_model",
+    "all_models_test_confidence_by_class": "artifacts/results/all_models_test/confidence_by_true_class.csv",
+    "all_models_test_log": "artifacts/logs/all_models_test_diagnostic.log"
+  },
+
+  "audit": {
+    "summary": "artifacts/audit/summary.json",
+    "image_records": "artifacts/audit/image_records.csv",
+    "canonical_duplicate_groups": "artifacts/audit/canonical_duplicate_groups.json",
+    "cleaned_unclean_exclusions": "artifacts/audit/cleaned_unclean_exclusions.json",
+    "representative_paths": "artifacts/audit/representative_paths.json",
+    "resolved_split_duplicates": "artifacts/audit/resolved_split_duplicates.json",
+    "split_protocol": "artifacts/audit/split_protocol.json"
+  },
+
+  "splits": {
+    "train_validation": "artifacts/splits/train_validation.json",
+    "simulated_imbalance": "artifacts/splits/simulated_imbalance.json"
+  },
+
+  "logs": {
+    "dir": "artifacts/logs",
+    "all_models_test": "artifacts/logs/all_models_test_diagnostic.log"
+  },
+
+  "reports": {
+    "dir": "reports",
+    "final_markdown": "reports/final_report.md",
+    "final_html": "reports/final_report.html",
+    "ablation": "reports/ablation_report.md",
+    "balanced_sampler": "reports/balanced_sampler_report.md",
+    "data_audit": "reports/data_audit.md",
+    "error_analysis": "reports/error_analysis.md",
+    "loss_comparison": "reports/loss_comparison.md",
+    "transfer_learning": "reports/transfer_learning_report.md",
+    "unclean_analysis": "reports/unclean_analysis.md",
+    "reproducibility_config": "reports/reproducibility_config.json",
+    "figures_dir": "reports/figures"
+  },
+
+  "figures": {
+    "final_confusion_matrices": "reports/figures/final_confusion_matrices.png",
+    "image_size_distributions": "reports/figures/image_size_distributions.png",
+    "misclassified_test_images": "reports/figures/misclassified_test_images.png",
+    "per_class_comparison": "reports/figures/per_class_comparison.png",
+    "representative_images": "reports/figures/representative_images.png",
+    "training_curves": "reports/figures/training_curves.png",
+    "unclean_low_confidence_examples": "reports/figures/unclean_low_confidence_examples.png",
+    "validation_risk_coverage": "reports/figures/validation_risk_coverage.png"
+  },
+
+  "modules": {
+    "dir": "traffic_classifier",
+    "audit": "traffic_classifier/audit.py",
+    "config": "traffic_classifier/config.py",
+    "curation": "traffic_classifier/curation.py",
+    "data": "traffic_classifier/data.py",
+    "engine": "traffic_classifier/engine.py",
+    "locking": "traffic_classifier/locking.py",
+    "metrics": "traffic_classifier/metrics.py",
+    "models": "traffic_classifier/models.py",
+    "paths": "traffic_classifier/paths.py",
+    "pipeline": "traffic_classifier/pipeline.py",
+    "plotting": "traffic_classifier/plotting.py",
+    "predict": "traffic_classifier/predict.py",
+    "reporting": "traffic_classifier/reporting.py",
+    "utils": "traffic_classifier/utils.py"
+  },
+
+  "scripts": {
+    "dir": "scripts",
+    "evaluate_all_models_on_test": "scripts/evaluate_all_models_on_test.py",
+    "resolve_split_duplicates": "scripts/resolve_split_duplicates.py",
+    "export_clean_unclean": "scripts/export_clean_unclean.py",
+    "build_notebook": "scripts/build_notebook.py",
+    "execute_notebook": "scripts/execute_notebook.py"
+  },
+
+  "tests": {
+    "dir": "tests",
+    "core": "tests/test_core.py"
+  },
+
+  "notebooks": {
+    "definition": "Project-Definition2-traffic-vehicle.ipynb"
+  },
+
+  "metadata": {
+    "data_card": "DATA_CARD.md",
+    "readme": "README.md",
+    "pyproject": "pyproject.toml",
+    "requirements": "requirements.txt",
+    "gitignore": ".gitignore"
+  }
+}
