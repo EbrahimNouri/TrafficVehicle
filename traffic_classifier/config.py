@@ -38,7 +38,7 @@ class ProjectConfig:
     seed: int = 42
     validation_fraction: float = 0.20
     minimum_image_side: int = 64
-    cnn_image_size: int = 96
+    cnn_image_size: int = 128
     transfer_image_size: int = 224
     epochs: int = 15
     batch_size: int = 32

@@ -17,12 +17,12 @@
     "seed": 42,
     "validation_fraction": 0.2,
     "minimum_image_side": 64,
-    "cnn_image_size": 96,
+    "cnn_image_size": 128,
     "transfer_image_size": 224,
-    "epochs": 40,
+    "epochs": 80,
     "batch_size": 128,
     "transfer_batch_size": 32,
-    "learning_rate": 0.0005,
+    "learning_rate": 0.001,
     "transfer_head_lr": 0.0005,
     "transfer_backbone_lr": 1e-05,
     "weight_decay": 0.0,
@@ -900,7 +900,7 @@
     "__init__.py": "b08b01fe677a991e087957188746717ca765dd1456119580518a3e265d008179",
     "__main__.py": "9bd485f3db26bf74f762c490cf81358bedd59edc1caf32d76717520ab7e280a9",
     "audit.py": "3321409ffec73f2d38ae648d5b5690ee87f395c80d4e1184dfe65bf1d39cc15c",
-    "config.py": "1e4b5f15731d5d35421a104ec4b1b1fceb7facb65cdede281831d0cbbf75ab92",
+    "config.py": "4e48efc62e00366b3f902509b800e791a293af351469e395819e017838451e59",
     "curation.py": "ab4ca40562417661df88a8370a49811c2125edd113964a681fc4917c8dfe34ac",
     "data.py": "50c3d7dfd78a7818a5d80a0ca9763da59fc2c0bee64fa800e9608d51ac91ced5",
     "engine.py": "b7c6f02cab892f77f1391012949d8ae48de9be8221c06a3709df7cae4b4ea597",
@@ -913,5 +913,5 @@
     "reporting.py": "6dc000020278f8d550ad7b5a4845063d6cd407dc0b6a085540c4c4c6b2b4edc2",
     "utils.py": "77b7372733209d994862c91513b8b6b6f3e8ecb719ee47054e9c47a29dda5752"
   },
-  "run_fingerprint": "0fff63e0f343e24eb58c8f75ac478eb054bfdefeee1f6fad53bdc4a3b5ec7b46"
+  "run_fingerprint": "1e1d826216cf328c0a611d0f169404904dbe1672cb786b6cb06fd4bd75030916"
 }
