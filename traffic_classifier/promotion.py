@@ -45,7 +45,8 @@ def sha256_file(path: str | Path) -> str:
 
 
 def best_checkpoints_dir(config: ProjectConfig) -> Path:
-    return Path(config.artifacts_dir) / "best_checkpoints"
+    # return Path(config.artifacts_dir) / "best_checkpoints"
+    return Path("C:\\Users\\viroo\\PycharmProjects\\TrafficVehicle\\artifacts\\best_checkpoints")
 
 
 def invalidate_promotion(config: ProjectConfig) -> None:

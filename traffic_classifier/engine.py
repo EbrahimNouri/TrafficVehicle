@@ -492,6 +492,30 @@ def _best_checkpoint_payload(
     }
 
 
+def _print_chosen_checkpoint(
+    *,
+    experiment_name: str,
+    best_epoch: int,
+    total_epochs: int,
+    best_validation: dict[str, Any],
+    checkpoint_path: str | Path,
+) -> None:
+    """Announce the best-validation checkpoint chosen when training ends.
+
+    The file reported here is `<experiment>.pt`, which holds the best epoch's
+    weights rather than the final epoch's, so this makes the promoted model
+    explicit at the end of the log instead of leaving it implicit.
+    """
+
+    print(
+        f"[{experiment_name}] training end: best checkpoint chosen at epoch "
+        f"{best_epoch}/{total_epochs} by validation macro-F1 "
+        f"(val_macro_f1={best_validation['macro_f1']:.4f} "
+        f"val_acc={best_validation['accuracy']:.4f})"
+    )
+    print(f"[{experiment_name}] best checkpoint: {Path(checkpoint_path).as_posix()}")
+
+
 def train_model(
     model: nn.Module,
     train_loader: DataLoader[Any],
@@ -555,6 +579,13 @@ def train_model(
                 print(
                     f"[{options.experiment_name}] reusing completed checkpoint "
                     f"from epoch {final_payload['best_epoch']}"
+                )
+                _print_chosen_checkpoint(
+                    experiment_name=options.experiment_name,
+                    best_epoch=int(final_payload["best_epoch"]),
+                    total_epochs=options.epochs,
+                    best_validation=best_validation,
+                    checkpoint_path=final_path,
                 )
                 return {
                     "model": model,
@@ -802,6 +833,13 @@ def train_model(
         key: value for key, value in best_validation.items() if key != "outputs"
     }
     save_checkpoint(final_path, final_payload)
+    _print_chosen_checkpoint(
+        experiment_name=options.experiment_name,
+        best_epoch=best_epoch,
+        total_epochs=options.epochs,
+        best_validation=best_validation,
+        checkpoint_path=final_path,
+    )
     return {
         "model": model,
         "history": history,

@@ -39,7 +39,7 @@ not be done.
 | `true_class_probability` | Score assigned to the correct label |
 | `top3` | Best three classes as `class:score` separated by `\|` |
 | `temperature` | Temperature applied to the logits. Only the production model uses its validation-fitted temperature; every other model uses 1.0 because no calibration was fitted for it |
-| `below_official_review_threshold` | `confidence` under the production review threshold (0.7809). This is the *production* threshold shown for reference, **not** a per-model calibrated threshold |
+| `below_official_review_threshold` | `confidence` under the production review threshold (0.8026). This is the *production* threshold shown for reference, **not** a per-model calibrated threshold |
 
 ## Integrity check
 

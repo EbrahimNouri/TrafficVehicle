@@ -19,7 +19,7 @@
     "minimum_image_side": 64,
     "cnn_image_size": 128,
     "transfer_image_size": 224,
-    "epochs": 80,
+    "epochs": 100,
     "batch_size": 256,
     "transfer_batch_size": 32,
     "learning_rate": 0.001,
@@ -903,16 +903,17 @@
     "config.py": "4e48efc62e00366b3f902509b800e791a293af351469e395819e017838451e59",
     "curation.py": "ab4ca40562417661df88a8370a49811c2125edd113964a681fc4917c8dfe34ac",
     "data.py": "50c3d7dfd78a7818a5d80a0ca9763da59fc2c0bee64fa800e9608d51ac91ced5",
-    "engine.py": "b7c6f02cab892f77f1391012949d8ae48de9be8221c06a3709df7cae4b4ea597",
+    "engine.py": "53149476948ca46a7960ff659a61bc945fe90e6ef89b0afebf55742805ec3122",
     "locking.py": "f0379e435b3828be214653610f454b6b80adca837f19d94e78f0ad1f7aed667a",
     "metrics.py": "59cdf899bebb0fb7fb43ec030ca4bb729c9b06fc8c1275c195622be377ae73f7",
     "models.py": "db0ae82c0cbe545020b1299ad2f606e1ea04b61cf26c2502eca6b88d71496edc",
     "paths.py": "ae2946fa879f9a8ea6706161e36124422f8fa7af8404006e237c44a6af4ab5e3",
-    "pipeline.py": "b8ac901902aa8caeced35bb98fd4d8442234167e731f2c94a46b2d8d8c4bfb31",
+    "pipeline.py": "08172308559208d55242b130693065f8485c527fd5e38fd04fa3f5d7d0f85c0b",
     "plotting.py": "a2b725928cf15eeb2a945a2e9705e19af23ced6442caa7a75dfd679d06d3eff8",
     "predict.py": "39b2e0c05f346331c91fca9ea1729e5a75c15eb0b088de7f49d349044e322f62",
+    "promotion.py": "bcb1070aa5dfaf29fce7f96096f420403bac9822317aa0fdee0128f16998f87b",
     "reporting.py": "6dc000020278f8d550ad7b5a4845063d6cd407dc0b6a085540c4c4c6b2b4edc2",
     "utils.py": "77b7372733209d994862c91513b8b6b6f3e8ecb719ee47054e9c47a29dda5752"
   },
-  "run_fingerprint": "d7662d02c684f1b999929498fba913d366b02ed7ed040392119100582a3f4da0"
+  "run_fingerprint": "82f8e307d65e670f682765d98ca2258a9f3b3bd24965baa2308e4ecefbd3c767"
 }

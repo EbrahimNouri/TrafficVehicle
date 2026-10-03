@@ -30,9 +30,10 @@ from traffic_classifier.engine import (
     _compatible_checkpoint,
     _one_hot_if_needed,
     _rolling_checkpoint_path,
+    train_model,
 )
 from traffic_classifier.locking import ProjectRunLock, RunLockError
-from traffic_classifier.models import TrafficCNN, parameter_report
+from traffic_classifier.models import TrafficCNN, build_model, parameter_report
 from traffic_classifier.pipeline import experiment_specs, skipped_unclean_result
 from traffic_classifier.promotion import (
     BEST_MODEL_NAME,
@@ -691,3 +692,95 @@ def test_verify_complete_defaults_to_the_declared_experiment_specs() -> None:
     incomplete.pop("resnet18_fine_tuning")
     with pytest.raises(RuntimeError, match="resnet18_fine_tuning"):
         verify_complete(incomplete, run_fingerprint="fp")
+
+
+def test_training_end_prints_the_chosen_best_checkpoint(
+    tmp_path: Path, capsys: Any
+) -> None:
+    pixels = np.zeros((32, 32, 3), dtype=np.uint8)
+    root = tmp_path / "data"
+    for label in ("alpha", "beta"):
+        class_dir = root / label
+        class_dir.mkdir(parents=True)
+        for index in range(4):
+            Image.fromarray(pixels + index * 10).save(class_dir / f"{index}.png")
+
+    dataset = datasets.ImageFolder(root, transform=transforms.ToTensor())
+    classes = list(dataset.classes)
+    train_loader = make_loader(
+        dataset, range(len(dataset)), training=True, batch_size=2, seed=1
+    )
+    validation_loader = make_loader(
+        dataset, range(len(dataset)), training=False, batch_size=2, seed=1
+    )
+    options = TrainOptions(
+        experiment_name="demo",
+        architecture="cnn",
+        epochs=2,
+        resume=False,
+        checkpoint_path=str(tmp_path / "demo.pt"),
+    )
+    model = build_model("cnn", len(classes))
+
+    capsys.readouterr()
+    train_model(
+        model,
+        train_loader,
+        validation_loader,
+        options,
+        class_names=classes,
+        device=torch.device("cpu"),
+    )
+    output = capsys.readouterr().out
+
+    assert "training end: best checkpoint chosen at epoch" in output
+    assert "by validation macro-F1" in output
+    assert f"best checkpoint: {(tmp_path / 'demo.pt').as_posix()}" in output
+
+
+def test_reusing_a_completed_run_still_prints_the_chosen_checkpoint(
+    tmp_path: Path, capsys: Any
+) -> None:
+    pixels = np.zeros((32, 32, 3), dtype=np.uint8)
+    root = tmp_path / "data"
+    for label in ("alpha", "beta"):
+        class_dir = root / label
+        class_dir.mkdir(parents=True)
+        for index in range(4):
+            Image.fromarray(pixels + index * 10).save(class_dir / f"{index}.png")
+
+    dataset = datasets.ImageFolder(root, transform=transforms.ToTensor())
+    classes = list(dataset.classes)
+    loader = make_loader(
+        dataset, range(len(dataset)), training=True, batch_size=2, seed=1
+    )
+    validation_loader = make_loader(
+        dataset, range(len(dataset)), training=False, batch_size=2, seed=1
+    )
+    checkpoint = tmp_path / "demo.pt"
+    options = TrainOptions(
+        experiment_name="demo",
+        architecture="cnn",
+        epochs=2,
+        resume=True,
+        checkpoint_path=str(checkpoint),
+    )
+    model = build_model("cnn", len(classes))
+
+    train_model(
+        model, loader, validation_loader, options,
+        class_names=classes, device=torch.device("cpu"),
+    )
+    assert checkpoint.exists()
+
+    # A second call resumes the completed checkpoint and must still announce it.
+    capsys.readouterr()
+    train_model(
+        model, loader, validation_loader, options,
+        class_names=classes, device=torch.device("cpu"),
+    )
+    output = capsys.readouterr().out
+
+    assert "reusing completed checkpoint" in output
+    assert "training end: best checkpoint chosen at epoch" in output
+    assert f"best checkpoint: {checkpoint.as_posix()}" in output

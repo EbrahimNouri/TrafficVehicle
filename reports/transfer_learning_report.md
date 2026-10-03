@@ -1,11 +1,11 @@
 # ResNet18 Transfer Learning
 
-Both transfer experiments retain the standard ImageNet ResNet18 (`conv1` and `maxpool` unchanged), ImageNet normalization, and resize/crop geometry. The training set has only 320 images, so validation—not test—controls the comparison. Total training budget is equal at 80 epochs. Recorded stages are feature extraction (head=80) and fine-tuning (head=27, layer4=53); the latter uses a smaller backbone learning rate after the head-only stage. Frozen BatchNorm statistics remain in evaluation mode.
+Both transfer experiments retain the standard ImageNet ResNet18 (`conv1` and `maxpool` unchanged), ImageNet normalization, and resize/crop geometry. The training set has only 320 images, so validation—not test—controls the comparison. Total training budget is equal at 100 epochs. Recorded stages are feature extraction (head=100) and fine-tuning (head=33, layer4=67); the latter uses a smaller backbone learning rate after the head-only stage. Frozen BatchNorm statistics remain in evaluation mode.
 
 | Strategy | Total params | Head-stage trainable | Head-stage frozen | % trainable | Initial LR groups | Best epoch |
 |---|---|---|---|---|---|---|
 | ResNet18 feature extraction | 11,180,616 | 4,104 | 11,176,512 | 0.04% | head=0.0005 | 54 |
-| ResNet18 fine-tuning | 11,180,616 | 4,104 | 11,176,512 | 0.04% | head=0.0005 | 68 |
+| ResNet18 fine-tuning | 11,180,616 | 4,104 | 11,176,512 | 0.04% | head=0.0005 | 97 |
 
 Fine-tuning stage details:
 
@@ -38,12 +38,12 @@ Fine-tuning stage details:
 | 25 | head | [{"group": "head", "lr": 0.0005}] | {"head": 4104, "total_trainable": 4104} |
 | 26 | head | [{"group": "head", "lr": 0.0005}] | {"head": 4104, "total_trainable": 4104} |
 | 27 | head | [{"group": "head", "lr": 0.0005}] | {"head": 4104, "total_trainable": 4104} |
-| 28 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
-| 29 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
-| 30 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
-| 31 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
-| 32 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
-| 33 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 28 | head | [{"group": "head", "lr": 0.0005}] | {"head": 4104, "total_trainable": 4104} |
+| 29 | head | [{"group": "head", "lr": 0.0005}] | {"head": 4104, "total_trainable": 4104} |
+| 30 | head | [{"group": "head", "lr": 0.0005}] | {"head": 4104, "total_trainable": 4104} |
+| 31 | head | [{"group": "head", "lr": 0.0005}] | {"head": 4104, "total_trainable": 4104} |
+| 32 | head | [{"group": "head", "lr": 0.0005}] | {"head": 4104, "total_trainable": 4104} |
+| 33 | head | [{"group": "head", "lr": 0.0005}] | {"head": 4104, "total_trainable": 4104} |
 | 34 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
 | 35 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
 | 36 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
@@ -91,8 +91,28 @@ Fine-tuning stage details:
 | 78 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
 | 79 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
 | 80 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 81 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 82 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 83 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 84 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 85 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 86 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 87 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 88 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 89 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 90 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 91 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 92 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 93 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 94 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 95 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 96 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 97 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 98 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 99 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
+| 100 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
 
 - Feature extraction validation macro-F1: **0.8543**.
-- Fine-tuning validation macro-F1: **0.9043**.
+- Fine-tuning validation macro-F1: **0.9147**.
 
 The best transfer configuration is selected on validation. Test is untouched until final model selection is recorded.

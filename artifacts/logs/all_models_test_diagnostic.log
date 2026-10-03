@@ -18,50 +18,50 @@ Locked official result (authoritative, not recomputed here)
 selected on        : validation macro-F1 only
 production model   : resnet18_fine_tuning
 test evaluations   : 1
-official test acc  : 0.8875
-official test F1   : 0.8874
-temperature        : 1.2000
-review threshold   : 0.7809
+official test acc  : 0.8950
+official test F1   : 0.8939
+temperature        : 1.4600
+review threshold   : 0.8026
 
 class mapping verified identical across 13 experiments
 checkpoint source: artifacts/best_checkpoints (hash-verified against manifest.json)
 promoted winner  : resnet18_fine_tuning
 selection rule   : highest validation macro-F1 among cross-entropy experiments, excluding the imbalance category; test scores are never used
-evaluated avg_pool                     test macro-F1 0.7884 acc 0.7925 errors 83/400 mean-confidence 0.8407
-evaluated bce_loss                     test macro-F1 0.8158 acc 0.8150 errors 74/400 mean-confidence 0.7714
-evaluated best_regularized             test macro-F1 0.8039 acc 0.8025 errors 79/400 mean-confidence 0.7874
-evaluated cnn_baseline                 test macro-F1 0.8321 acc 0.8300 errors 68/400 mean-confidence 0.8747
-evaluated dropout_0_3                  test macro-F1 0.8135 acc 0.8125 errors 75/400 mean-confidence 0.8721
-evaluated dropout_0_5                  test macro-F1 0.7933 acc 0.7925 errors 83/400 mean-confidence 0.8598
+evaluated avg_pool                     test macro-F1 0.8020 acc 0.8050 errors 78/400 mean-confidence 0.8718
+evaluated bce_loss                     test macro-F1 0.8215 acc 0.8200 errors 72/400 mean-confidence 0.8023
+evaluated best_regularized             test macro-F1 0.8311 acc 0.8300 errors 68/400 mean-confidence 0.8858
+evaluated cnn_baseline                 test macro-F1 0.8311 acc 0.8300 errors 68/400 mean-confidence 0.8858
+evaluated dropout_0_3                  test macro-F1 0.8274 acc 0.8275 errors 69/400 mean-confidence 0.8851
+evaluated dropout_0_5                  test macro-F1 0.8210 acc 0.8225 errors 71/400 mean-confidence 0.9003
 evaluated imbalanced_balanced          test macro-F1 0.7175 acc 0.7275 errors 109/400 mean-confidence 0.8470
-evaluated imbalanced_standard          test macro-F1 0.6966 acc 0.7050 errors 118/400 mean-confidence 0.8066
-evaluated no_augmentation              test macro-F1 0.7548 acc 0.7550 errors 98/400 mean-confidence 0.8043
+evaluated imbalanced_standard          test macro-F1 0.7255 acc 0.7325 errors 107/400 mean-confidence 0.8345
+evaluated no_augmentation              test macro-F1 0.7751 acc 0.7775 errors 89/400 mean-confidence 0.8343
 evaluated resnet18_feature_extraction  test macro-F1 0.8207 acc 0.8225 errors 71/400 mean-confidence 0.6379
-evaluated resnet18_fine_tuning         test macro-F1 0.8874 acc 0.8875 errors 45/400 mean-confidence 0.9091
-evaluated step_lr                      test macro-F1 0.8190 acc 0.8200 errors 72/400 mean-confidence 0.8122
+evaluated resnet18_fine_tuning         test macro-F1 0.8939 acc 0.8950 errors 42/400 mean-confidence 0.9154
+evaluated step_lr                      test macro-F1 0.8265 acc 0.8250 errors 70/400 mean-confidence 0.8506
 evaluated weight_decay_1e-4            test macro-F1 0.7928 acc 0.7950 errors 82/400 mean-confidence 0.8461
 
-integrity check passed: recomputed resnet18_fine_tuning test macro-F1 0.887431 matches the locked 0.887431
+integrity check passed: recomputed resnet18_fine_tuning test macro-F1 0.893895 matches the locked 0.893895
 per-image coverage check passed: 5200 rows = 13 models x 400 test images
-review-flag cross-check: official test review rate 0.1675 vs recomputed 0.1675 (difference 0.0000)
+review-flag cross-check: official test review rate 0.1450 vs recomputed 0.1450 (difference 0.0000)
 
 All experiments ranked by test macro-F1 (diagnostic only)
 ---------------------------------------------------------
  test F1  test acc   val F1    conf   err   ep  experiment
 ----------------------------------------------------------
-  0.8874    0.8875   0.9043  0.9091    45   68  resnet18_fine_tuning *
-  0.8321    0.8300   0.8458  0.8747    68   72  cnn_baseline  
+  0.8939    0.8950   0.9147  0.9154    42   97  resnet18_fine_tuning *
+  0.8311    0.8300   0.8796  0.8858    68  100  best_regularized  
+  0.8311    0.8300   0.8796  0.8858    68  100  cnn_baseline  
+  0.8274    0.8275   0.8718  0.8851    69  100  dropout_0_3  
+  0.8265    0.8250   0.8641  0.8506    70   99  step_lr  
+  0.8215    0.8200   0.9017  0.8023    72   96  bce_loss  
+  0.8210    0.8225   0.8732  0.9003    71   99  dropout_0_5  
   0.8207    0.8225   0.8543  0.6379    71   54  resnet18_feature_extraction  
-  0.8190    0.8200   0.8525  0.8122    72   76  step_lr  
-  0.8158    0.8150   0.8602  0.7714    74   68  bce_loss  
-  0.8135    0.8125   0.8529  0.8721    75   76  dropout_0_3  
-  0.8039    0.8025   0.8364  0.7874    79   69  best_regularized  
-  0.7933    0.7925   0.8490  0.8598    83   63  dropout_0_5  
+  0.8020    0.8050   0.8268  0.8718    78   83  avg_pool  
   0.7928    0.7950   0.8561  0.8461    82   64  weight_decay_1e-4  
-  0.7884    0.7925   0.8165  0.8407    83   75  avg_pool  
-  0.7548    0.7550   0.8214  0.8043    98   49  no_augmentation  
+  0.7751    0.7775   0.8224  0.8343    89   91  no_augmentation  
+  0.7255    0.7325   0.7363  0.8345   107  100  imbalanced_standard  
   0.7175    0.7275   0.6979  0.8470   109   78  imbalanced_balanced  
-  0.6966    0.7050   0.6938  0.8066   118   71  imbalanced_standard  
 
 * = official production model (selected on validation, test used once)
 conf = mean confidence of the chosen class over all 400 test images
@@ -73,12 +73,12 @@ The two imbalance arms were trained on a deliberately reduced subset (14 images 
 Confidence of the chosen class, production model
 ------------------------------------------------
 images scored      : 400
-mean confidence    : 0.9091
-median confidence  : 0.9779
-min confidence     : 0.3252
-mean margin        : 0.8455
-below review threshold 0.7809 : 67 images (16.75%)
-top confusion pair : kamyun/kamyunet (0.300)
+mean confidence    : 0.9154
+median confidence  : 0.9827
+min confidence     : 0.3766
+mean margin        : 0.8570
+below review threshold 0.8026 : 58 images (14.50%)
+top confusion pair : kamyun/kamyunet (0.240)
 
 Written
 -------
