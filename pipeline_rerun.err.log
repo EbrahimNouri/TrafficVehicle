@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "C:\Users\viroo\PycharmProjects\TrafficVehicle\main.py", line 10, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\viroo\PycharmProjects\TrafficVehicle\traffic_classifier\pipeline.py", line 1248, in main
+    run_project(
+    ~~~~~~~~~~~^
+        args.config,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        transfer_size_override=args.transfer_size,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\viroo\PycharmProjects\TrafficVehicle\traffic_classifier\pipeline.py", line 1233, in run_project
+    return _run_project_impl(
+        config_path,
+    ...<2 lines>...
+        transfer_size_override=transfer_size_override,
+    )
+  File "C:\Users\viroo\PycharmProjects\TrafficVehicle\traffic_classifier\pipeline.py", line 987, in _run_project_impl
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: A frozen-test result already exists for a different model, protocol, or evidence hash. Refusing to score test again implicitly; use a new artifacts directory or pass --force only for an intentional new evaluation.

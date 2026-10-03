@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "C:\Users\viroo\PycharmProjects\TrafficVehicle\traffic_classifier\locking.py", line 30, in __enter__
+    if self._handle.read(1) == b"":
+       ~~~~~~~~~~~~~~~~~^^^
+PermissionError: [Errno 13] Permission denied
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\viroo\PycharmProjects\TrafficVehicle\main.py", line 10, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\viroo\PycharmProjects\TrafficVehicle\traffic_classifier\pipeline.py", line 1248, in main
+    run_project(
+    ~~~~~~~~~~~^
+        args.config,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        transfer_size_override=args.transfer_size,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\viroo\PycharmProjects\TrafficVehicle\traffic_classifier\pipeline.py", line 1232, in run_project
+    with ProjectRunLock(config.artifacts_dir):
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\viroo\PycharmProjects\TrafficVehicle\traffic_classifier\locking.py", line 48, in __enter__
+    raise RunLockError(
+    ...<2 lines>...
+    ) from error
+traffic_classifier.locking.RunLockError: Artifacts directory is already locked: artifacts. Owner: unknown

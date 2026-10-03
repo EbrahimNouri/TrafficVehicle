@@ -1,0 +1,27 @@
+================================================================================
+POST-HOC DIAGNOSTIC - NOT A SELECTION STEP
+================================================================================
+Every trained experiment below is scored on dataset/test for analysis only.
+The production model was already chosen on validation macro-F1, and its single
+official test evaluation is already recorded and locked. Nothing printed here
+changes that decision. Do not use these numbers to choose a different model.
+================================================================================
+
+config        : C:\Users\viroo\PycharmProjects\TrafficVehicle\configs\default.json
+artifacts dir : artifacts
+device        : cuda
+
+Locked official result (authoritative, not recomputed here)
+-----------------------------------------------------------
+selected on        : validation macro-F1 only
+production model   : resnet18_fine_tuning
+test evaluations   : 1
+official test acc  : 0.8875
+official test F1   : 0.8872
+temperature        : 1.5250
+review threshold   : 0.8085
+
+class mapping verified identical across 3 experiments
+evaluated cnn_baseline                 test macro-F1 0.8458 acc 0.8450 errors 62/400
+evaluated dropout_0_3                  test macro-F1 0.8156 acc 0.8175 errors 73/400
+evaluated no_augmentation              test macro-F1 0.7691 acc 0.7725 errors 91/400
