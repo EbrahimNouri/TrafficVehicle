@@ -32,19 +32,19 @@ Lowest-class analysis for each meaningful case:
 
 | Experiment | Category | Accuracy | Macro P | Macro R | Macro F1 | Best epoch | Seconds |
 |---|---|---|---|---|---|---|---|
-| CNN baseline | ablation | 0.8614 | 0.8750 | 0.8605 | 0.8635 | 73 | 230.8 |
-| No augmentation | ablation | 0.8614 | 0.8602 | 0.8611 | 0.8592 | 61 | 162.9 |
-| Dropout p=0.3 | ablation | 0.8675 | 0.8761 | 0.8680 | 0.8679 | 64 | 232.4 |
-| Dropout p=0.5 | ablation | 0.8735 | 0.8739 | 0.8694 | 0.8703 | 70 | 207.5 |
-| Average pooling | ablation | 0.8313 | 0.8472 | 0.8264 | 0.8328 | 80 | 206.4 |
-| Weight decay 1e-4 | ablation | 0.8735 | 0.8823 | 0.8697 | 0.8716 | 78 | 231.0 |
-| StepLR | ablation | 0.8313 | 0.8357 | 0.8344 | 0.8337 | 62 | 217.4 |
-| BCEWithLogitsLoss | ablation | 0.8855 | 0.8868 | 0.8798 | 0.8818 | 80 | 226.7 |
-| Best regularized + scheduled | main | 0.8554 | 0.8646 | 0.8484 | 0.8529 | 63 | 238.7 |
-| Imbalanced + standard batches | imbalance | 0.7590 | 0.7659 | 0.7579 | 0.7568 | 70 | 264.4 |
-| Imbalanced + balanced batches | imbalance | 0.6928 | 0.7417 | 0.6953 | 0.6930 | 65 | 275.6 |
-| ResNet18 feature extraction | transfer | 0.8614 | 0.8818 | 0.8575 | 0.8606 | 45 | 203.1 |
-| ResNet18 fine-tuning | transfer | 0.9157 | 0.9223 | 0.9153 | 0.9165 | 80 | 209.7 |
+| CNN baseline | ablation | 0.8614 | 0.8750 | 0.8605 | 0.8635 | 73 | 205.2 |
+| No augmentation | ablation | 0.8614 | 0.8602 | 0.8611 | 0.8592 | 61 | 152.3 |
+| Dropout p=0.3 | ablation | 0.8675 | 0.8761 | 0.8680 | 0.8679 | 64 | 205.8 |
+| Dropout p=0.5 | ablation | 0.8735 | 0.8739 | 0.8694 | 0.8703 | 70 | 202.6 |
+| Average pooling | ablation | 0.8313 | 0.8472 | 0.8264 | 0.8328 | 80 | 198.3 |
+| Weight decay 1e-4 | ablation | 0.8735 | 0.8823 | 0.8697 | 0.8716 | 78 | 207.6 |
+| StepLR | ablation | 0.8313 | 0.8357 | 0.8344 | 0.8337 | 62 | 222.3 |
+| BCEWithLogitsLoss | ablation | 0.8855 | 0.8868 | 0.8798 | 0.8818 | 80 | 211.9 |
+| Best regularized + scheduled | main | 0.8554 | 0.8646 | 0.8484 | 0.8529 | 63 | 214.5 |
+| Imbalanced + standard batches | imbalance | 0.7590 | 0.7659 | 0.7579 | 0.7568 | 70 | 254.3 |
+| Imbalanced + balanced batches | imbalance | 0.6928 | 0.7417 | 0.6953 | 0.6930 | 65 | 245.4 |
+| ResNet18 feature extraction | transfer | 0.8614 | 0.8818 | 0.8575 | 0.8606 | 45 | 179.7 |
+| ResNet18 fine-tuning | transfer | 0.9157 | 0.9223 | 0.9153 | 0.9165 | 80 | 186.7 |
 
 ## Frozen test result
 
