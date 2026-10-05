@@ -16,9 +16,9 @@ not be done.
 | --- | --- |
 | `summary.json` | Full metrics per experiment, plus the integrity check and protocol echo |
 | `summary.csv` | One row per experiment, ranked by test macro-F1 |
-| `per_image_predictions.csv` | Every model x every test image (5200 rows) |
+| `per_image_predictions.csv` | Every model x every test image (832 rows) |
 | `per_image_predictions.jsonl` | The same rows as one JSON object per line |
-| `per_model/<experiment>.csv` | One file per experiment (400 rows each) |
+| `per_model/<experiment>.csv` | One file per experiment (64 rows each) |
 | `confidence_by_true_class.csv` | Confidence and accuracy per true class |
 | `README.md` | This file |
 
@@ -39,7 +39,7 @@ not be done.
 | `true_class_probability` | Score assigned to the correct label |
 | `top3` | Best three classes as `class:score` separated by `\|` |
 | `temperature` | Temperature applied to the logits. Only the production model uses its validation-fitted temperature; every other model uses 1.0 because no calibration was fitted for it |
-| `below_official_review_threshold` | `confidence` under the production review threshold (0.8180). This is the *production* threshold shown for reference, **not** a per-model calibrated threshold |
+| `below_official_review_threshold` | `confidence` under the production review threshold (0.8315). This is the *production* threshold shown for reference, **not** a per-model calibrated threshold |
 
 ## Integrity check
 
