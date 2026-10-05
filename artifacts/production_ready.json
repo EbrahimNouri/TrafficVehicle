@@ -1,10 +1,10 @@
 {
-  "run_fingerprint": "88505634989f7c6839c623d9f1a0c0901d87587873615ca74fc0077db06ac9a2",
+  "run_fingerprint": "adafe9160834a6984e54b9376da2ab8e87e43cd972151239176d6a454ee89076",
   "selected_experiment": "resnet18_fine_tuning",
   "final_checkpoint": "artifacts/checkpoints/final_model.pt",
-  "final_checkpoint_sha256": "f39fa77ad2e53fe582af62e1201626fb0e4625a63db630329469757678c77eeb",
-  "source_checkpoint_sha256": "f639b5b1c2c11324a442d24b5ec638222f175b28f7b586d2294016d82cb8cc16",
-  "test_outputs_sha256": "6e299f6e2d792b61f9167ff3fa0b42c63cb78ee73ac3c98598c48d010a972846",
-  "test_errors_sha256": "31c1d1a2e6292e60636faece4d283f2c2e17682e3d939f8031148bdb4de82b49",
+  "final_checkpoint_sha256": "5f42e3df45eb5d546dca689b1bfcba87b12005dec4c07db4547fba2d223b136d",
+  "source_checkpoint_sha256": "a5dc3e6878d4e3294bcb4ecea1d150fd5304ddf4f9714fa0d06d78156ac07e31",
+  "test_outputs_sha256": "bcf38b177cd97fcddc9b0c8790bafe4a29ebc1c5a41be674b90d698fd6e15434",
+  "test_errors_sha256": "e12247ee12f960dcd2f04d3a7c6e4d3577c829ccd15c5c18514301a5dd3ff32c",
   "published_after_reports": true
 }

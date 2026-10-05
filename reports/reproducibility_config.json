@@ -15,7 +15,7 @@
   "data_dir": "dataset",
   "device": "auto",
   "download_pretrained": true,
-  "epochs": 200,
+  "epochs": 300,
   "imbalanced_classes": [
     "kamyun",
     "minibus",

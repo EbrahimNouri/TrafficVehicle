@@ -6,15 +6,15 @@
 - Each split is loaded separately; `unclean` is never merged into training.
 - The audit computes both encoded-file SHA-256 and a canonical decoded, EXIF-oriented RGB pixel hash. The latter is encoding-independent by design. In this supplied copy both methods identify the same 0 duplicate groups, but the canonical result remains the authoritative leakage check.
 - Files smaller than 64 pixels on either side, unreadable files, unsupported formats, and extreme aspect ratios would be flagged.
-- Frozen train/test exclusions: **8** (Keep the frozen-test copy; quarantine the pixel-identical train copy to `dataset/quarantine/split_duplicates/`.). Current train: **826**; original test: **400**.
+- Frozen train/test exclusions: **8** (Keep the frozen-test copy; quarantine the pixel-identical train copy to `dataset/quarantine/split_duplicates/`.). Current train: **1162**; original test: **64**.
 
 ## Original splits
 
 | Split | Images | Class counts | Width range | Height range | Unique pixel hashes |
 |---|---|---|---|---|---|
-| train | 826 | ambulance=85, autobus=98, kamyun=95, kamyunet=103, minibus=96, savari=106, taxi=95, vanet=148 | 120–545 | 156–938 | 826 |
-| test | 400 | ambulance=50, autobus=50, kamyun=50, kamyunet=50, minibus=50, savari=50, taxi=50, vanet=50 | 126–508 | 166–881 | 400 |
-| unclean | 0 | - | - | - | 0 |
+| train | 1162 | ambulance=127, autobus=140, kamyun=137, kamyunet=145, minibus=138, savari=148, taxi=137, vanet=190 | 120–545 | 156–938 | 1162 |
+| test | 64 | ambulance=8, autobus=8, kamyun=8, kamyunet=8, minibus=8, savari=8, taxi=8, vanet=8 | 150–508 | 192–450 | 64 |
+| unclean | 3110 | ambulance=276, autobus=371, kamyun=396, kamyunet=359, minibus=315, savari=400, taxi=393, vanet=600 | 117–666 | 166–970 | 3110 |
 
 Quality findings:
 
@@ -22,12 +22,12 @@ Quality findings:
 |---|---|
 | none | 0 |
 
-All 1,226 source files decode successfully, use JPEG format, and have the same eight classes except for `unclean/neysan`. Dimensions vary substantially (as expected for traffic-camera crops), but no image is unusually small under the declared rule. Statistical 1.5×IQR width/height review counts are recorded per split in `summary.json`; these are review flags, not automatic exclusions.
+All 4,336 source files decode successfully, use JPEG format, and have the same eight classes except for `unclean/neysan`. Dimensions vary substantially (as expected for traffic-camera crops), but no image is unusually small under the declared rule. Statistical 1.5×IQR width/height review counts are recorded per split in `summary.json`; these are review flags, not automatic exclusions.
 
 ## Canonical-pixel duplicate findings
 
-- Encoded-file SHA-256 unique values: **1,226**; duplicate groups: **0**.
-- Canonical RGB pixel unique values: **1,226**; duplicate groups: **0**; extra copies: **0**.
+- Encoded-file SHA-256 unique values: **4,336**; duplicate groups: **0**.
+- Canonical RGB pixel unique values: **4,336**; duplicate groups: **0**; extra copies: **0**.
 - Cross-split groups: **0**; label conflicts: **0**; train–test overlap groups: **0** (the workflow fails closed if nonzero).
 
 | Group | Members | Conflict? |
@@ -39,12 +39,20 @@ Filename equality alone was not used. For example, `214844236.jpg` is a pixel-id
 
 | Dataset | Excluded | Clean retained |
 |---|---|---|
-| train | 8 | 826 |
-| test (frozen) | 0 | 400 |
-| unclean | 0 | 0 |
+| train | 8 | 1162 |
+| test (frozen) | 0 | 64 |
+| unclean | 0 | 3110 |
 
 Retained `unclean` class counts: | Class | Count |
-|---|---|.
+|---|---|
+| ambulance | 276 |
+| autobus | 371 |
+| kamyun | 396 |
+| kamyunet | 359 |
+| minibus | 315 |
+| savari | 400 |
+| taxi | 393 |
+| vanet | 600 |.
 
 Every exclusion is recorded in `artifacts/audit/cleaned_unclean_exclusions.json`. All exclusions are duplicate copies inside `unclean`; none belongs to the original train or test split. This avoids leakage without silently changing the frozen evaluation sample.
 
