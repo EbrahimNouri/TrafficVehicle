@@ -8,8 +8,8 @@ version = "1.0.0"
 description = "Leakage-aware CNN and transfer-learning traffic vehicle classifier"
 requires-python = ">=3.11"
 dependencies = [
-  "torch>=2.5",
-  "torchvision>=0.20",
+  "torch==2.14.1",
+  "torchvision==0.29.1",
   "numpy>=1.26",
   "pandas>=2.0",
   "scikit-learn>=1.4",
@@ -28,3 +28,11 @@ include = ["traffic_classifier*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu130" }
+torchvision = { index = "pytorch-cu130" }
