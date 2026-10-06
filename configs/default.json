@@ -17,7 +17,7 @@
   "minimum_image_side": 64,
   "cnn_image_size": 128,
   "transfer_image_size": 224,
-  "epochs": 300,
+  "epochs": 200,
   "batch_size": 256,
   "transfer_batch_size": 32,
   "learning_rate": 0.001,

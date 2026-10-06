@@ -2,28 +2,27 @@
   "mode": "move",
   "source_root": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/unclean",
   "destination_root": "C:/Users/viroo/PycharmProjects/TrafficVehicle/dataset/cleaned_unclean",
-  "review_threshold": 0.8314874768257141,
+  "review_threshold": 0.8186656832695007,
   "selection_rule": "source label is a known class, model prediction matches it, and confidence is at or above the validation review threshold",
-  "rows_considered": 3110,
-  "rows_selected": 2386,
-  "rows_transferred": 2386,
+  "rows_considered": 724,
+  "rows_selected": 57,
+  "rows_transferred": 57,
   "rejection_counts": {
-    "confidence_below_review_threshold": 475,
-    "model_disagrees_with_label": 249
+    "confidence_below_review_threshold": 410,
+    "model_disagrees_with_label": 257
   },
   "skipped": {},
   "class_counts": {
-    "ambulance": 224,
-    "autobus": 329,
-    "kamyun": 251,
-    "kamyunet": 193,
-    "minibus": 247,
-    "savari": 306,
-    "taxi": 345,
-    "vanet": 491
+    "ambulance": 3,
+    "autobus": 10,
+    "kamyun": 2,
+    "kamyunet": 16,
+    "minibus": 9,
+    "savari": 10,
+    "vanet": 7
   },
   "verification": {
-    "transferred": 2386,
+    "transferred": 57,
     "missing_at_destination": [],
     "verified": true
   },

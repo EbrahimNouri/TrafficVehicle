@@ -1,9 +1,9 @@
 {
   "dataset_root": "dataset",
   "minimum_image_side": 64,
-  "total_images": 4336,
-  "total_raw_unique_hashes": 4336,
-  "total_canonical_pixel_unique_hashes": 4336,
+  "total_images": 1950,
+  "total_raw_unique_hashes": 1950,
+  "total_canonical_pixel_unique_hashes": 1950,
   "raw_file_duplicate_groups": 0,
   "canonical_duplicate_groups": 0,
   "canonical_duplicate_extra_copies": 0,
@@ -131,62 +131,62 @@
       "issue_counts": {}
     },
     "unclean": {
-      "images": 3110,
+      "images": 724,
       "class_counts": {
-        "ambulance": 276,
-        "autobus": 371,
-        "kamyun": 396,
-        "kamyunet": 359,
-        "minibus": 315,
-        "savari": 400,
-        "taxi": 393,
-        "vanet": 600
+        "ambulance": 52,
+        "autobus": 42,
+        "kamyun": 145,
+        "kamyunet": 166,
+        "minibus": 68,
+        "savari": 94,
+        "taxi": 48,
+        "vanet": 109
       },
       "formats": {
-        "JPEG": 3110
+        "JPEG": 724
       },
       "width_quantiles": {
-        "min": 117.0,
-        "q25": 195.0,
-        "median": 247.0,
-        "q75": 301.0,
-        "max": 666.0
+        "min": 123.0,
+        "q25": 198.0,
+        "median": 257.0,
+        "q75": 303.25,
+        "max": 548.0
       },
       "height_quantiles": {
         "min": 166.0,
         "q25": 252.0,
-        "median": 276.0,
-        "q75": 367.75,
-        "max": 970.0
+        "median": 280.5,
+        "q75": 368.0,
+        "max": 956.0
       },
       "area_quantiles": {
-        "min": 20160.0,
-        "q25": 48906.0,
-        "median": 65929.0,
-        "q75": 107972.25,
-        "max": 562104.0
+        "min": 20664.0,
+        "q25": 49558.5,
+        "median": 74504.0,
+        "q75": 109103.5,
+        "max": 441672.0
       },
       "iqr_dimension_review": {
         "width_bounds": [
-          36.0,
-          460.0
+          40.125,
+          461.125
         ],
         "height_bounds": [
-          78.375,
-          541.375
+          78.0,
+          542.0
         ],
-        "width_outlier_count": 10,
-        "height_outlier_count": 67
+        "width_outlier_count": 3,
+        "height_outlier_count": 23
       },
       "aspect_ratio_quantiles": {
-        "min": 0.35988200589970504,
+        "min": 0.42839951865222625,
         "q25": 0.75,
-        "median": 0.7841530054644809,
-        "q75": 0.8596656383268306,
-        "max": 1.4813278008298756
+        "median": 0.7840909090909091,
+        "q75": 0.8722191660248653,
+        "max": 1.3596059113300492
       },
-      "unique_raw_sha256": 3110,
-      "unique_pixel_sha256": 3110,
+      "unique_raw_sha256": 724,
+      "unique_pixel_sha256": 724,
       "issue_counts": {}
     }
   },
@@ -197,18 +197,18 @@
     "clean_counts": {
       "train": 1162,
       "test": 64,
-      "unclean": 3110,
-      "unclean_known": 3110,
+      "unclean": 724,
+      "unclean_known": 724,
       "unclean_neysan": 0,
       "unclean_class_counts": {
-        "ambulance": 276,
-        "autobus": 371,
-        "kamyun": 396,
-        "kamyunet": 359,
-        "minibus": 315,
-        "savari": 400,
-        "taxi": 393,
-        "vanet": 600
+        "ambulance": 52,
+        "autobus": 42,
+        "kamyun": 145,
+        "kamyunet": 166,
+        "minibus": 68,
+        "savari": 94,
+        "taxi": 48,
+        "vanet": 109
       }
     },
     "split_duplicate_policy": "Keep the frozen-test copy; quarantine the pixel-identical train copy to `dataset/quarantine/split_duplicates/`.",

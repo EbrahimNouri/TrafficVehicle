@@ -19,7 +19,7 @@
     "minimum_image_side": 64,
     "cnn_image_size": 128,
     "transfer_image_size": 224,
-    "epochs": 300,
+    "epochs": 200,
     "batch_size": 256,
     "transfer_batch_size": 32,
     "learning_rate": 0.001,
@@ -1231,7 +1231,7 @@
     1156,
     1161
   ],
-  "dataset_pixel_manifest_sha256": "bb36091b68303b6f8aa1e264fa531cc292f35de06a708716bc46a5b8464d88c7",
+  "dataset_pixel_manifest_sha256": "886ccaafa26a1d3dace6a8c10d6ed93a1d823dbac186cae72e4b110e881be6a4",
   "source_sha256": {
     "__init__.py": "b08b01fe677a991e087957188746717ca765dd1456119580518a3e265d008179",
     "__main__.py": "9bd485f3db26bf74f762c490cf81358bedd59edc1caf32d76717520ab7e280a9",
@@ -1251,5 +1251,5 @@
     "reporting.py": "6dc000020278f8d550ad7b5a4845063d6cd407dc0b6a085540c4c4c6b2b4edc2",
     "utils.py": "77b7372733209d994862c91513b8b6b6f3e8ecb719ee47054e9c47a29dda5752"
   },
-  "run_fingerprint": "adafe9160834a6984e54b9376da2ab8e87e43cd972151239176d6a454ee89076"
+  "run_fingerprint": "c1cbb6e56523d51d56e75fb82218e46d50ffa1491288fd64cccd058bee7c9b93"
 }

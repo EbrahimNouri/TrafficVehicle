@@ -18,49 +18,49 @@ Locked official result (authoritative, not recomputed here)
 selected on        : validation macro-F1 only
 production model   : resnet18_fine_tuning
 test evaluations   : 1
-official test acc  : 0.8594
-official test F1   : 0.8529
-temperature        : 2.6700
-review threshold   : 0.8315
+official test acc  : 0.9219
+official test F1   : 0.9198
+temperature        : 2.3750
+review threshold   : 0.8187
 
 class mapping verified identical across 13 experiments
 checkpoint source: artifacts/best_checkpoints (hash-verified against manifest.json)
 promoted winner  : resnet18_fine_tuning
 selection rule   : highest validation macro-F1 among cross-entropy experiments, excluding the imbalance category; test scores are never used
-evaluated avg_pool                     test macro-F1 0.8911 acc 0.8906 errors 7/64 mean-confidence 0.9624
-evaluated bce_loss                     test macro-F1 0.9213 acc 0.9219 errors 5/64 mean-confidence 0.8981
-evaluated best_regularized             test macro-F1 0.8949 acc 0.8906 errors 7/64 mean-confidence 0.9344
-evaluated cnn_baseline                 test macro-F1 0.9227 acc 0.9219 errors 5/64 mean-confidence 0.9652
-evaluated dropout_0_3                  test macro-F1 0.8486 acc 0.8438 errors 10/64 mean-confidence 0.9192
+evaluated avg_pool                     test macro-F1 0.8730 acc 0.8750 errors 8/64 mean-confidence 0.9212
+evaluated bce_loss                     test macro-F1 0.9213 acc 0.9219 errors 5/64 mean-confidence 0.8687
+evaluated best_regularized             test macro-F1 0.9064 acc 0.9062 errors 6/64 mean-confidence 0.9059
+evaluated cnn_baseline                 test macro-F1 0.8927 acc 0.8906 errors 7/64 mean-confidence 0.9275
+evaluated dropout_0_3                  test macro-F1 0.7988 acc 0.8125 errors 12/64 mean-confidence 0.9229
 evaluated dropout_0_5                  test macro-F1 0.8931 acc 0.8906 errors 7/64 mean-confidence 0.9335
 evaluated imbalanced_balanced          test macro-F1 0.7069 acc 0.7188 errors 18/64 mean-confidence 0.8190
-evaluated imbalanced_standard          test macro-F1 0.7704 acc 0.7812 errors 14/64 mean-confidence 0.8868
-evaluated no_augmentation              test macro-F1 0.7650 acc 0.7656 errors 15/64 mean-confidence 0.8685
+evaluated imbalanced_standard          test macro-F1 0.7382 acc 0.7500 errors 16/64 mean-confidence 0.8897
+evaluated no_augmentation              test macro-F1 0.7641 acc 0.7656 errors 15/64 mean-confidence 0.8569
 evaluated resnet18_feature_extraction  test macro-F1 0.8878 acc 0.8906 errors 7/64 mean-confidence 0.8335
-evaluated resnet18_fine_tuning         test macro-F1 0.8529 acc 0.8594 errors 9/64 mean-confidence 0.8965
-evaluated step_lr                      test macro-F1 0.8905 acc 0.8906 errors 7/64 mean-confidence 0.9321
-evaluated weight_decay_1e-4            test macro-F1 0.9200 acc 0.9219 errors 5/64 mean-confidence 0.9520
+evaluated resnet18_fine_tuning         test macro-F1 0.9198 acc 0.9219 errors 5/64 mean-confidence 0.8917
+evaluated step_lr                      test macro-F1 0.9064 acc 0.9062 errors 6/64 mean-confidence 0.9124
+evaluated weight_decay_1e-4            test macro-F1 0.8586 acc 0.8594 errors 9/64 mean-confidence 0.9040
 
-integrity check passed: recomputed resnet18_fine_tuning test macro-F1 0.852882 matches the locked 0.852882
+integrity check passed: recomputed resnet18_fine_tuning test macro-F1 0.919841 matches the locked 0.919841
 per-image coverage check passed: 832 rows = 13 models x 64 test images
-review-flag cross-check: official test review rate 0.2500 vs recomputed 0.2500 (difference 0.0000)
+review-flag cross-check: official test review rate 0.2188 vs recomputed 0.2188 (difference 0.0000)
 
 All experiments ranked by test macro-F1 (diagnostic only)
 ---------------------------------------------------------
  test F1  test acc   val F1    conf   err   ep  experiment
 ----------------------------------------------------------
-  0.9227    0.9219   0.8855  0.9652     5  259  cnn_baseline  
-  0.9213    0.9219   0.9016  0.8981     5  266  bce_loss  
-  0.9200    0.9219   0.8969  0.9520     5  245  weight_decay_1e-4  
-  0.8949    0.8906   0.9012  0.9344     7  284  best_regularized  
+  0.9213    0.9219   0.8803  0.8687     5  168  bce_loss  
+  0.9198    0.9219   0.9275  0.8917     5  200  resnet18_fine_tuning *
+  0.9064    0.9062   0.8994  0.9059     6  173  best_regularized  
+  0.9064    0.9062   0.8896  0.9124     6  157  step_lr  
   0.8931    0.8906   0.8975  0.9335     7  190  dropout_0_5  
-  0.8911    0.8906   0.8893  0.9624     7  251  avg_pool  
-  0.8905    0.8906   0.8899  0.9321     7  118  step_lr  
+  0.8927    0.8906   0.8839  0.9275     7  169  cnn_baseline  
   0.8878    0.8906   0.9026  0.8335     7  168  resnet18_feature_extraction  
-  0.8529    0.8594   0.9231  0.8965     9  297  resnet18_fine_tuning *
-  0.8486    0.8438   0.8949  0.9192    10  298  dropout_0_3  
-  0.7704    0.7812   0.7993  0.8868    14  270  imbalanced_standard  
-  0.7650    0.7656   0.8227  0.8685    15  263  no_augmentation  
+  0.8730    0.8750   0.8676  0.9212     8  174  avg_pool  
+  0.8586    0.8594   0.8928  0.9040     9  136  weight_decay_1e-4  
+  0.7988    0.8125   0.8757  0.9229    12  191  dropout_0_3  
+  0.7641    0.7656   0.8202  0.8569    15  133  no_augmentation  
+  0.7382    0.7500   0.7847  0.8897    16  200  imbalanced_standard  
   0.7069    0.7188   0.7749  0.8190    18   64  imbalanced_balanced  
 
 * = official production model (selected on validation, test used once)
@@ -73,12 +73,12 @@ The two imbalance arms were trained on a deliberately reduced subset (14 images 
 Confidence of the chosen class, production model
 ------------------------------------------------
 images scored      : 64
-mean confidence    : 0.8965
-median confidence  : 0.9838
-min confidence     : 0.3939
-mean margin        : 0.8221
-below review threshold 0.8315 : 16 images (25.00%)
-top confusion pair : kamyun/kamyunet (0.375)
+mean confidence    : 0.8917
+median confidence  : 0.9841
+min confidence     : 0.4153
+mean margin        : 0.8140
+below review threshold 0.8187 : 14 images (21.88%)
+top confusion pair : savari/vanet (0.250)
 
 Written
 -------
