@@ -185,28 +185,44 @@ def load_image_folder(
     split: str,
     transform: transforms.Compose,
     expected_classes: Sequence[str] | None = None,
+    remove_empty_classes: bool = True,
+    allow_empty: bool = False,
 ) -> datasets.ImageFolder:
-    """Load one split separately, avoiding the incorrect `ImageFolder(dataset)`."""
+    """Load one split separately, avoiding the incorrect `ImageFolder(dataset)`.
+
+    Args:
+        root: Root directory of the dataset.
+        split: Name of the split (e.g. 'train', 'val', 'test').
+        transform: Transform to apply to images.
+        expected_classes: Optional sequence of expected class names. When given,
+            the folder's class order must match this list exactly.
+        remove_empty_classes: If True (default), delete class folders that contain
+            no image with a torchvision-supported extension.
+        allow_empty: Passed to `ImageFolder`. If True, class folders with zero
+            images are kept, so the class mapping still matches
+            `expected_classes`. Required for evaluation splits where a class may
+            have no test images (e.g. `ambulance` in this project's test split).
+    """
 
     path = Path(root) / split
     if not path.is_dir():
         raise FileNotFoundError(f"Dataset split does not exist: {path}")
 
-    # Remove class folders that contain no image with a torchvision-supported
-    # extension (e.g. emptied by a previous cleaning pass). ImageFolder would
-    # otherwise raise FileNotFoundError for these empty classes.
-    import shutil
+    if remove_empty_classes:
+        import shutil
 
-    for class_dir in sorted(p for p in path.iterdir() if p.is_dir()):
-        has_image = any(
-            item.is_file() and item.suffix.lower() in IMAGE_SUFFIXES
-            for item in class_dir.rglob("*")
-        )
-        if not has_image:
-            print(f"[load_image_folder] removing empty class dir: {class_dir}")
-            shutil.rmtree(class_dir, ignore_errors=True)
+        for class_dir in sorted(p for p in path.iterdir() if p.is_dir()):
+            has_image = any(
+                item.is_file() and item.suffix.lower() in IMAGE_SUFFIXES
+                for item in class_dir.rglob("*")
+            )
+            if not has_image:
+                print(f"[load_image_folder] removing empty class dir: {class_dir}")
+                shutil.rmtree(class_dir, ignore_errors=True)
 
-    dataset = datasets.ImageFolder(path, transform=transform)
+    dataset = datasets.ImageFolder(
+        path, transform=transform, allow_empty=allow_empty
+    )
     if expected_classes is not None:
         if dataset.classes != list(expected_classes):
             raise ValueError(

@@ -400,7 +400,9 @@ def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
 
         if kind not in dataset_cache:
             dataset_cache[kind] = load_image_folder(
-                f"{ROOT}\\dataset", "test", transform, config.classes
+                f"{ROOT}\\dataset", "test", transform, config.classes,
+                remove_empty_classes=False,
+                allow_empty=True,
             )
         dataset = dataset_cache[kind]
         loader = make_loader(
