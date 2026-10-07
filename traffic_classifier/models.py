@@ -102,9 +102,9 @@ class TrafficCNN(nn.Module):
         self.features = nn.Sequential(
             OrderedDict(
                 [
-                    ("block1", ConvBlock(3, 32)),
+                    ("block1", ConvBlock(3, 64)),
                     ("pool1", make_pool()),
-                    ("block2", ConvBlock(32, 64)),
+                    ("block2", ConvBlock(64, 64)),
                     ("pool2", make_pool()),
                     ("block3", ConvBlock(64, 128)),
                     ("pool3", make_pool()),

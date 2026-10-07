@@ -1,6 +1,6 @@
 {
   "artifacts_dir": "artifacts",
-  "batch_size": 256,
+  "batch_size": 128,
   "classes": [
     "ambulance",
     "autobus",
@@ -25,7 +25,7 @@
   "imbalanced_retained_per_minority_class": 14,
   "learning_rate": 0.001,
   "minimum_image_side": 64,
-  "num_workers": 0,
+  "num_workers": 2,
   "pretrained": true,
   "reports_dir": "reports",
   "seed": 42,
@@ -35,5 +35,5 @@
   "transfer_head_lr": 0.0005,
   "transfer_image_size": 224,
   "validation_fraction": 0.2,
-  "weight_decay": 0.0
+  "weight_decay": 0.01
 }

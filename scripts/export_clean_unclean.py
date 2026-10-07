@@ -9,12 +9,15 @@ Examples:
     Python scripts/export_clean_unclean.py --dry-run
     Python scripts/export_clean_unclean.py --mode copy
     Python scripts/export_clean_unclean.py --mode move --force
+    Python scripts/export_clean_unclean.py --mode move --verify-then-move --force
 """
 
 from __future__ import annotations
 
 import argparse
+import os
 import sys
+from collections.abc import Sequence
 from pathlib import Path
 
 import pandas as pd
@@ -58,6 +61,73 @@ def _review_threshold(
     payload = read_json(uncertainty_path)
     threshold = float(payload["review_threshold"]["threshold"])
     return threshold, uncertainty_path.as_posix()
+
+
+def _preflight_verify(
+    frame: pd.DataFrame,
+    classes: Sequence[str],
+    threshold: float,
+    source_root: Path,
+    destination_root: Path,
+) -> tuple[bool, list[str]]:
+    """Check every selected source file before any destructive operation.
+
+    Verifies that the selection is non-empty, the source split exists, the
+    destination parent is writable, and every selected source file is present
+    and readable. Returns ``(ok, problems)``; if ``problems`` is non-empty the
+    caller must abort and leave the filesystem untouched.
+    """
+
+    problems: list[str] = []
+
+    kept, _ = select_confident_known_rows(frame, classes, threshold)
+    if kept.empty:
+        problems.append("pre-flight: selection is empty; nothing to move")
+        return False, problems
+
+    if not source_root.is_dir():
+        problems.append(f"pre-flight: source split does not exist: {source_root}")
+        return False, problems
+
+    # Destination parent must exist and be writable before we touch any file.
+    parent = destination_root.parent
+    if not parent.exists():
+        problems.append(f"pre-flight: destination parent missing: {parent}")
+        return False, problems
+    if not os.access(parent, os.W_OK):
+        problems.append(f"pre-flight: destination parent not writable: {parent}")
+        return False, problems
+
+    missing: list[str] = []
+    unreadable: list[str] = []
+    for _, row in kept.iterrows():
+        src = Path(row["absolute_path"])
+        if not src.is_file():
+            missing.append(str(src))
+            continue
+        try:
+            with src.open("rb") as handle:
+                handle.read(1)
+        except OSError as exc:
+            unreadable.append(f"{src}: {exc}")
+
+    if missing:
+        problems.append(
+            f"pre-flight: {len(missing)} selected file(s) missing on disk "
+            f"(first: {missing[0]})"
+        )
+    if unreadable:
+        problems.append(
+            f"pre-flight: {len(unreadable)} selected file(s) unreadable "
+            f"(first: {unreadable[0]})"
+        )
+
+    if not problems:
+        print(
+            f"Pre-flight: {len(kept)} selected file(s) present and readable; "
+            f"destination parent writable."
+        )
+    return not problems, problems
 
 
 def main() -> None:
@@ -104,6 +174,16 @@ def main() -> None:
         help="Required for --mode move, which removes images from the source split",
     )
     parser.add_argument(
+        "--verify-then-move",
+        action="store_true",
+        help=(
+            "Run a pre-flight verification of every selected source file "
+            "(existence, readability, destination writability) and only then "
+            "perform the move. If any check fails, abort before touching any "
+            "file. Only valid together with --mode move."
+        ),
+    )
+    parser.add_argument(
         "--allow-missing-source",
         action="store_true",
         help=(
@@ -118,6 +198,12 @@ def main() -> None:
 
     if args.mode == "move" and not args.force and not args.dry_run:
         parser.error("--mode move requires --force because it empties the source split")
+
+    if args.verify_then_move and args.dry_run:
+        parser.error("--verify-then-move and --dry-run are mutually exclusive")
+
+    if args.verify_then_move and args.mode != "move":
+        parser.error("--verify-then-move only makes sense with --mode move")
 
     config_path = _resolve(args.config)
     predictions_path = _resolve(args.predictions)
@@ -157,6 +243,20 @@ def main() -> None:
 
     threshold, threshold_source = _review_threshold(uncertainty_path, args.threshold)
     print(f"Review threshold: {threshold:.6f} (from {threshold_source})")
+
+    # Pre-flight verification: only run when explicitly requested. Default
+    # behavior (no flag) is unchanged so existing callers keep working.
+    if args.verify_then_move:
+        print("Running pre-flight verification before move...")
+        ok, problems = _preflight_verify(
+            frame, config.classes, threshold, source_root, destination_root
+        )
+        if not ok:
+            print("PRE-FLIGHT FAILED. No files were moved.")
+            for problem in problems:
+                print(f"  - {problem}")
+            sys.exit(2)
+        print("Pre-flight OK. Proceeding with move.")
 
     results_dir.mkdir(parents=True, exist_ok=True)
     manifest_path = results_dir / "cleaned_unclean_manifest.csv"

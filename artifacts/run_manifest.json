@@ -20,13 +20,13 @@
     "cnn_image_size": 128,
     "transfer_image_size": 224,
     "epochs": 200,
-    "batch_size": 256,
+    "batch_size": 128,
     "transfer_batch_size": 32,
     "learning_rate": 0.001,
     "transfer_head_lr": 0.0005,
     "transfer_backbone_lr": 1e-05,
-    "weight_decay": 0.0,
-    "num_workers": 0,
+    "weight_decay": 0.01,
+    "num_workers": 2,
     "target_review_coverage": 0.8,
     "imbalanced_retained_per_minority_class": 14,
     "imbalanced_classes": [
@@ -1231,7 +1231,7 @@
     1156,
     1161
   ],
-  "dataset_pixel_manifest_sha256": "886ccaafa26a1d3dace6a8c10d6ed93a1d823dbac186cae72e4b110e881be6a4",
+  "dataset_pixel_manifest_sha256": "15f7914de69a9d3d4542b81dabb13d0a8a4dcc51612e2998cb31533b1bf397dc",
   "source_sha256": {
     "__init__.py": "b08b01fe677a991e087957188746717ca765dd1456119580518a3e265d008179",
     "__main__.py": "9bd485f3db26bf74f762c490cf81358bedd59edc1caf32d76717520ab7e280a9",
@@ -1242,7 +1242,7 @@
     "engine.py": "53149476948ca46a7960ff659a61bc945fe90e6ef89b0afebf55742805ec3122",
     "locking.py": "f0379e435b3828be214653610f454b6b80adca837f19d94e78f0ad1f7aed667a",
     "metrics.py": "59cdf899bebb0fb7fb43ec030ca4bb729c9b06fc8c1275c195622be377ae73f7",
-    "models.py": "db0ae82c0cbe545020b1299ad2f606e1ea04b61cf26c2502eca6b88d71496edc",
+    "models.py": "c3af7738e5e839f729273427a7743d00ebbc7d4bde48866876ca3aae48c931e3",
     "paths.py": "ae2946fa879f9a8ea6706161e36124422f8fa7af8404006e237c44a6af4ab5e3",
     "pipeline.py": "08172308559208d55242b130693065f8485c527fd5e38fd04fa3f5d7d0f85c0b",
     "plotting.py": "a2b725928cf15eeb2a945a2e9705e19af23ced6442caa7a75dfd679d06d3eff8",
@@ -1251,5 +1251,5 @@
     "reporting.py": "6dc000020278f8d550ad7b5a4845063d6cd407dc0b6a085540c4c4c6b2b4edc2",
     "utils.py": "77b7372733209d994862c91513b8b6b6f3e8ecb719ee47054e9c47a29dda5752"
   },
-  "run_fingerprint": "c1cbb6e56523d51d56e75fb82218e46d50ffa1491288fd64cccd058bee7c9b93"
+  "run_fingerprint": "1ba0f75a8c63be033d34e0c0cc95f1a600081d2d887b9763e64850f8adddd401"
 }

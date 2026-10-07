@@ -7,28 +7,28 @@ The final configuration was selected by maximum validation macro-F1 among Cross-
 ## Overall and per-class test metrics
 
 - Accuracy: **0.9219**
-- Macro precision: **0.9292**
+- Macro precision: **0.9409**
 - Macro recall: **0.9219**
-- Macro F1: **0.9198**
+- Macro F1: **0.9209**
 
 | Class | Precision | Recall | F1 | Support |
 |---|---|---|---|---|
-| ambulance | 1.000 | 0.875 | 0.933 | 8 |
+| ambulance | 1.000 | 1.000 | 1.000 | 8 |
 | autobus | 1.000 | 1.000 | 1.000 | 8 |
 | kamyun | 1.000 | 0.875 | 0.933 | 8 |
-| kamyunet | 1.000 | 1.000 | 1.000 | 8 |
-| minibus | 0.800 | 1.000 | 0.889 | 8 |
+| kamyunet | 1.000 | 0.875 | 0.933 | 8 |
+| minibus | 0.727 | 1.000 | 0.842 | 8 |
 | savari | 0.800 | 1.000 | 0.889 | 8 |
 | taxi | 1.000 | 1.000 | 1.000 | 8 |
-| vanet | 0.833 | 0.625 | 0.714 | 8 |
+| vanet | 1.000 | 0.625 | 0.769 | 8 |
 
 Both count-based and row-normalized confusion matrices are saved in `artifacts/results/frozen_test_evaluation.json` and plotted in `figures/final_confusion_matrices.png`.
 
 ## Confidence and human review
 
-Validation temperature scaling changes ECE from the value saved in `validation_uncertainty.json`; the final validation-selected confidence threshold is **0.8187**, chosen as the lowest threshold reaching at least 80% automatic coverage. Thus approximately 80% of deployment volume is automatic and the remainder is human review.
+Validation temperature scaling changes ECE from the value saved in `validation_uncertainty.json`; the final validation-selected confidence threshold is **0.8393**, chosen as the lowest threshold reaching at least 80% automatic coverage. Thus approximately 80% of deployment volume is automatic and the remainder is human review.
 
-On frozen test, calibrated multiclass NLL is **0.2830**, ECE is **0.0526**, and Brier score is **0.1450**. The selected threshold routes **14 / 64 (21.9%)** images to review; automatic accuracy is **0.9600**. Threshold behavior is descriptive on test; it is not re-tuned.
+On frozen test, calibrated multiclass NLL is **0.3109**, ECE is **0.0700**, and Brier score is **0.1557**. The selected threshold routes **17 / 64 (26.6%)** images to review; automatic accuracy is **0.9787**. Threshold behavior is descriptive on test; it is not re-tuned.
 
 The risk–coverage curve is `figures/validation_risk_coverage.png`.
 
@@ -37,8 +37,8 @@ The risk–coverage curve is `figures/validation_risk_coverage.png`.
 | Class A | Class B | A→B | B→A | Mutual score |
 |---|---|---|---|---|
 | savari | vanet | 0.000 | 0.250 | 0.250 |
-| ambulance | vanet | 0.125 | 0.000 | 0.125 |
 | kamyun | minibus | 0.125 | 0.000 | 0.125 |
+| kamyunet | minibus | 0.125 | 0.000 | 0.125 |
 | minibus | vanet | 0.000 | 0.125 | 0.125 |
 | ambulance | autobus | 0.000 | 0.000 | 0.000 |
 | ambulance | kamyun | 0.000 | 0.000 | 0.000 |

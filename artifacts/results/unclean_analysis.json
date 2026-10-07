@@ -1,253 +1,27 @@
 {
-  "skipped": false,
+  "skipped": true,
+  "skip_reason": "the unclean split at dataset/unclean holds no image files, so the cleaned-unclean and unseen-class analysis was skipped",
   "cleaning": {
-    "original_images": 724,
-    "retained_images": 724,
+    "original_images": 0,
+    "retained_images": 0,
     "excluded_duplicates": 0,
-    "known_images": 724,
+    "known_images": 0,
     "unseen_neysan_images": 0
   },
   "known_class_metrics": {
-    "accuracy": 0.6450276243093923,
-    "macro_precision": 0.6370212425599558,
-    "macro_recall": 0.6386273469216119,
-    "macro_f1": 0.6341974264355092,
-    "weighted_f1": 0.6433394944005362,
-    "per_class": {
-      "ambulance": {
-        "precision": 0.7209302325581395,
-        "recall": 0.5961538461538461,
-        "f1": 0.6526315789473685,
-        "support": 52
-      },
-      "autobus": {
-        "precision": 0.660377358490566,
-        "recall": 0.8333333333333334,
-        "f1": 0.7368421052631579,
-        "support": 42
-      },
-      "kamyun": {
-        "precision": 0.60431654676259,
-        "recall": 0.5793103448275863,
-        "f1": 0.5915492957746479,
-        "support": 145
-      },
-      "kamyunet": {
-        "precision": 0.6875,
-        "recall": 0.7289156626506024,
-        "f1": 0.7076023391812866,
-        "support": 166
-      },
-      "minibus": {
-        "precision": 0.6901408450704225,
-        "recall": 0.7205882352941176,
-        "f1": 0.7050359712230215,
-        "support": 68
-      },
-      "savari": {
-        "precision": 0.5727272727272728,
-        "recall": 0.6702127659574468,
-        "f1": 0.6176470588235294,
-        "support": 94
-      },
-      "taxi": {
-        "precision": 0.4186046511627907,
-        "recall": 0.375,
-        "f1": 0.3956043956043956,
-        "support": 48
-      },
-      "vanet": {
-        "precision": 0.7415730337078652,
-        "recall": 0.6055045871559633,
-        "f1": 0.6666666666666666,
-        "support": 109
-      }
-    },
-    "confusion_matrix_counts": [
-      [
-        31,
-        2,
-        1,
-        4,
-        0,
-        2,
-        0,
-        12
-      ],
-      [
-        1,
-        35,
-        3,
-        2,
-        1,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        9,
-        84,
-        43,
-        5,
-        1,
-        2,
-        1
-      ],
-      [
-        0,
-        0,
-        34,
-        121,
-        9,
-        0,
-        0,
-        2
-      ],
-      [
-        2,
-        3,
-        11,
-        2,
-        49,
-        1,
-        0,
-        0
-      ],
-      [
-        3,
-        2,
-        0,
-        0,
-        1,
-        63,
-        20,
-        5
-      ],
-      [
-        2,
-        1,
-        0,
-        0,
-        1,
-        23,
-        18,
-        3
-      ],
-      [
-        4,
-        1,
-        6,
-        4,
-        5,
-        20,
-        3,
-        66
-      ]
-    ],
-    "confusion_matrix_row_normalized": [
-      [
-        0.5961538461538461,
-        0.038461538461538464,
-        0.019230769230769232,
-        0.07692307692307693,
-        0.0,
-        0.038461538461538464,
-        0.0,
-        0.23076923076923078
-      ],
-      [
-        0.023809523809523808,
-        0.8333333333333334,
-        0.07142857142857142,
-        0.047619047619047616,
-        0.023809523809523808,
-        0.0,
-        0.0,
-        0.0
-      ],
-      [
-        0.0,
-        0.06206896551724138,
-        0.5793103448275863,
-        0.296551724137931,
-        0.034482758620689655,
-        0.006896551724137931,
-        0.013793103448275862,
-        0.006896551724137931
-      ],
-      [
-        0.0,
-        0.0,
-        0.20481927710843373,
-        0.7289156626506024,
-        0.05421686746987952,
-        0.0,
-        0.0,
-        0.012048192771084338
-      ],
-      [
-        0.029411764705882353,
-        0.04411764705882353,
-        0.16176470588235295,
-        0.029411764705882353,
-        0.7205882352941176,
-        0.014705882352941176,
-        0.0,
-        0.0
-      ],
-      [
-        0.031914893617021274,
-        0.02127659574468085,
-        0.0,
-        0.0,
-        0.010638297872340425,
-        0.6702127659574468,
-        0.2127659574468085,
-        0.05319148936170213
-      ],
-      [
-        0.041666666666666664,
-        0.020833333333333332,
-        0.0,
-        0.0,
-        0.020833333333333332,
-        0.4791666666666667,
-        0.375,
-        0.0625
-      ],
-      [
-        0.03669724770642202,
-        0.009174311926605505,
-        0.05504587155963303,
-        0.03669724770642202,
-        0.045871559633027525,
-        0.1834862385321101,
-        0.027522935779816515,
-        0.6055045871559633
-      ]
-    ]
-  },
-  "known_class_uncertainty": {
-    "nll": 1.0208021402359009,
-    "ece_10_bins": 0.1109397188240652,
-    "brier_multiclass": 0.5364173736292197,
-    "mean_confidence": 0.6631900668144226,
-    "accuracy": 0.6450276243093923
+    "accuracy": 0.0,
+    "macro_precision": 0.0,
+    "macro_recall": 0.0,
+    "macro_f1": 0.0,
+    "weighted_f1": 0.0,
+    "per_class": {},
+    "confusion_matrix_counts": [],
+    "confusion_matrix_row_normalized": []
   },
   "unseen_neysan": {
     "present": false,
-    "reason": "no 'neysan' samples remain in the unclean split after cleaning"
+    "reason": "the unclean split at dataset/unclean holds no image files, so the cleaned-unclean and unseen-class analysis was skipped"
   },
-  "all_cleaned_prediction_counts": {
-    "ambulance": 43,
-    "autobus": 53,
-    "kamyun": 139,
-    "kamyunet": 176,
-    "minibus": 71,
-    "savari": 110,
-    "taxi": 43,
-    "vanet": 89
-  },
-  "interpretation": "neysan is an unseen class, not a ninth training label. Confidence is not a calibrated OOD score, so high-confidence known-class predictions can still be wrong; low-confidence cases are routed to human review."
+  "all_cleaned_prediction_counts": {},
+  "interpretation": "The unclean split held no images, so no cleaned-unclean or unseen-class evidence was produced. This is a skipped step, not a measured result."
 }

@@ -6,12 +6,14 @@
   "selection_rule": "source label is a known class, model prediction matches it, and confidence is at or above the validation review threshold",
   "rows_considered": 724,
   "rows_selected": 57,
-  "rows_transferred": 57,
+  "rows_transferred": 0,
   "rejection_counts": {
     "confidence_below_review_threshold": 410,
     "model_disagrees_with_label": 257
   },
-  "skipped": {},
+  "skipped": {
+    "missing_source": 57
+  },
   "class_counts": {
     "ambulance": 3,
     "autobus": 10,
@@ -22,7 +24,7 @@
     "vanet": 7
   },
   "verification": {
-    "transferred": 57,
+    "transferred": 0,
     "missing_at_destination": [],
     "verified": true
   },

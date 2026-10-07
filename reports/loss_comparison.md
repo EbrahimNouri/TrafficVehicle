@@ -4,8 +4,8 @@ Both runs use the same CNN, seed, split, augmented training transform, AdamW opt
 
 | Loss | Validation accuracy | Macro P | Macro R | Macro F1 | Mean top confidence |
 |---|---|---|---|---|---|
-| CrossEntropyLoss | 0.8836 | 0.8877 | 0.8812 | 0.8839 | 0.9452 |
-| BCEWithLogitsLoss | 0.8793 | 0.8827 | 0.8795 | 0.8803 | 0.8861 |
+| CrossEntropyLoss | 0.9052 | 0.9094 | 0.9043 | 0.9047 | 0.9471 |
+| BCEWithLogitsLoss | 0.8922 | 0.8947 | 0.8922 | 0.8930 | 0.8840 |
 
 Cross-entropy directly models one mutually exclusive target and produces normalized class probabilities, so it is the production choice. BCE treats eight sigmoid outputs as independent one-vs-all decisions: scores can be simultaneously high and do not sum to one. Consequently, BCE's maximum sigmoid score is useful for comparison but is not the same calibrated probability object. The final checkpoint and JSON API use Cross-Entropy.
 
@@ -13,16 +13,16 @@ Validation error patterns (top five mutual pairs):
 
 | Loss | Class A | Class B | A→B | B→A | Mutual score |
 |---|---|---|---|---|---|
-| CE | kamyun | kamyunet | 0.185 | 0.172 | 0.358 |
-| CE | savari | vanet | 0.033 | 0.053 | 0.086 |
-| CE | ambulance | kamyunet | 0.080 | 0.000 | 0.080 |
+| CE | kamyun | kamyunet | 0.259 | 0.034 | 0.294 |
+| CE | savari | vanet | 0.000 | 0.079 | 0.079 |
 | CE | savari | taxi | 0.033 | 0.037 | 0.070 |
 | CE | kamyunet | vanet | 0.069 | 0.000 | 0.069 |
-| BCE | kamyun | kamyunet | 0.185 | 0.069 | 0.254 |
-| BCE | autobus | kamyun | 0.071 | 0.074 | 0.146 |
-| BCE | savari | vanet | 0.000 | 0.105 | 0.105 |
-| BCE | kamyunet | vanet | 0.069 | 0.026 | 0.095 |
+| CE | ambulance | vanet | 0.040 | 0.000 | 0.040 |
+| BCE | kamyun | kamyunet | 0.148 | 0.103 | 0.252 |
 | BCE | ambulance | vanet | 0.080 | 0.000 | 0.080 |
+| BCE | savari | vanet | 0.000 | 0.079 | 0.079 |
+| BCE | savari | taxi | 0.033 | 0.037 | 0.070 |
+| BCE | kamyunet | minibus | 0.034 | 0.036 | 0.070 |
 
 A change in the pair ranking reflects both the loss geometry and ordinary small-sample variation; it is interpreted alongside the complete curves and per-class table rather than as a standalone causal claim.
 
@@ -30,24 +30,24 @@ A change in the pair ranking reflects both the loss geometry and ordinary small-
 
 | Class | Precision | Recall | F1 | Support |
 |---|---|---|---|---|
-| ambulance | 0.957 | 0.880 | 0.917 | 25 |
-| autobus | 0.964 | 0.964 | 0.964 | 28 |
-| kamyun | 0.750 | 0.778 | 0.764 | 27 |
-| kamyunet | 0.710 | 0.759 | 0.733 | 29 |
-| minibus | 0.963 | 0.929 | 0.945 | 28 |
-| savari | 0.897 | 0.867 | 0.881 | 30 |
+| ambulance | 0.960 | 0.960 | 0.960 | 25 |
+| autobus | 0.931 | 0.964 | 0.947 | 28 |
+| kamyun | 0.905 | 0.704 | 0.792 | 27 |
+| kamyunet | 0.758 | 0.862 | 0.806 | 29 |
+| minibus | 0.964 | 0.964 | 0.964 | 28 |
+| savari | 0.875 | 0.933 | 0.903 | 30 |
 | taxi | 0.962 | 0.926 | 0.943 | 27 |
-| vanet | 0.900 | 0.947 | 0.923 | 38 |
+| vanet | 0.921 | 0.921 | 0.921 | 38 |
 
 ### Per-class BCE
 
 | Class | Precision | Recall | F1 | Support |
 |---|---|---|---|---|
-| ambulance | 1.000 | 0.920 | 0.958 | 25 |
-| autobus | 0.897 | 0.929 | 0.912 | 28 |
-| kamyun | 0.760 | 0.704 | 0.731 | 27 |
-| kamyunet | 0.774 | 0.828 | 0.800 | 29 |
-| minibus | 0.929 | 0.929 | 0.929 | 28 |
+| ambulance | 0.958 | 0.920 | 0.939 | 25 |
+| autobus | 0.963 | 0.929 | 0.945 | 28 |
+| kamyun | 0.808 | 0.778 | 0.792 | 27 |
+| kamyunet | 0.793 | 0.793 | 0.793 | 29 |
+| minibus | 0.931 | 0.964 | 0.947 | 28 |
 | savari | 0.848 | 0.933 | 0.889 | 30 |
 | taxi | 0.962 | 0.926 | 0.943 | 27 |
-| vanet | 0.892 | 0.868 | 0.880 | 38 |
+| vanet | 0.895 | 0.895 | 0.895 | 38 |

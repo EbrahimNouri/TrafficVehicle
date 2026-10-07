@@ -4,68 +4,68 @@
 
 The project implements a leakage-aware data audit, a four-block CNN, a custom balanced batch sampler, CE/BCE comparison, controlled regularization/scheduler ablations, ResNet18 feature extraction and fine-tuning, uncertainty calibration, frozen-test evaluation, unseen-class analysis, and JSON inference.
 
-The validation-selected production model is **`resnet18_fine_tuning`**. On the once-only frozen test evaluation it achieves **92.19% accuracy**, **91.98% macro-F1**, and **92.19% macro recall**. The deployment API uses temperature-scaled Cross-Entropy probabilities and sends confidence below **0.819** to review.
+The validation-selected production model is **`resnet18_fine_tuning`**. On the once-only frozen test evaluation it achieves **92.19% accuracy**, **92.09% macro-F1**, and **92.19% macro recall**. The deployment API uses temperature-scaled Cross-Entropy probabilities and sends confidence below **0.839** to review.
 
 ## Required main validation comparison
 
 | Experiment | Macro Precision | Macro Recall | Macro F1 | Lowest-Recall Class | Lowest-Precision Class |
 |---|---|---|---|---|---|
-| CNN baseline | 0.8877 | 0.8812 | 0.8839 | kamyunet (0.759) | kamyunet (0.710) |
-| Imbalanced + balanced batches | 0.7871 | 0.7776 | 0.7749 | kamyun (0.556) | kamyunet (0.579) |
-| BCEWithLogitsLoss | 0.8827 | 0.8795 | 0.8803 | kamyun (0.704) | kamyun (0.760) |
-| Best regularized + scheduled | 0.9042 | 0.8968 | 0.8994 | kamyun (0.852) | kamyunet (0.781) |
-| ResNet18 feature extraction | 0.9100 | 0.9030 | 0.9026 | kamyun (0.704) | kamyunet (0.781) |
-| ResNet18 fine-tuning | 0.9283 | 0.9284 | 0.9275 | kamyun (0.815) | kamyunet (0.844) |
+| CNN baseline | 0.9094 | 0.9043 | 0.9047 | kamyun (0.704) | kamyunet (0.758) |
+| Imbalanced + balanced batches | 0.8224 | 0.7848 | 0.7825 | kamyun (0.444) | kamyunet (0.500) |
+| BCEWithLogitsLoss | 0.8947 | 0.8922 | 0.8930 | kamyun (0.778) | kamyunet (0.793) |
+| Best regularized + scheduled | 0.9137 | 0.9033 | 0.9059 | kamyun (0.741) | kamyunet (0.743) |
+| ResNet18 feature extraction | 0.9112 | 0.9081 | 0.9072 | kamyun (0.704) | kamyunet (0.781) |
+| ResNet18 fine-tuning | 0.9294 | 0.9287 | 0.9274 | kamyun (0.778) | kamyunet (0.794) |
 
 Lowest-class analysis for each meaningful case:
 
 | Experiment | Lowest precision / recall analysis |
 |---|---|
-| CNN baseline | The lowest recall is **kamyunet (0.759)** and the lowest precision is **kamyunet (0.710)**. These are validation diagnostics; test results were not consulted to choose this run. |
-| Imbalanced + balanced batches | The lowest recall is **kamyun (0.556)** and the lowest precision is **kamyunet (0.579)**. These are validation diagnostics; test results were not consulted to choose this run. |
-| BCEWithLogitsLoss | The lowest recall is **kamyun (0.704)** and the lowest precision is **kamyun (0.760)**. These are validation diagnostics; test results were not consulted to choose this run. |
-| Best regularized + scheduled | The lowest recall is **kamyun (0.852)** and the lowest precision is **kamyunet (0.781)**. These are validation diagnostics; test results were not consulted to choose this run. |
+| CNN baseline | The lowest recall is **kamyun (0.704)** and the lowest precision is **kamyunet (0.758)**. These are validation diagnostics; test results were not consulted to choose this run. |
+| Imbalanced + balanced batches | The lowest recall is **kamyun (0.444)** and the lowest precision is **kamyunet (0.500)**. These are validation diagnostics; test results were not consulted to choose this run. |
+| BCEWithLogitsLoss | The lowest recall is **kamyun (0.778)** and the lowest precision is **kamyunet (0.793)**. These are validation diagnostics; test results were not consulted to choose this run. |
+| Best regularized + scheduled | The lowest recall is **kamyun (0.741)** and the lowest precision is **kamyunet (0.743)**. These are validation diagnostics; test results were not consulted to choose this run. |
 | ResNet18 feature extraction | The lowest recall is **kamyun (0.704)** and the lowest precision is **kamyunet (0.781)**. These are validation diagnostics; test results were not consulted to choose this run. |
-| ResNet18 fine-tuning | The lowest recall is **kamyun (0.815)** and the lowest precision is **kamyunet (0.844)**. These are validation diagnostics; test results were not consulted to choose this run. |
+| ResNet18 fine-tuning | The lowest recall is **kamyun (0.778)** and the lowest precision is **kamyunet (0.794)**. These are validation diagnostics; test results were not consulted to choose this run. |
 
 ## Complete validation experiment table
 
 | Experiment | Category | Accuracy | Macro P | Macro R | Macro F1 | Best epoch | Seconds |
 |---|---|---|---|---|---|---|---|
-| CNN baseline | ablation | 0.8836 | 0.8877 | 0.8812 | 0.8839 | 169 | 772.0 |
-| No augmentation | ablation | 0.8190 | 0.8262 | 0.8187 | 0.8202 | 133 | 534.5 |
-| Dropout p=0.3 | ablation | 0.8750 | 0.8810 | 0.8734 | 0.8757 | 191 | 749.7 |
-| Dropout p=0.5 | ablation | 0.8966 | 0.9010 | 0.8953 | 0.8975 | 190 | 709.3 |
-| Average pooling | ablation | 0.8664 | 0.8746 | 0.8647 | 0.8676 | 174 | 707.1 |
-| Weight decay 1e-4 | ablation | 0.8922 | 0.8971 | 0.8900 | 0.8928 | 136 | 706.3 |
-| StepLR | ablation | 0.8879 | 0.8961 | 0.8870 | 0.8896 | 157 | 707.7 |
-| BCEWithLogitsLoss | ablation | 0.8793 | 0.8827 | 0.8795 | 0.8803 | 168 | 704.5 |
-| Best regularized + scheduled | main | 0.8966 | 0.9042 | 0.8968 | 0.8994 | 173 | 704.6 |
-| Imbalanced + standard batches | imbalance | 0.7888 | 0.8053 | 0.7920 | 0.7847 | 200 | 769.0 |
-| Imbalanced + balanced batches | imbalance | 0.7759 | 0.7871 | 0.7776 | 0.7749 | 64 | 767.9 |
-| ResNet18 feature extraction | transfer | 0.9052 | 0.9100 | 0.9030 | 0.9026 | 168 | 601.8 |
-| ResNet18 fine-tuning | transfer | 0.9267 | 0.9283 | 0.9284 | 0.9275 | 200 | 647.4 |
+| CNN baseline | ablation | 0.9052 | 0.9094 | 0.9043 | 0.9047 | 191 | 2523.9 |
+| No augmentation | ablation | 0.8707 | 0.8726 | 0.8705 | 0.8702 | 181 | 2545.8 |
+| Dropout p=0.3 | ablation | 0.8966 | 0.9076 | 0.8950 | 0.8966 | 183 | 2587.3 |
+| Dropout p=0.5 | ablation | 0.9052 | 0.9137 | 0.9033 | 0.9059 | 190 | 2533.7 |
+| Average pooling | ablation | 0.8836 | 0.8959 | 0.8819 | 0.8859 | 168 | 2570.5 |
+| Weight decay 1e-4 | ablation | 0.8966 | 0.9018 | 0.8946 | 0.8956 | 182 | 2737.5 |
+| StepLR | ablation | 0.8879 | 0.8960 | 0.8848 | 0.8888 | 129 | 2677.6 |
+| BCEWithLogitsLoss | ablation | 0.8922 | 0.8947 | 0.8922 | 0.8930 | 167 | 3131.1 |
+| Best regularized + scheduled | main | 0.9052 | 0.9137 | 0.9033 | 0.9059 | 190 | 2664.1 |
+| Imbalanced + standard batches | imbalance | 0.8017 | 0.8373 | 0.8046 | 0.8032 | 171 | 2706.3 |
+| Imbalanced + balanced batches | imbalance | 0.7845 | 0.8224 | 0.7848 | 0.7825 | 184 | 2396.9 |
+| ResNet18 feature extraction | transfer | 0.9095 | 0.9112 | 0.9081 | 0.9072 | 180 | 2216.2 |
+| ResNet18 fine-tuning | transfer | 0.9267 | 0.9294 | 0.9287 | 0.9274 | 125 | 2279.1 |
 
 ## Frozen test result
 
 | Class | Precision | Recall | F1 | Support |
 |---|---|---|---|---|
-| ambulance | 1.000 | 0.875 | 0.933 | 8 |
+| ambulance | 1.000 | 1.000 | 1.000 | 8 |
 | autobus | 1.000 | 1.000 | 1.000 | 8 |
 | kamyun | 1.000 | 0.875 | 0.933 | 8 |
-| kamyunet | 1.000 | 1.000 | 1.000 | 8 |
-| minibus | 0.800 | 1.000 | 0.889 | 8 |
+| kamyunet | 1.000 | 0.875 | 0.933 | 8 |
+| minibus | 0.727 | 1.000 | 0.842 | 8 |
 | savari | 0.800 | 1.000 | 0.889 | 8 |
 | taxi | 1.000 | 1.000 | 1.000 | 8 |
-| vanet | 0.833 | 0.625 | 0.714 | 8 |
+| vanet | 1.000 | 0.625 | 0.769 | 8 |
 
 - Selected model: `resnet18_fine_tuning`
-- Validation macro-F1: **0.9275**
-- Test accuracy / macro-F1: **0.9219 / 0.9198**
-- Test macro precision / recall: **0.9292 / 0.9219**
-- Temperature: **2.375** (selected on validation)
-- Review threshold: **0.819** (selected on validation)
-- Test review rate at frozen threshold: **21.88%**
+- Validation macro-F1: **0.9274**
+- Test accuracy / macro-F1: **0.9219 / 0.9209**
+- Test macro precision / recall: **0.9409 / 0.9219**
+- Temperature: **2.115** (selected on validation)
+- Review threshold: **0.839** (selected on validation)
+- Test review rate at frozen threshold: **26.56%**
 - Top confusion pair: `savari` ↔ `vanet` (0.250)
 
 ## Key findings
@@ -109,6 +109,6 @@ Lowest-class analysis for each meaningful case:
 | ☑ Per-class metrics are compared across all main experiments. | Recorded artifact/report |
 | ☑ Lowest-precision and lowest-recall classes are reported for every result. | Recorded artifact/report |
 | ☑ Up to 5 frozen-test errors are plotted with labels and confidence (12 required for the full run). | Recorded artifact/report |
-| ☑ unclean is analyzed separately after duplicate removal. | Recorded artifact/report |
+| ☑ unclean held no images, so the analysis was skipped and reported as such. | Recorded artifact/report |
 | ☑ Final checkpoint stores mapping, transform, threshold, temperature, seed, and config. | Recorded artifact/report |
 | ☑ README provides a one-command reproduction path. | Recorded artifact/report |

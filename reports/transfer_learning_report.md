@@ -4,8 +4,8 @@ Both transfer experiments retain the standard ImageNet ResNet18 (`conv1` and `ma
 
 | Strategy | Total params | Head-stage trainable | Head-stage frozen | % trainable | Initial LR groups | Best epoch |
 |---|---|---|---|---|---|---|
-| ResNet18 feature extraction | 11,180,616 | 4,104 | 11,176,512 | 0.04% | head=0.0005 | 168 |
-| ResNet18 fine-tuning | 11,180,616 | 4,104 | 11,176,512 | 0.04% | head=0.0005 | 200 |
+| ResNet18 feature extraction | 11,180,616 | 4,104 | 11,176,512 | 0.04% | head=0.0005 | 180 |
+| ResNet18 fine-tuning | 11,180,616 | 4,104 | 11,176,512 | 0.04% | head=0.0005 | 125 |
 
 Fine-tuning stage details:
 
@@ -212,7 +212,7 @@ Fine-tuning stage details:
 | 199 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
 | 200 | layer4 | [{"group": "head", "lr": 0.0005}, {"group": "pretrained_backbone", "lr": 1e-05}] | {"head": 4104, "total_trainable": 8397832} |
 
-- Feature extraction validation macro-F1: **0.9026**.
-- Fine-tuning validation macro-F1: **0.9275**.
+- Feature extraction validation macro-F1: **0.9072**.
+- Fine-tuning validation macro-F1: **0.9274**.
 
 The best transfer configuration is selected on validation. Test is untouched until final model selection is recorded.
