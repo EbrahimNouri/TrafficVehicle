@@ -20,6 +20,8 @@ dependencies = [
   "nbclient>=0.10",
   "nbconvert>=7.16",
   "ipykernel>=6.29",
+  "requests>=2.34.2",
+  "tqdm>=4.70.1",
 ]
 
 [tool.setuptools.packages.find]
