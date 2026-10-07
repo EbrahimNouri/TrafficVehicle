@@ -11,3 +11,7 @@
 htmlcov/
 .DS_Store
 Thumbs.db
+/.opencode/
+/scripts/dataset
+/scripts/temp_extracted
+/scripts/Iranian_vehicle_dataset.zip
