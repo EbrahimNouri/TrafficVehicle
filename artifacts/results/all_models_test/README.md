@@ -19,6 +19,8 @@ not be done.
 | `per_image_predictions.csv` | Every model x every test image (832 rows) |
 | `per_image_predictions.jsonl` | The same rows as one JSON object per line |
 | `per_model/<experiment>.csv` | One file per experiment (64 rows each) |
+| `per_model/<experiment>_metrics.json` | Metrics (accuracy, macro/weighted P-R-F1, per-class, confusion) plus uncertainty |
+| `per_model/<experiment>_confusion.png` | Per-model confusion matrix (counts + row-normalized) |
 | `confidence_by_true_class.csv` | Confidence and accuracy per true class |
 | `README.md` | This file |
 
@@ -56,10 +58,9 @@ for all 13 models, generated after the test diagnostic:
 
 | Field | Value |
 | --- | --- |
-| Generated | 2026-10-08 18:50:03 |
-| SHA-256 | `a07375a03e1829023396fe319960d2ce755243790712adebae99b6eeb796b6cd` |
+| Generated | 2026-10-08 19:56:12 |
+| SHA-256 | `fc03c647550a742b7a578109e7a57855183639ad98d1c15e7f57dfac28f5bad5` |
 | Models covered | 13 |
 | Production model | `resnet18_fine_tuning` |
 | Dataset split | 930 train / 232 validation / 64 test |
 | Run fingerprint | `1ba0f75a8c63be033d34e0c0cc95f1a600081d2d887b9763e64850f8adddd401` |
-

@@ -64,7 +64,7 @@ All experiments ranked by test macro-F1 (diagnostic only)
   0.7962    0.7969   0.7825  0.8889    13  184  imbalanced_balanced  
 
 * = official production model (selected on validation, test used once)
-conf = mean confidence of the chosen class over all 400 test images
+conf = mean confidence of the chosen class over all 64 test images
 
 Note on the imbalance arms
 --------------------------
@@ -89,7 +89,7 @@ Written
   artifacts/results/all_models_test/per_model
   artifacts/results/all_models_test/summary.csv
   artifacts/results/all_models_test/summary.json
-  artifacts/results/all_models_test/per_model/ (13 files)
+  artifacts/results/all_models_test/per_model/ (csv + metrics + confusion PNG per model, 13 models)
   artifacts/logs/all_models_test_diagnostic.log
 
 Reminder: the official result is unchanged and remains the single frozen-test evaluation recorded in frozen_test_evaluation.json.

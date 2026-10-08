@@ -1,0 +1,15 @@
+torch==2.14.1
+torchvision==0.29.1
+numpy>=1.26
+pandas>=2.0
+scikit-learn>=1.4
+matplotlib>=3.8
+seaborn>=0.13
+Pillow>=10
+nbformat>=5.10
+nbclient>=0.10
+nbconvert>=7.16
+ipykernel>=6.29
+requests>=2.34.2
+tqdm>=4.70.1
+reportlab>=5.0.1

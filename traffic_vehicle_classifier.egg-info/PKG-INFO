@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: traffic-vehicle-classifier
+Version: 1.0.0
+Summary: Leakage-aware CNN and transfer-learning traffic vehicle classifier
+Requires-Python: >=3.11
+Requires-Dist: torch==2.14.1
+Requires-Dist: torchvision==0.29.1
+Requires-Dist: numpy>=1.26
+Requires-Dist: pandas>=2.0
+Requires-Dist: scikit-learn>=1.4
+Requires-Dist: matplotlib>=3.8
+Requires-Dist: seaborn>=0.13
+Requires-Dist: Pillow>=10
+Requires-Dist: nbformat>=5.10
+Requires-Dist: nbclient>=0.10
+Requires-Dist: nbconvert>=7.16
+Requires-Dist: ipykernel>=6.29
+Requires-Dist: requests>=2.34.2
+Requires-Dist: tqdm>=4.70.1
+Requires-Dist: reportlab>=5.0.1
