@@ -211,6 +211,7 @@ def _chart_test_per_class_heatmap(
     test_f1: dict[str, float],
     class_names: list[str],
     destination: Path,
+    test_images: int | None = None,
 ) -> Path:
     ordered = sorted(
         (name for name in per_class if name in test_f1),
@@ -222,7 +223,12 @@ def _chart_test_per_class_heatmap(
     draw = axis.imshow(matrix, cmap="RdYlGn", vmin=0.4, vmax=1.0, aspect="auto")
     axis.set_xticks(range(len(class_names)), labels=class_names, rotation=38, ha="right")
     axis.set_yticks(range(len(ordered)), labels=ordered)
-    axis.set_title("Per-class test F1 (64 test images, diagnostic)", fontsize=11)
+    legend = (
+        f"Per-class test F1 ({test_images} test images, diagnostic)"
+        if test_images
+        else "Per-class test F1 (diagnostic)"
+    )
+    axis.set_title(legend, fontsize=11)
     for row in range(matrix.shape[0]):
         for column in range(matrix.shape[1]):
             value = matrix[row, column]
@@ -579,7 +585,8 @@ def _build(
         story.append(
             Paragraph(
                 "Sorted by validation macro-F1. Test columns come from the "
-                "post-selection diagnostic over the 64-image test split.",
+                "post-selection diagnostic over the "
+                f"{sizes['test'] or 'official'} test split.",
                 note_style,
             )
         )
@@ -707,7 +714,12 @@ def _build(
     story.append(PageBreak())
 
     # --- test ----------------------------------------------------------------
-    story.append(Paragraph("3. Test evaluation (64 images, diagnostic)", heading_style))
+    story.append(
+        Paragraph(
+            f"3. Test evaluation ({sizes['test'] or '?'} images, diagnostic)",
+            heading_style,
+        )
+    )
     if by_test:
         story.append(
             Paragraph(
@@ -766,6 +778,7 @@ def _build(
                 {row["name"]: row["test_f1"] for row in by_test},
                 class_names,
                 figures / "test_per_class.png",
+                test_images=sizes["test"],
             )
             story.append(_image(heatmap, page_width, 60 * mm))
     else:

@@ -26,11 +26,15 @@ and outputs land in the dedicated directory
 * ``per_image_predictions.csv``            every model x every test image
 * ``per_image_predictions.jsonl``          the same rows, one JSON object each
 * ``per_model/<experiment>.csv``           one file per experiment
+* ``per_model/<experiment>_metrics.json``  metrics + uncertainty per experiment
+* ``per_model/<experiment>_confusion.png`` per-model confusion matrix
 * ``confidence_by_true_class.csv``         confidence/accuracy per true class
 * ``README.md``                            column definitions and caveats
 
 Every printed line is mirrored to
-``artifacts/logs/all_models_test_diagnostic.log``.
+``artifacts/logs/all_models_test_diagnostic.log``. The per-model scoring uses
+:class:`traffic_classifier.evaluation.Evaluation`; pass ``--report`` to also
+regenerate ``reports/evaluation_report.pdf`` afterwards.
 """
 
 from __future__ import annotations
@@ -43,10 +47,6 @@ import sys
 from pathlib import Path
 from typing import Any, TextIO
 
-import numpy as np
-import torch
-from torch import nn
-
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -57,37 +57,22 @@ from traffic_classifier.data import (  # noqa: E402
     load_image_folder,
     make_loader,
 )
-from traffic_classifier.engine import evaluate  # noqa: E402
+from traffic_classifier.evaluation import (  # noqa: E402
+    PER_IMAGE_COLUMNS,
+    Evaluation,
+    build_evaluation_model,
+    confidence_by_class,
+)
 from traffic_classifier.metrics import (  # noqa: E402
     classification_metrics,
     confusion_pair_ranking,
 )
-from traffic_classifier.models import build_model  # noqa: E402
-from traffic_classifier.paths import ProjectPaths, load_paths  # noqa: E402
+from traffic_classifier.paths import load_paths  # noqa: E402
 from traffic_classifier.promotion import (  # noqa: E402
     load_promoted_checkpoint,
     read_manifest,
     sha256_file,
 )
-
-PER_IMAGE_COLUMNS = [
-    "model",
-    "display_name",
-    "architecture",
-    "loss",
-    "probability_kind",
-    "image_index",
-    "image_path",
-    "true_class",
-    "predicted_class",
-    "correct",
-    "confidence",
-    "margin",
-    "true_class_probability",
-    "top3",
-    "temperature",
-    "below_official_review_threshold",
-]
 
 BANNER = """\
 ================================================================================
@@ -122,6 +107,8 @@ not be done.
 | `per_image_predictions.csv` | Every model x every test image ({rows} rows) |
 | `per_image_predictions.jsonl` | The same rows as one JSON object per line |
 | `per_model/<experiment>.csv` | One file per experiment ({images} rows each) |
+| `per_model/<experiment>_metrics.json` | Metrics (accuracy, macro/weighted P-R-F1, per-class, confusion) plus uncertainty |
+| `per_model/<experiment>_confusion.png` | Per-model confusion matrix (counts + row-normalized) |
 | `confidence_by_true_class.csv` | Confidence and accuracy per true class |
 | `README.md` | This file |
 
@@ -199,91 +186,6 @@ def _check_transform(expected: dict[str, Any], actual: Any, name: str) -> None:
             )
 
 
-def _per_image_rows(
-    *,
-    name: str,
-    entry: dict[str, Any],
-    sample_paths: list[str],
-    targets: np.ndarray,
-    probabilities: np.ndarray,
-    classes: list[str],
-    temperature: float,
-    review_threshold: float,
-) -> list[dict[str, Any]]:
-    """One row per test image, carrying the confidence of the chosen class."""
-
-    predictions = probabilities.argmax(axis=1)
-    rows: list[dict[str, Any]] = []
-    for index in range(len(targets)):
-        scores = probabilities[index]
-        order = np.argsort(-scores)
-        top3 = "|".join(
-            f"{classes[position]}:{scores[position]:.6f}" for position in order[:3]
-        )
-        confidence = float(scores[order[0]])
-        runner_up = float(scores[order[1]]) if len(order) > 1 else 0.0
-        true_index = int(targets[index])
-        rows.append(
-            {
-                "model": name,
-                "display_name": entry["display_name"],
-                "architecture": entry["architecture"],
-                "loss": entry["loss"],
-                "probability_kind": entry["_probability_kind"],
-                "image_index": index,
-                "image_path": sample_paths[index],
-                "true_class": classes[true_index],
-                "predicted_class": classes[int(order[0])],
-                "correct": bool(order[0] == true_index),
-                "confidence": confidence,
-                "margin": confidence - runner_up,
-                "true_class_probability": float(scores[true_index]),
-                "top3": top3,
-                "temperature": temperature,
-                "below_official_review_threshold": bool(
-                    confidence < review_threshold
-                ),
-            }
-        )
-    return rows
-
-
-def _confidence_by_class(
-    rows: list[dict[str, Any]], classes: list[str]
-) -> list[dict[str, Any]]:
-    """Aggregate confidence and accuracy per true class, per model."""
-
-    summary: list[dict[str, Any]] = []
-    for model in sorted({row["model"] for row in rows}):
-        model_rows = [row for row in rows if row["model"] == model]
-        for label in classes:
-            subset = [row for row in model_rows if row["true_class"] == label]
-            if not subset:
-                continue
-            confidences = [row["confidence"] for row in subset]
-            correct = [row["confidence"] for row in subset if row["correct"]]
-            wrong = [row["confidence"] for row in subset if not row["correct"]]
-            summary.append(
-                {
-                    "model": model,
-                    "true_class": label,
-                    "images": len(subset),
-                    "accuracy": len(correct) / len(subset),
-                    "mean_confidence": statistics.fmean(confidences),
-                    "median_confidence": statistics.median(confidences),
-                    "min_confidence": min(confidences),
-                    "max_confidence": max(confidences),
-                    "mean_confidence_when_correct": (
-                        statistics.fmean(correct) if correct else ""
-                    ),
-                    "mean_confidence_when_wrong": (
-                        statistics.fmean(wrong) if wrong else ""
-                    ),
-                }
-            )
-    return summary
-
-
 def _check_promotion(
     promotion: dict[str, Any], experiments: dict[str, Any]
 ) -> None:
@@ -306,7 +208,9 @@ def _check_promotion(
             )
 
 
-def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
+def run(
+    config_path: Path, paths_file: Path | None, *, allow_drift: bool = False
+) -> dict[str, Any]:
     paths = load_paths(paths_file)
     config = ProjectConfig.from_json(paths.get("configs.default"))
     device = config.resolve_device()
@@ -428,30 +332,20 @@ def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
             config, name=f"{name}.pt", map_location=device, manifest=promotion
         )
 
-        model = build_model(
-            entry["architecture"],
-            len(config.classes),
-            dropout=float(meta["dropout"]),
-            pooling=meta["pooling"],  # type: ignore[arg-type]
-            pretrained=False,
+        model, _ = build_evaluation_model(
+            checkpoint, config.classes, device, entry=entry
         )
-        checkpoint = load_promoted_checkpoint(
-            config, name=f"{name}.pt", map_location=device, manifest=promotion
-        )
-        model.load_state_dict(checkpoint["model_state"])
-        model.to(device)
-
-        result = evaluate(
-            model,
-            loader,
-            nn.BCEWithLogitsLoss() if is_bce else nn.CrossEntropyLoss(),
-            device,
-            loss_name=entry["loss"],
-            num_classes=len(config.classes),
+        evaluation = Evaluation(
+            name=name,
+            display_name=entry["display_name"],
+            architecture=entry["architecture"],
+            loss=entry["loss"],
+            model=model,
             class_names=config.classes,
+            device=device,
             probability_kind=entry["_probability_kind"],
-            temperature=temperature,
         )
+        result = evaluation.run(loader, temperature=temperature)
         outputs = result["outputs"]
         targets = outputs["targets"]
         predictions = outputs["predictions"]
@@ -460,26 +354,21 @@ def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
             metrics["confusion_matrix_row_normalized"], config.classes
         )
 
-        rows = _per_image_rows(
-            name=name,
-            entry=entry,
-            sample_paths=current_paths,
-            targets=targets,
-            probabilities=outputs["probabilities"],
-            classes=config.classes,
+        rows = evaluation.per_image_rows(
+            current_paths,
             temperature=temperature,
             review_threshold=official_threshold,
         )
+        evaluation._attach_rows(rows)
         per_image.extend(rows)
         reviewed_counts[name] = sum(
             1 for row in rows if row["below_official_review_threshold"]
         )
-        with (per_model_dir / f"{name}.csv").open(
-            "w", encoding="utf-8", newline=""
-        ) as handle:
-            writer = csv.DictWriter(handle, fieldnames=PER_IMAGE_COLUMNS)
-            writer.writeheader()
-            writer.writerows(rows)
+        written = evaluation.write_outputs(per_model_dir)
+        if written["csv"].name != f"{name}.csv":
+            raise RuntimeError(
+                f"expected per-model file {name}.csv, wrote {written['csv'].name}"
+            )
 
         summary_rows.append(
             {
@@ -533,16 +422,28 @@ def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
     drift = abs(
         official_row["test_macro_f1"] - float(official_metrics["macro_f1"])
     )
-    if drift > 1e-6:
-        raise RuntimeError(
-            "recomputed test macro-F1 for the production model disagrees with the "
-            f"locked record by {drift:.3e}; refusing to publish this diagnostic"
+    drifted = drift > 1e-6
+    if drifted:
+        if allow_drift:
+            print(
+                f"\nwarning: recomputed {official_name} test macro-F1 "
+                f"{official_row['test_macro_f1']:.6f} disagrees with the locked "
+                f"record {float(official_metrics['macro_f1']):.6f} by {drift:.3e} "
+                "(the test set likely changed since the frozen evaluation); "
+                "publishing this diagnostic anyway via --allow-drift"
+            )
+        else:
+            raise RuntimeError(
+                "recomputed test macro-F1 for the production model disagrees with "
+                f"the locked record by {drift:.3e}; refusing to publish this "
+                "diagnostic. Use --allow-drift to publish it as diagnostics-only."
+            )
+    else:
+        print(
+            f"\nintegrity check passed: recomputed {official_name} test macro-F1 "
+            f"{official_row['test_macro_f1']:.6f} matches the locked "
+            f"{float(official_metrics['macro_f1']):.6f}"
         )
-    print(
-        f"\nintegrity check passed: recomputed {official_name} test macro-F1 "
-        f"{official_row['test_macro_f1']:.6f} matches the locked "
-        f"{float(official_metrics['macro_f1']):.6f}"
-    )
 
     expected_rows = len(experiments) * len(sample_paths)
     if len(per_image) != expected_rows:
@@ -585,7 +486,8 @@ def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
         )
     print("\n* = official production model (selected on validation, test used once)")
     print(
-        "conf = mean confidence of the chosen class over all 400 test images"
+        f"conf = mean confidence of the chosen class over all "
+        f"{len(sample_paths)} test images"
     )
 
     imbalance = [row for row in summary_rows if row["category"] == "imbalance"]
@@ -616,7 +518,7 @@ def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
     print(f"top confusion pair : {official_row['top_confusion_pair']}")
 
     # --- write everything ---------------------------------------------------
-    by_class = _confidence_by_class(per_image, config.classes)
+    by_class = confidence_by_class(per_image, config.classes)
     with (out_dir / "per_image_predictions.csv").open(
         "w", encoding="utf-8", newline=""
     ) as handle:
@@ -661,7 +563,7 @@ def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
             "recomputed_macro_f1": official_row["test_macro_f1"],
             "locked_macro_f1": float(official_metrics["macro_f1"]),
             "abs_difference": drift,
-            "passed": True,
+            "passed": not drifted,
         },
         "coverage": {
             "models": len(experiments),
@@ -688,7 +590,10 @@ def run(config_path: Path, paths_file: Path | None) -> dict[str, Any]:
     _banner("Written")
     for name in sorted(path.name for path in out_dir.iterdir()):
         print(f"  {paths.relative(out_dir / name)}")
-    print(f"  {paths.relative(per_model_dir)}/ ({len(experiments)} files)")
+    print(
+        f"  {paths.relative(per_model_dir)}/ "
+        f"(csv + metrics + confusion PNG per model, {len(experiments)} models)"
+    )
     print(f"  {paths.relative(log_path)}")
     print(
         "\nReminder: the official result is unchanged and remains the single "
@@ -701,12 +606,26 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
             "Post-hoc diagnostic: score every trained experiment on dataset/test, "
-            "with a per-image confidence row for every model and every image. "
+            "with a per-image confidence row, metrics JSON and confusion PNG for "
+            "every model and every image. "
             "Runs only after the official single frozen-test evaluation exists."
         )
     )
     parser.add_argument("--config", default="configs/default.json")
     parser.add_argument("--paths", default=None)
+    parser.add_argument("--report",
+        action="store_true",
+        help="Regenerate reports/evaluation_report.pdf from the results afterwards",
+    )
+    parser.add_argument(
+        "--allow-drift",
+        action="store_true",
+        help=(
+            "Downgrade the frozen-record macro-F1 integrity check to a warning so "
+            "the diagnostic can be published even if dataset/test grew after the "
+            "official single frozen-test evaluation"
+        ),
+    )
     args = parser.parse_args()
 
     config_path = Path(args.config)
@@ -718,10 +637,28 @@ def main() -> None:
     tee = _Tee(sys.__stdout__, log_path)
     sys.stdout = tee
     try:
-        run(config_path, Path(args.paths) if args.paths else None)
+        run(
+            config_path,
+            Path(args.paths) if args.paths else None,
+            allow_drift=args.allow_drift,
+        )
     finally:
         sys.stdout = tee._stream
         tee.close()
+
+    if args.report:
+        import subprocess
+
+        report_script = ROOT / "scripts" / "generate_pdf_report.py"
+        status = subprocess.run(
+            [sys.executable, str(report_script), "--config", str(config_path)],
+            check=False,
+        )
+        if status.returncode != 0:
+            raise SystemExit(
+                f"report generation failed: {report_script} "
+                f"exited with code {status.returncode}"
+            )
 
 
 if __name__ == "__main__":
