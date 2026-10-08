@@ -46,3 +46,20 @@ not be done.
 The production model's macro-F1 is recomputed here and compared with the locked
 official value; the run aborts if they disagree by more than 1e-6.
 Observed absolute difference: 0.000e+00.
+
+## PDF report
+
+`reports/evaluation_report.pdf` - full evaluation report covering validation and test metrics
+for all 13 models, generated after the test diagnostic:
+
+    python scripts/generate_pdf_report.py
+
+| Field | Value |
+| --- | --- |
+| Generated | 2026-10-08 18:50:03 |
+| SHA-256 | `a07375a03e1829023396fe319960d2ce755243790712adebae99b6eeb796b6cd` |
+| Models covered | 13 |
+| Production model | `resnet18_fine_tuning` |
+| Dataset split | 930 train / 232 validation / 64 test |
+| Run fingerprint | `1ba0f75a8c63be033d34e0c0cc95f1a600081d2d887b9763e64850f8adddd401` |
+
